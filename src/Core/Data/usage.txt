@@ -1,0 +1,4 @@
+USAGE: {python{3}} kara.py [-h] [-i] NAME [-v]
+       ALIASES: (-h, --help)
+              : (-i, --init)
+              : (-v, --validate)
