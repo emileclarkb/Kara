@@ -10,7 +10,7 @@ def setup(path):
         for line in file.readlines():
             pkg = ''
             for char in line:
-                # comment
+                # comment support
                 if char == '#':
                     break
                 # correct pkg code on line
