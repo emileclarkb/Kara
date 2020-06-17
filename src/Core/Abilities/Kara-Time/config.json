@@ -1,0 +1,7 @@
+{
+    "name": "Time",
+    "version": "1",
+    "author": "Emile Clark-Boman",
+    "description": "Kara Base Time Library",
+    "main": "main.py"
+}
