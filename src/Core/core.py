@@ -57,7 +57,7 @@ class Kara:
             return 1
 
         # write main.py template
-        with open('Core/Data/main.py', 'r') as template:
+        with open('Core/Data/Templates/main.py', 'r') as template:
             # write config
             with open(path + '/main.py', 'w') as file:
                 # write template to main.py
@@ -65,7 +65,7 @@ class Kara:
 
         # write config.json file
         # open template
-        with open('Core/Data/config.json', 'r') as template:
+        with open('Core/Data/Templates/config.json', 'r') as template:
             # write config
             with open(path + '/config.json', 'w') as file:
                 # write template to config.json
