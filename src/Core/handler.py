@@ -5,6 +5,7 @@ import sys
 # Kara
 from Core.colors import *
 from Core.compiler import compile
+from Core.setup import setup
 
 
 # Kara usage
@@ -21,7 +22,8 @@ def argHandle(kara, args):
     # looking for a value
     current = ''
     # all commands
-    commands = ['-h', '--help', '-i', '--init', '-v', '--validate']
+    commands = ['-h', '--help', '-i', '--init', '-v', '--validate',
+                '-s', '--setup']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -54,5 +56,8 @@ def argHandle(kara, args):
         # validate abilities integrity
         elif arg in commands[4:6]:
             compile()
+        # download required modules
+        elif arg in commands[6:8]:
+            setup('Core/Data/requirements.txt')
 
     sys.exit(1)
