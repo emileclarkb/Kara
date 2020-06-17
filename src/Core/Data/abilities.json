@@ -1,0 +1,12 @@
+{
+    "Abilities": [
+        "Kara-Weather": [
+            "version": "0.0.2",
+            "commands": ["weather"]
+        ],
+        "Kara-Time": [
+            "version": "1.0.2",
+            "commands": ["time", "date"]
+        ]
+    ]
+}
