@@ -1,33 +1,15 @@
+# native
 import os
 import pathlib
 import json
-
-'''
- - confirm each package is valid (main and config)
- - confirm each package has atleast one command
- - alter abilities.json
-
-incorrect = \
-{
-    'Kara-Weather':
-    [
-        'missing main',
-        'missing version',
-        'different version'
-    ]
-}
-
-'''
-
+# kara
+from Core.Scripts.colors import *
 
 path = 'Core/Abilities/'
 
 # confirm if changes were made
-def quickCheck():
+def quickCheck(abilities):
     incorrect = {}
-
-    # get abilities
-    abilities = os.listdir(path)
 
     # iterate abilities
     for ability in abilities:
@@ -48,23 +30,50 @@ def quickCheck():
                 # main doesn't exists
                 if not main.is_file():
                     # issue encounter
-                    issues.append('no main')
+                    issues.append('main')
 
-                # read correct main file
-                require = pathlib.Path(path + ability + '/' +
-                                       configJSON['requirements'])
-                # requirements doesn't exists
-                if not require.is_file():
-                    # issue encounter
-                    issues.append('no requirements')
+                # requirement file given
+                if configJSON['requirements']:
+                    # read correct main file
+                    require = pathlib.Path(path + ability + '/' +
+                    configJSON['requirements'])
+                    # requirements doesn't exists
+                    if not require.is_file():
+                        # issue encounter
+                        issues.append('req')
         else:
             # issue encounter
-            issues.append('no config')
+            issues.append('conf')
 
-        # log incorrect interaction
-        incorrect[ability] = issues
+        # if issues were raised
+        if issues:
+            # log incorrect interaction
+            incorrect[ability] = issues
     return incorrect
 
 def compile():
-    changes = quickCheck()
-    print(changes)
+    # get abilities
+    abilities = os.listdir(path)
+
+    # quick check for errors
+    errors = quickCheck(abilities)
+
+    # error encounted
+    if errors:
+        # each ability that encounted errors
+        for ability in errors:
+            # list all abilities that failed
+            print(red('[-] \"' + ability + '\" Ability Failed to Compile!'))
+            for e in errors[ability]:
+                # expand on error message
+                if e == 'conf':
+                    print(white('    ~ No Config File Found!'))
+                elif e == 'req':
+                    print(white('    ~ Requirements Linked But Not Found!'))
+                elif e == 'main':
+                    print(white('    ~ Main Not Found, Entry Failed!'))
+            print() #empty line
+
+    else:
+        # no errors encountered
+        print(green('[+] Successfully Compiled Abilities!'))
