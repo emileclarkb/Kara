@@ -17,8 +17,6 @@ def main():
     # instance kara
     kara = Kara()
 
-    print(green('[+] Instance Successful!'))
-
     # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
