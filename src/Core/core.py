@@ -71,6 +71,14 @@ class Kara:
                 # write template to config.json
                 file.write(template.read())
 
+        # write requirements.txt file
+        # open template
+        with open('Core/Data/Templates/requirements.txt', 'r') as template:
+            # write config
+            with open(path + '/requirements.txt', 'w') as file:
+                # write template to requirements.txt
+                file.write(template.read())
+
         return 0
 
     def compile(self, text):
