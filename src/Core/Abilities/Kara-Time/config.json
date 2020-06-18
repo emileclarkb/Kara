@@ -4,18 +4,22 @@
     "author": "Emile Clark-Boman",
     "description": "Kara Base Time Library",
     "main": "main.py",
-    "requirements": "requirements.txt",
+    "requirements": "require.txt",
     "commands": {
         "time": {
+            "target": "currentTime",
             "keywords": ["time"]
         },
         "date": {
+            "target": "currentDate",
             "keywords": ["date"]
         },
         "month": {
+            "target": "currentMonth",
             "keywords": ["month"]
         },
         "year": {
+            "target": "currentYear",
             "keywords": ["year"]
         }
     }
