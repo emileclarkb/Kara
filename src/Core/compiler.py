@@ -5,17 +5,22 @@ import json
 # kara
 from Core.Scripts.colors import *
 
-path = 'Core/Abilities/'
+
+# compile requirements into one directory
+
 
 # confirm if changes were made
 def quickCheck(abilities):
     incorrect = {}
+
+    path = 'Core/Abilities/'
 
     # iterate abilities
     for ability in abilities:
         # everything incorrect with the ability
         issues = []
 
+        # config.json path
         configPath = path + ability + '/config.json'
 
         # get ability files
@@ -32,15 +37,26 @@ def quickCheck(abilities):
                     # issue encounter
                     issues.append('main')
 
+                # path to requirements
+                requirePath = path + ability + '/' + configJSON['requirements']
                 # requirement file given
                 if configJSON['requirements']:
-                    # read correct main file
-                    require = pathlib.Path(path + ability + '/' +
-                    configJSON['requirements'])
+                    # read correct requirements file
+                    require = pathlib.Path(requirePath)
                     # requirements doesn't exists
                     if not require.is_file():
                         # issue encounter
                         issues.append('req')
+
+                # if no issues were raised
+                if not issues:
+                    # read requirements source
+                    with open(requirePath, 'r') as src:
+                        # target path
+                        path = 'Core/Data/Require/Abilities/'
+                        # write requirements target
+                        with open(path + ability + '.txt', 'w') as target:
+                            target.write(src.read())
         else:
             # issue encounter
             issues.append('conf')
@@ -51,7 +67,11 @@ def quickCheck(abilities):
             incorrect[ability] = issues
     return incorrect
 
+
+# compilation process
 def compile():
+    path = 'Core/Abilities/'
+
     # get abilities
     abilities = os.listdir(path)
 
