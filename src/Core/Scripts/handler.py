@@ -3,9 +3,9 @@
 # Native
 import sys
 # Kara
-from Core.colors import *
 from Core.compiler import compile
-from Core.setup import setup
+from Core.Scripts.colors import *
+from Core.Scripts.setup import setup
 
 
 # Kara usage
