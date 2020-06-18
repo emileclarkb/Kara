@@ -31,13 +31,22 @@ def argHandle(kara, args):
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
         if current:
+            # short and long hand arguement varients
+            short = '-' + current
+            long = '--' + current
+
             # value passed was a command
-            if current in commands:
+            if short in commands or long in commands:
                 # error message
                 print(red('\n[-] Cannot Pass Value \"' + arg + \
                 '\" to Arguement \"' + current + '\"'))
+
+                # reset current
+                current = ''
+                break
+
             # create new ability
-            if '--' + current in commands[2:4]:
+            if long in commands[2:4]:
                 result = kara.abilityTemp(arg)
                 if result:
                     print(red('\n[-] Failed To Template New Ability: ' + \
@@ -62,6 +71,13 @@ def argHandle(kara, args):
         # download required modules
         elif arg in commands[6:8]:
             setup('Core/Data/requirements.txt')
+
+    # value never passed to arguement
+    if current:
+        # error
+        print(red('\n[-] No Supporting Value Passed to Arguement \"' +
+                  current + '\"!'))
+        sys.exit(1) # terminate
 
     # end
     if exit:
