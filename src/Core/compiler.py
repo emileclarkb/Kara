@@ -29,6 +29,7 @@ def quickCheck():
     # get abilities
     abilities = os.listdir(path)
 
+    # iterate abilities
     for ability in abilities:
         # everything incorrect with the ability
         issues = []
@@ -40,7 +41,7 @@ def quickCheck():
         if config.is_file():
             # parse json
             with open(configPath, 'r') as file:
-                configJSON = json.load(file)
+                configJSON = json.load(file) # parse json
 
                 # read correct main file
                 main = pathlib.Path(path + ability + '/' + configJSON['main'])
@@ -49,14 +50,19 @@ def quickCheck():
                     # issue encounter
                     issues.append('no main')
 
-                    # log incorrect interaction
-                    incorrect[ability] = issues
+                # read correct main file
+                require = pathlib.Path(path + ability + '/' +
+                                       configJSON['requirements'])
+                # requirements doesn't exists
+                if not require.is_file():
+                    # issue encounter
+                    issues.append('no requirements')
         else:
             # issue encounter
             issues.append('no config')
 
-            # log incorrect interaction
-            incorrect[ability] = issues
+        # log incorrect interaction
+        incorrect[ability] = issues
     return incorrect
 
 def compile():
