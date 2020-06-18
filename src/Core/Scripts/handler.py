@@ -31,12 +31,11 @@ def argHandle(kara, args):
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
         if current:
-            # short and long hand arguement varients
-            short = '-' + current
+            # convert to arguement
             long = '--' + current
 
             # value passed was a command
-            if short in commands or long in commands:
+            if long in commands:
                 # error message
                 print(red('\n[-] Cannot Pass Value \"' + arg + \
                 '\" to Arguement \"' + current + '\"'))
