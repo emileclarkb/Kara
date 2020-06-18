@@ -8,7 +8,7 @@ import os
 # kara
 from Core.core import Kara
 from Core.compiler import compile
-from Core.handler import argHandle
+from Core.Scripts.handler import argHandle
 
 
 
@@ -16,7 +16,7 @@ def main():
     # instance kara
     kara = Kara()
 
-    # only
+    # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
         argHandle(kara, sys.argv[1:])
