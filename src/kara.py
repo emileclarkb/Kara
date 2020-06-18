@@ -9,6 +9,7 @@ import os
 from Core.core import Kara
 from Core.compiler import compile
 from Core.Scripts.handler import argHandle
+from Core.Scripts.colors import green
 
 
 
@@ -16,14 +17,21 @@ def main():
     # instance kara
     kara = Kara()
 
+    print(green('[+] Instance Successful!'))
+
     # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
-        argHandle(kara, sys.argv[1:])
+        args = argHandle(kara, sys.argv[1:])
+
+    print(green('[+] Arguements Active!'))
+    print(green('[+] Compiling Abilities...'))
 
     # check file credibility
-    #compile()
+    compile()
     sys.exit(0)
+
+    print(green('[+] Listening!'))
 
     while True:
         text = kara.listen()
