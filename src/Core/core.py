@@ -1,8 +1,8 @@
 # Kara Object
 
-# ASSETS
+# native
 import os
-
+# 3rd Party
 import pyttsx3
 import speech_recognition as sr
 
