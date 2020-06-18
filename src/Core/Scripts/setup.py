@@ -1,9 +1,20 @@
 import subprocess
+import os
+
+# setup every ability requirements file
+def massSetup():
+    # path to setup
+    path = 'Core/Data/Require/Abilities'
+
+    files = os.listdir(path)
+
+    # iterate files
+    for file in files:
+        setup(path + file)
+
 
 # download all modules given in a requirements file
 def setup(path):
-    requirements = []
-
     # read requirements
     with open(path, 'r') as file:
         # iterate lines
@@ -19,8 +30,5 @@ def setup(path):
             pkg = pkg.strip()
             # pkg not empty
             if pkg:
-                requirements.append(pkg)
-
-    # install given package
-    for package in requirements:
-        subprocess.call('pip install ' + package, shell=True)
+                # install package
+                subprocess.call('pip install ' + pkg, shell=True)
