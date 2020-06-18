@@ -17,7 +17,10 @@ def usage():
 
 # main handler
 def argHandle(kara, args):
-    length = len(args)
+    # exit the booting process once args handled
+    exit = True
+    # arguements to return to Kara
+    argReturn = {}
 
     # looking for a value
     current = ''
@@ -60,4 +63,9 @@ def argHandle(kara, args):
         elif arg in commands[6:8]:
             setup('Core/Data/requirements.txt')
 
-    sys.exit(1)
+    # end
+    if exit:
+        sys.exit(1)
+    else:
+        # return arg data
+        return argReturn
