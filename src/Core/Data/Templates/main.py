@@ -1,5 +1,6 @@
-from Core.ability import Ability
+# Kara.speak('Hey World!')
+# Kara.listen()
 
-class ability(Ability):
-    def __init__(self):
-        pass
+
+def command(Kara, command):
+    pass
