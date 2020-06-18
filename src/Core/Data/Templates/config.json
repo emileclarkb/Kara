@@ -3,5 +3,11 @@
     "version": "",
     "description": "",
     "author": "",
-    "main": "main.py"
+    "main": "main.py",
+    "requirements": "requirements.txt",
+    "commands": {
+        "myCommand": {
+            "keywords": []
+        }
+    }
 }
