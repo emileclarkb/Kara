@@ -1,0 +1,3 @@
+"keywords": ["temperature", "temp"]
+
+command will execute if either "temperature" or "temp" are given
