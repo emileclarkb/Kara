@@ -1,12 +1,36 @@
 {
-    "Abilities": [
-        "Kara-Weather": [
-            "version": "0.0.2",
-            "commands": ["weather"]
-        ],
-        "Kara-Time": [
-            "version": "1.0.2",
-            "commands": ["time", "date"]
-        ]
-    ]
+    "Kara-Time": {
+        "author": "Emile Clark-Boman",
+        "commands": {
+            "date": {
+                "keywords": [
+                    "date"
+                ],
+                "target": "currentDate"
+            },
+            "month": {
+                "keywords": [
+                    "month"
+                ],
+                "target": "currentMonth"
+            },
+            "time": {
+                "keywords": [
+                    "time"
+                ],
+                "target": "currentTime"
+            },
+            "year": {
+                "keywords": [
+                    "year"
+                ],
+                "target": "currentYear"
+            }
+        },
+        "description": "Kara Base Time Library",
+        "main": "main.py",
+        "name": "Time",
+        "requirements": "require.txt",
+        "version": "0.0.1"
+    }
 }
