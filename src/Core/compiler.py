@@ -59,16 +59,19 @@ def deepCompile(abilities):
 
                 # if no issues were raised
                 if not issues:
-                    # specific parts of config file to dump
-                    # ignore name, description, etc.
-                    dump = {'version': configJSON['version'],
-                            'main': configJSON['main'],
-                            'requirements': configJSON['requirements'],
-                            'commands': configJSON['commands']}
+                    # if ability has atleast one command
+                    if configJSON['commands']:
+                        # specific parts of config file to dump
+                        # ignore name, description, etc.
+                        dump = {'version': configJSON['version'],
+                                'main': configJSON['main'],
+                                'requirements': configJSON['requirements'],
+                                'commands': configJSON['commands']}
 
-                    # add working ability to list
-                    abilitiesJSON[ability] = dump
+                        # add working ability to list
+                        abilitiesJSON[ability] = dump
 
+                    # change detection
                     # read previously logged configuration
                     with open(logPath, 'r') as log:
                         logJSON = json.load(log) # parse json
