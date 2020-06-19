@@ -4,6 +4,7 @@ import pathlib
 import json
 # kara
 from Core.Scripts.colors import *
+from Core.Scripts.setup import setup
 
 
 # main compilation process
@@ -102,6 +103,7 @@ def deepCompile(abilities):
     # log compiled ability data
     with open(logPath, 'w') as log:
         # dump json to file
+        # arguements given make the json file look neat and structured
         json.dump(abilitiesJSON, log,
                   sort_keys=True, indent=4, separators=(',', ': '))
 
@@ -119,14 +121,37 @@ def compile():
     # quick check for errors
     errors, changes = deepCompile(abilities)
 
-    print(changes)
+    # changes detected
+    if changes:
+        print(green('[!] Installing Requirements...\n'))
+
+        # formatted changes to print
+        formatted = []
+
+        # iterate changes
+        for change in changes:
+            # add change to formatted text
+            formatted.append('    ~ ' + change)
+
+            # read config file
+            with open(path + change + '/config.json', 'r') as config:
+                # get requirements file
+                require = json.load(config)['requirements'] # parse json
+                # setup correct requirements
+                setup(path + change + '/' + require)
+
+        # format changes
+        print(yellow('\n[!] Ability Changes Were Detected!'))
+        print(white('\n'.join(formatted)))
+    else:
+        print(green('[+] No Ability Changes Detected!'))
 
     # error encounted
     if errors:
         # each ability that encounted errors
         for ability in errors:
             # list all abilities that failed
-            print(red('[-] \"' + ability + '\" Ability Failed to Compile!'))
+            print(red('\n[-] \"' + ability + '\" Ability Failed to Compile!'))
             for e in errors[ability]:
                 # expand on error message
                 if e == 'conf':
