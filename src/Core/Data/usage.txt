@@ -1,7 +1,9 @@
 USAGE: {python{3}} kara.py [-h] [-i] NAME [-v] [-s]
        ALIASES: (-h --help)
               : (-i --init)
-              : (-v --validate)
+              : (-r -- recompile)
               : (-s -- setup)
               : (-l --link)
               : (-c --cache)
+              : (-v --version)
+              : (-m --manual)

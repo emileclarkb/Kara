@@ -36,6 +36,11 @@ def main():
     print(yellow('[!] Listening'))
     # infinite listening
     while True:
+        # compile text not speech
+        if args['manual']:
+            kara.compile(text)
+            break
+
         # listen for input
         text = kara.listen()
 

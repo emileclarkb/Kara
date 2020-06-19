@@ -21,14 +21,14 @@ def argHandle(kara, args):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
-    argReturn = {}
+    argReturn = {'manual': ''}
 
     # looking for a value
     current = ''
     # all commands
     commands = ['-h', '--help', '-i', '--init', '-r', '--recompile',
                 '-s', '--setup', '-l', '--link', '-c', '--cache',
-                '-v', '--version']
+                '-v', '--version', '-m', '--manual']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -51,6 +51,9 @@ def argHandle(kara, args):
                     'Directory Already Exists'))
                 else:
                     print(green('\n[+] Template Successful! New Ability Created'))
+            # add text to return
+            elif current == 'manual':
+                    argReturn['manual'] = arg
 
             # reset current
             current = ''
@@ -85,6 +88,10 @@ def argHandle(kara, args):
                 # get Kara version
                 version = json.load(config)['version'] # parse json
                 print('Kara ' + version)
+        # skip voice step and use text instead
+        elif arg in commands[14:16]:
+            # look for value
+            current = 'manual'
 
 
     # value never passed to arguement
