@@ -29,16 +29,5 @@
         "main": "main.py",
         "requirements": "require.txt",
         "version": "0.0.1"
-    },
-    "Kara-Weather": {
-        "commands": {
-            "myCommand": {
-                "keywords": [],
-                "target": "command"
-            }
-        },
-        "main": "main.py",
-        "requirements": "requirements.txt",
-        "version": ""
     }
 }
