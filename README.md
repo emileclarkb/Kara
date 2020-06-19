@@ -1,8 +1,6 @@
 # Kara
----
 
 ## Description
----
 Simply put, Kara is a voice assistant that steals 0% of your data so you stay free!
 She is a actively maintained, modular, and designed to customize.
 
@@ -12,13 +10,11 @@ Currently Kara does not have many "Abilities" though many are planned for releas
 the next weeks!
 
 ## Installation
----
 `python kara.py -s`
 or
 `python kara.py --setup`
-
 ## Abilities
----
+
 Kara is designed specifically to be modified by the community and given additional
 functionality or "Abilities".
 
