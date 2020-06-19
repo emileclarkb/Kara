@@ -3,7 +3,7 @@
 # Native
 import sys
 # Kara
-from Core.compiler import compile
+from Core.compiler import compile, link
 from Core.Scripts.colors import *
 from Core.Scripts.setup import setup
 
@@ -26,7 +26,7 @@ def argHandle(kara, args):
     current = ''
     # all commands
     commands = ['-h', '--help', '-i', '--init', '-v', '--validate',
-                '-s', '--setup']
+                '-s', '--setup', '-l', '--link']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -67,6 +67,12 @@ def argHandle(kara, args):
         # download required modules
         elif arg in commands[6:8]:
             setup('Core/Data/requirements.txt')
+        # force ability linking
+        elif arg in commands[8:10]:
+            # generate linking file
+            link()
+            print(green('\n[+] Generated Linking File!'))
+
 
     # value never passed to arguement
     if current:
