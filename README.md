@@ -18,7 +18,7 @@ or
 Kara is designed specifically to be modified by the community and given additional
 functionality or "Abilities".
 
-initializing an Ability is as simple as:
+Initializing an Ability is as simple as:
 `python kara.py -i YOUR_ABILITY_NAME`
 
 Abilities are stored within `Core/Abilities`, an entire Ability will already be
