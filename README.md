@@ -26,8 +26,9 @@ templated once it is initialized. It's up to you to give it a purpose!
 
 
 ## Arguements
--
--
--
--
--
+- -h or --help: show Kara's usage
+- -i or --init: initialize new Ability
+- -v or --validate: validate ability integrity
+- -s or --setup: download all requirements
+- -l or --link: regenerate linking file
+- -c or --cache : remove all cached data (abilities.json, link.py)
