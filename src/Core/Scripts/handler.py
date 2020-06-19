@@ -21,10 +21,10 @@ def argHandle(kara, args):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
-    argReturn = {'manual': ''}
+    argReturn = {'manual': '', 'recompile': 1}
 
     # looking for a value
-    current = ''
+    current = {'value': '', 'optional': False}
     # all commands
     commands = ['-h', '--help', '-i', '--init', '-r', '--recompile',
                 '-s', '--setup', '-l', '--link', '-c', '--cache',
@@ -32,31 +32,41 @@ def argHandle(kara, args):
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
-        if current:
-            # value passed was a command
-            if arg in commands:
+        if current['value']:
+            # value passed was a command (and value wasn't optional)
+            if arg in commands and not current['optional']:
                 # error message
                 print(red('\n[-] Cannot Pass Value \"' + arg + \
-                '\" to Arguement \"' + current + '\"'))
+                '\" to Arguement \"' + current['value'] + '\"'))
 
                 # reset current
                 current = ''
                 break
 
             # create new ability
-            if current == 'init':
+            if current['value'] == 'init':
                 result = kara.abilityTemp(arg)
                 if result:
                     print(red('\n[-] Failed To Template New Ability: ' + \
                     'Directory Already Exists'))
                 else:
                     print(green('\n[+] Template Successful! New Ability Created'))
+            # recompile abilities
+            if current['value'] == 'recompile':
+                # skip compilation process
+                if arg == '0':
+                    argReturn['recompile'] = 0
+                    exit = False # continue booting
+                # anything else given
+                else:
+                    compile()
             # add text to return
-            elif current == 'manual':
-                    argReturn['manual'] = arg
+            elif current['value'] == 'manual':
+                argReturn['manual'] = arg
+                exit = False
 
             # reset current
-            current = ''
+            current['value'] = ''
 
 
         # read usage
@@ -65,10 +75,11 @@ def argHandle(kara, args):
         # create new ability
         elif arg in commands[2:4]:
             # look for a value to use as ability name
-            current = 'init'
+            current['value'] = 'init'
         # recompile abilities
         elif arg in commands[4:6]:
-            compile()
+            current['value'] = 'recompile'
+            current['optional'] = True
         # download required modules
         elif arg in commands[6:8]:
             setup('Core/Data/requirements.txt')
@@ -91,14 +102,20 @@ def argHandle(kara, args):
         # skip voice step and use text instead
         elif arg in commands[14:16]:
             # look for value
-            current = 'manual'
+            current['value'] = 'manual'
 
 
-    # value never passed to arguement
-    if current:
+    # on exitting check to see if nothing was ever passed to arguements
+    # recompile abilities
+    if current['value'] == 'recompile':
+        print(yellow('\n[!] Forcing Compilation...'))
+        compile()
+
+    # value never passed to arguement (and not optional)
+    if current['value'] and not current['optional']:
         # error
         print(red('\n[-] No Supporting Value Passed to Arguement \"' +
-                  current + '\"!'))
+                  current['value'] + '\"!'))
         sys.exit(1) # terminate
 
     # end
