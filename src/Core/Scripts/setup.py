@@ -1,18 +1,6 @@
 import subprocess
 import os
 
-# setup every ability requirements file
-def massSetup():
-    # path to setup
-    path = 'Core/Data/Require/Abilities'
-
-    files = os.listdir(path)
-
-    # iterate files
-    for file in files:
-        setup(path + file)
-
-
 # download all modules given in a requirements file
 def setup(path):
     # read requirements
