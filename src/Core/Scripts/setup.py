@@ -20,3 +20,4 @@ def setup(path):
             if pkg:
                 # install package
                 subprocess.call('pip install ' + pkg, shell=True)
+                print() # empty trailing line
