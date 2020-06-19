@@ -1,0 +1,15 @@
+{
+    "name": "",
+    "version": "",
+    "description": "",
+    "long-description": "",
+    "author": "",
+    "main": "main.py",
+    "requirements": "requirements.txt",
+    "commands": {
+        "myCommand": {
+            "target": "command",
+            "keywords": []
+        }
+    }
+}
