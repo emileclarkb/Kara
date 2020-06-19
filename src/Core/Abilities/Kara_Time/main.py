@@ -21,7 +21,7 @@ def currentTime(Kara, command):
     now = datetime.now()
 
     # remove all but hours and minutes
-    hour = now.strftime("%H")
+    hour = int(now.strftime("%H"))
     minute = now.strftime("%M")
 
     # period of the day (AM or PM)
@@ -41,7 +41,7 @@ def currentTime(Kara, command):
         minute = ' '.join(list(minute))
 
     # format speech
-    Kara.speak('The Time is ' + hour + minute + period)
+    Kara.speak('The Time is ' + str(hour) + minute + period)
 
 
 # Today is Thursday the 18th
