@@ -1,6 +1,5 @@
 {
     "Kara-Time": {
-        "author": "Emile Clark-Boman",
         "commands": {
             "date": {
                 "keywords": [
@@ -27,10 +26,19 @@
                 "target": "currentYear"
             }
         },
-        "description": "Kara Base Time Library",
         "main": "main.py",
-        "name": "Time",
         "requirements": "require.txt",
         "version": "0.0.1"
+    },
+    "Kara-Weather": {
+        "commands": {
+            "myCommand": {
+                "keywords": [],
+                "target": "command"
+            }
+        },
+        "main": "main.py",
+        "requirements": "requirements.txt",
+        "version": ""
     }
 }
