@@ -9,7 +9,7 @@ import os
 from Core.core import Kara
 from Core.compiler import compile
 from Core.Scripts.handler import argHandle
-from Core.Scripts.colors import green
+from Core.Scripts.colors import green, yellow
 from Core.Scripts.setup import setup
 
 
@@ -23,24 +23,29 @@ def main():
         # skip first arguement (*.py)
         args = argHandle(kara, sys.argv[1:])
 
-    print(green('[+] Arguements Active!'))
-    print(green('[+] Compiling Abilities...'))
-
+    # system progress
+    print(green('\n[+] Arguements Active!'))
+    print(yellow('[!] Compiling Abilities...'))
     # check file credibility
     compile()
 
-    sys.exit(0)
+    # system progress
+    print(yellow('[!] Reloading Linking File...'))
+    kara.reload()
 
-    print(green('[+] Listening!'))
-
+    print(yellow('[!] Listening'))
+    # infinite listening
     while True:
         text = kara.listen()
 
         for word in kara.wake:
             # wake word detected in text
             if word in text:
+                # format text
+                text = text.split('kara')[-1].strip()
+
                 # speak result of input
-                kara.speak(kara.compile(text))
+                kara.compile(text)
 
                 # exit for loop
                 break
