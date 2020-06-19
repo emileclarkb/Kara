@@ -55,10 +55,18 @@ def deepCompile(abilities):
                         # issue encounter
                         issues.append('req')
 
+
                 # if no issues were raised
                 if not issues:
+                    # specific parts of config file to dump
+                    # ignore name, description, etc.
+                    dump = {'version': configJSON['version'],
+                            'main': configJSON['main'],
+                            'requirements': configJSON['requirements'],
+                            'commands': configJSON['commands']}
+
                     # add working ability to list
-                    abilitiesJSON[ability] = configJSON
+                    abilitiesJSON[ability] = dump
 
                     # read previously logged configuration
                     with open(logPath, 'r') as log:
@@ -66,10 +74,20 @@ def deepCompile(abilities):
 
                         #abililty doesn't exist
                         try:
+                            # values that should be shared
+                            shared = ['version', 'main', 'requirements', 'commands']
+
                             # no changes were made
                             # (compare current config file to previous log)
-                            if configJSON == logJSON['Ability']:
+                            if configJSON == logJSON[ability]:
                                 continue # next ability
+
+                            # iterate all shared attributes
+                            for attr in shared:
+                                # is not shared
+                                if not configJSON[attr] == logJSON[ability][attr]:
+                                    changes.append(ability) # log change
+
                         except KeyError:
                             changes.append(ability) # log change
         else:
@@ -100,6 +118,8 @@ def compile():
 
     # quick check for errors
     errors, changes = deepCompile(abilities)
+
+    print(changes)
 
     # error encounted
     if errors:
