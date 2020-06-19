@@ -6,14 +6,21 @@ import json
 from Core.Scripts.colors import *
 
 
-# compile requirements into one directory
-
-
-# confirm if changes were made
-def quickCheck(abilities):
+# main compilation process
+def deepCompile(abilities):
     incorrect = {}
 
+    # Paths
+    # abilities main
     path = 'Core/Abilities/'
+    # abilities stored in one place after compile
+    logPath = 'Core/Data/abilities.json'
+
+    # json to dump into abilities.json
+    abilitiesJSON = {}
+
+    # all abilities changed
+    changes = []
 
     # iterate abilities
     for ability in abilities:
@@ -50,6 +57,24 @@ def quickCheck(abilities):
 
                 # if no issues were raised
                 if not issues:
+                    # add working ability to list
+                    abilitiesJSON[ability] = configJSON
+
+                    # read previously logged configuration
+                    with open(logPath, 'r') as log:
+                        logJSON = json.load(log) # parse json
+
+                        #abililty doesn't exist
+                        try:
+                            # no changes were made
+                            # (compare current config file to previous log)
+                            if configJSON == logJSON['Ability']:
+                                continue # next ability
+                        except KeyError:
+                            changes.append(ability) # log change
+
+
+                    '''
                     # read requirements source
                     with open(requirePath, 'r') as src:
                         # target path
@@ -57,6 +82,7 @@ def quickCheck(abilities):
                         # write requirements target
                         with open(path + ability + '.txt', 'w') as target:
                             target.write(src.read())
+                    '''
         else:
             # issue encounter
             issues.append('conf')
@@ -65,18 +91,26 @@ def quickCheck(abilities):
         if issues:
             # log incorrect interaction
             incorrect[ability] = issues
-    return incorrect
+
+    # log compiled ability data
+    with open(logPath, 'w') as log:
+        # dump json to file
+        json.dump(abilitiesJSON, log,
+                  sort_keys=True, indent=4, separators=(',', ': '))
+
+    return incorrect, changes
 
 
-# compilation process
+# error handling compilation process
 def compile():
+    # abilities path
     path = 'Core/Abilities/'
 
     # get abilities
     abilities = os.listdir(path)
 
     # quick check for errors
-    errors = quickCheck(abilities)
+    errors, changes = deepCompile(abilities)
 
     # error encounted
     if errors:
