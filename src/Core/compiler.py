@@ -146,6 +146,7 @@ def compile():
         # format changes
         print(yellow('\n[!] Ability Changes Were Detected!'))
         print(white('\n'.join(formatted)))
+        print() # empty line
     else:
         print(green('[+] No Ability Changes Detected!'))
 
