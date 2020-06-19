@@ -19,3 +19,6 @@ def green(value):
 # print white text
 def white(value):
     return colored(value, 'white', attrs=['bold'])
+# print yellow text
+def yellow(value):
+    return colored(value, 'yellow', attrs=['bold'])
