@@ -26,7 +26,7 @@ def argHandle(kara, args):
     current = ''
     # all commands
     commands = ['-h', '--help', '-i', '--init', '-v', '--validate',
-                '-s', '--setup', '-l', '--link']
+                '-s', '--setup', '-l', '--link', '-c', '--cache']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -72,6 +72,12 @@ def argHandle(kara, args):
             # generate linking file
             link()
             print(green('\n[+] Generated Linking File!'))
+        # clear cache files
+        elif arg in commands[8:10]:
+            # write nothing to file (wipe it)
+            open('Core/Data/abilities.json', 'w').close()
+            open('Core/Data/link.py', 'w').close()
+
 
 
     # value never passed to arguement

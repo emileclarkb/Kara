@@ -4,3 +4,4 @@ USAGE: {python{3}} kara.py [-h] [-i] NAME [-v] [-s]
               : (-v --validate)
               : (-s -- setup)
               : (-l --link)
+              : (-c --cache)
