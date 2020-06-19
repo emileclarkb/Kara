@@ -21,12 +21,15 @@ def deepCompile(abilities):
     abilitiesJSON = {}
 
     # all abilities changed
-    changes = []
+    changes = {}
 
     # iterate abilities
     for ability in abilities:
         # everything incorrect with the ability
         issues = []
+
+        # init ability's changes
+        changes[ability] = []
 
         # config.json path
         configPath = path + ability + '/config.json'
@@ -71,37 +74,42 @@ def deepCompile(abilities):
                         # add working ability to list
                         abilitiesJSON[ability] = dump
 
-                    # change detection
-                    # read previously logged configuration
-                    with open(logPath, 'r') as log:
-                        logJSON = json.load(log) # parse json
+                        # change detection
+                        # read previously logged configuration
+                        with open(logPath, 'r') as log:
+                            logJSON = json.load(log) # parse json
 
-                        #abililty doesn't exist
-                        try:
-                            # values that should be shared
-                            shared = ['version', 'main', 'requirements', 'commands']
+                            #abililty doesn't exist
+                            try:
+                                # values that should be shared
+                                shared = ['version', 'main', 'requirements', 'commands']
 
-                            # no changes were made
-                            # (compare current config file to previous log)
-                            if configJSON == logJSON[ability]:
-                                continue # next ability
+                                # no changes were made
+                                # (compare current config file to previous log)
+                                if configJSON == logJSON[ability]:
+                                    continue # next ability
 
-                            # iterate all shared attributes
-                            for attr in shared:
-                                # is not shared
-                                if not configJSON[attr] == logJSON[ability][attr]:
-                                    changes.append(ability) # log change
+                                # iterate all shared attributes
+                                for attr in shared:
+                                    # is not shared
+                                    if not configJSON[attr] == logJSON[ability][attr]:
+                                        changes[ability].append(attr) # log change
 
-                        except KeyError:
-                            changes.append(ability) # log change
+                            except KeyError:
+                                changes[ability].append('Added Ability') # log change
         else:
-            # issue encounter
+            # issue encountered (config file doesn't exist)
             issues.append('conf')
 
         # if issues were raised
         if issues:
             # log incorrect interaction
             incorrect[ability] = issues
+
+        # no changes occured
+        if not changes[ability]:
+            # remove empty list
+            del changes[ability]
 
     # log compiled ability data
     with open(logPath, 'w') as log:
@@ -111,6 +119,28 @@ def deepCompile(abilities):
                   sort_keys=True, indent=4, separators=(',', ': '))
 
     return incorrect, changes
+
+
+# generate linking file
+def link():
+    # write linking file
+    with open('Core/Data/link.py', 'w') as link:
+        # read logged abilities
+        with open('Core/Data/abilities.json', 'r') as log:
+            abilities = json.load(log) # parse json
+
+            # iterate abilities and their commands
+            for ability in abilities:
+                for command in abilities[ability]['commands']:
+                    # get main file and format for an import statement
+                    main = abilities[ability]['main']
+                    main = main.split('.')[0] # "file.py" -> "file"
+
+                    # import relevent command
+                    line = 'from Core.Abilities.' + ability + '.' + main + \
+                           ' import ' + \
+                           abilities[ability]['commands'][command]['target']
+                    link.write(line + '\n') # write import link
 
 
 # error handling compilation process
@@ -124,24 +154,35 @@ def compile():
     # quick check for errors
     errors, changes = deepCompile(abilities)
 
+
     # changes detected
     if changes:
-        print(green('[!] Installing Requirements...\n'))
+        print(yellow('[!] Installing Requirements...\n'))
 
         # formatted changes to print
         formatted = []
 
         # iterate changes
-        for change in changes:
-            # add change to formatted text
-            formatted.append('    ~ ' + change)
+        for ability in changes:
+            # ability has no changes
+            if not changes[ability]:
+                continue
 
+            # add ability to formatted text
+            formatted.append('    ~ ' + ability)
+
+            # iterate ability's changes
+            for change in changes[ability]:
+                # add change to formatted text
+                formatted.append('        - ' + change)
+
+            # install requirements of changed Ability
             # read config file
-            with open(path + change + '/config.json', 'r') as config:
+            with open(path + ability + '/config.json', 'r') as config:
                 # get requirements file
                 require = json.load(config)['requirements'] # parse json
                 # setup correct requirements
-                setup(path + change + '/' + require)
+                setup(path + ability + '/' + require)
 
         # format changes
         print(yellow('\n[!] Ability Changes Were Detected!'))
@@ -169,3 +210,7 @@ def compile():
     else:
         # no errors encountered
         print(green('[+] Successfully Compiled Abilities!'))
+
+    # generate linking file
+    link()
+    print(green('[+] Generated Linking File!'))
