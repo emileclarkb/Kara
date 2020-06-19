@@ -36,8 +36,10 @@ def main():
     print(yellow('[!] Listening'))
     # infinite listening
     while True:
+        # listen for input
         text = kara.listen()
 
+        # wake word in input
         for word in kara.wake:
             # wake word detected in text
             if word in text:
@@ -47,7 +49,7 @@ def main():
                 # speak result of input
                 kara.compile(text)
 
-                # exit for loop
+                # listen again
                 break
 
 
