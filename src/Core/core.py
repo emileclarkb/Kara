@@ -2,9 +2,14 @@
 
 # native
 import os
+import json
+import importlib #
 # 3rd Party
 import pyttsx3
 import speech_recognition as sr
+# linking file
+import Core.Data.link as link
+
 
 class Kara:
     def __init__(self):
@@ -18,6 +23,14 @@ class Kara:
         self.engine.setProperty('rate', 125)
         self.engine.setProperty('volume',1.0)
         self.engine.setProperty('voice', self.voices[1].id)
+
+        # read all logged abilities
+        with open('Core/Data/abilities.json', 'r') as log:
+            self.abilities = json.load(log) # parse json
+
+    # reload linking file
+    def reload(self):
+        importlib.reload(link)
 
     # text to speech
     def speak(self, text, save=False):
@@ -82,4 +95,12 @@ class Kara:
         return 0
 
     def compile(self, text):
-        pass
+        # iterate abilities and their commands to find correct response
+        for ability in self.abilities:
+            for command in self.abilities[ability]['commands']:
+                # check command's keywords against given text
+                for keyword in self.abilities[ability]['commands'][command]['keywords']:
+                    if keyword in text:
+                        func = self.abilities[ability]['commands'][command]['target']
+                        # pass Kara and command to command
+                        exec('link.' + func + '(self, text)')
