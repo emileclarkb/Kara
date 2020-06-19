@@ -18,6 +18,8 @@ def main():
     # instance kara
     kara = Kara()
 
+    # default args value
+    args = {'manual': '', 'recompile': 1}
     # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
@@ -25,9 +27,11 @@ def main():
 
     # system progress
     print(green('\n[+] Arguements Active!'))
-    print(yellow('[!] Compiling Abilities...'))
-    # check file credibility
-    compile()
+    # skip compilation
+    if args['recompile']:
+        print(yellow('[!] Compiling Abilities...'))
+        # compile abilities
+        compile()
 
     # system progress
     print(yellow('[!] Reloading Linking File...'))
@@ -38,7 +42,7 @@ def main():
     while True:
         # compile text not speech
         if args['manual']:
-            kara.compile(text)
+            kara.compile(args['manual'])
             break
 
         # listen for input
