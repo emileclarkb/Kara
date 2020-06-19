@@ -10,6 +10,7 @@ from Core.core import Kara
 from Core.compiler import compile
 from Core.Scripts.handler import argHandle
 from Core.Scripts.colors import green
+from Core.Scripts.setup import setup
 
 
 
@@ -27,6 +28,9 @@ def main():
 
     # check file credibility
     compile()
+
+    print(green('[+] Installing...'))
+
     sys.exit(0)
 
     print(green('[+] Listening!'))
