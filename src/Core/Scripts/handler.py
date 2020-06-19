@@ -2,6 +2,7 @@
 
 # Native
 import sys
+import json
 # Kara
 from Core.compiler import compile, link
 from Core.Scripts.colors import *
@@ -25,8 +26,9 @@ def argHandle(kara, args):
     # looking for a value
     current = ''
     # all commands
-    commands = ['-h', '--help', '-i', '--init', '-v', '--validate',
-                '-s', '--setup', '-l', '--link', '-c', '--cache']
+    commands = ['-h', '--help', '-i', '--init', '-r', '--recompile',
+                '-s', '--setup', '-l', '--link', '-c', '--cache',
+                '-v', '--version']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -61,7 +63,7 @@ def argHandle(kara, args):
         elif arg in commands[2:4]:
             # look for a value to use as ability name
             current = 'init'
-        # validate abilities integrity
+        # recompile abilities
         elif arg in commands[4:6]:
             compile()
         # download required modules
@@ -73,11 +75,16 @@ def argHandle(kara, args):
             link()
             print(green('\n[+] Generated Linking File!'))
         # clear cache files
-        elif arg in commands[8:10]:
             # write nothing to file (wipe it)
+        elif arg in commands[10:12]:
             open('Core/Data/abilities.json', 'w').close()
             open('Core/Data/link.py', 'w').close()
-
+        # display current version
+        elif arg in commands[12:14]:
+            with open('Core/Data/kara.json', 'r') as config:
+                # get Kara version
+                version = json.load(config)['version'] # parse json
+                print('Kara ' + version)
 
 
     # value never passed to arguement
