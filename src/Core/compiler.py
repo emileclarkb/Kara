@@ -72,17 +72,6 @@ def deepCompile(abilities):
                                 continue # next ability
                         except KeyError:
                             changes.append(ability) # log change
-
-
-                    '''
-                    # read requirements source
-                    with open(requirePath, 'r') as src:
-                        # target path
-                        path = 'Core/Data/Require/Abilities/'
-                        # write requirements target
-                        with open(path + ability + '.txt', 'w') as target:
-                            target.write(src.read())
-                    '''
         else:
             # issue encounter
             issues.append('conf')
