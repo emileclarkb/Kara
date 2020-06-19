@@ -29,8 +29,6 @@ def main():
     # check file credibility
     compile()
 
-    print(green('[+] Installing...'))
-
     sys.exit(0)
 
     print(green('[+] Listening!'))
