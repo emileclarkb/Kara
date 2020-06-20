@@ -64,4 +64,4 @@ def sunFormat(time):
 	# get first to parts of time
 	time = time.split(':')[:2]
 
-	return time
+	return ':'.join(time)
