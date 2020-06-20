@@ -18,6 +18,10 @@
         "sun-set": {
             "target": "sunset",
             "keywords": ["when sun set"]
+        },
+        "air-pressure": {
+            "target": "airPressure",
+            "keywords": ["what air pressure"]
         }
     }
 }
