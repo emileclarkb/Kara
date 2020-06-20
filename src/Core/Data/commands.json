@@ -25,6 +25,18 @@
     },
     {
         "keywords": [
+            "when sun rise"
+        ],
+        "target": "sunrise"
+    },
+    {
+        "keywords": [
+            "when sun set"
+        ],
+        "target": "sunset"
+    },
+    {
+        "keywords": [
             "what weather"
         ],
         "target": "weather"

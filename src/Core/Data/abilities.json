@@ -32,6 +32,18 @@
     },
     "Kara_Weather": {
         "commands": {
+            "sun-rise": {
+                "keywords": [
+                    "when sun rise"
+                ],
+                "target": "sunrise"
+            },
+            "sun-set": {
+                "keywords": [
+                    "when sun set"
+                ],
+                "target": "sunset"
+            },
             "weather": {
                 "keywords": [
                     "what weather"
