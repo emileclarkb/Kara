@@ -3,6 +3,7 @@
     "version": "1.0",
     "author": "Emile Clark-Boman",
     "description": "Kara Base Time Library",
+    "long-description": "",
     "main": "main.py",
     "requirements": "requirements.txt",
     "commands": {
