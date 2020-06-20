@@ -56,4 +56,12 @@ def forcast(query, days=1, log=False):
 
 	return formatted
 
-#forcast('brisbane', log='data.json')
+# format sun rise or sunset to time
+# "2020-06-20T06:37:35.157116+10:00" -> "06:37"
+def sunFormat(time):
+	# begin splitting
+	time = time.split('T')[-1]
+	# get first to parts of time
+	time = time.split(':')[:2]
+
+	return time
