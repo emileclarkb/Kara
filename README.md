@@ -31,7 +31,7 @@ For more working with Abilities check out it's [documentation](Core/Data/Docs/ab
 - -r or --recompile: recompile abilities
 - -s or --setup: download all requirements
 - -l or --link: regenerate linking file
-- -c or --cache: remove all cached data (abilities.json, link.py)
+- -c or --cached: remove all cached data (abilities.json, link.py)
 - -v or --version: display current version of Kara
 - -m or --manual: pass text to Kara, temporarily disables STT
 - -t or --time: show the time taken for Kara to complete a command (only works for manual entries)
