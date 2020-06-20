@@ -7,8 +7,13 @@ import importlib #
 # 3rd Party
 import pyttsx3
 import speech_recognition as sr
+# Kara
+from Core.Scripts.colors import red
 # linking file
-import Core.Data.link as link
+try:
+    import Core.Data.link as link
+except SyntaxError:
+    print(red('\n[-] Failed to Load Linking File!'))
 
 
 class Kara:
@@ -30,7 +35,12 @@ class Kara:
 
     # reload linking file
     def reload(self):
-        importlib.reload(link)
+        # handle if link was made incorrectly
+        try:
+            importlib.reload(link)
+        except NameError:
+            print(red('\n[-] Cached Linking File Failed to Operate!'))
+            sys.exit(1)
 
     # text to speech
     def speak(self, text, save=False):
