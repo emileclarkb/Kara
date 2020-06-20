@@ -3,31 +3,44 @@
         "commands": {
             "date": {
                 "keywords": [
-                    "date"
+                    "what date"
                 ],
                 "target": "currentDate"
             },
             "month": {
                 "keywords": [
-                    "month"
+                    "what month"
                 ],
                 "target": "currentMonth"
             },
             "time": {
                 "keywords": [
-                    "time"
+                    "what time"
                 ],
                 "target": "currentTime"
             },
             "year": {
                 "keywords": [
-                    "year"
+                    "what year"
                 ],
                 "target": "currentYear"
             }
         },
         "main": "main.py",
-        "requirements": "require.txt",
-        "version": "0.0.1"
+        "requirements": "requirements.txt",
+        "version": "1.0"
+    },
+    "Kara_Weather": {
+        "commands": {
+            "weather": {
+                "keywords": [
+                    "what weather"
+                ],
+                "target": "weather"
+            }
+        },
+        "main": "main.py",
+        "requirements": "requirements.txt",
+        "version": "1"
     }
 }
