@@ -22,7 +22,7 @@ her, all her capabilities come from stored Abilities,
 Initializing an Ability is as simple as:
 `python kara.py -i YOUR_ABILITY_NAME`
 
-For more working with Abilities check out it's [documentation](Core/Data/Docs/abilities.md)!
+For more working with Abilities check out it's [documentation](src/Core/Data/Docs/abilities.md)!
 
 
 ## Arguements
