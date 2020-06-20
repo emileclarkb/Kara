@@ -1,9 +1,9 @@
 {
     "name": "",
     "version": "",
+    "author": "",
     "description": "",
     "long-description": "",
-    "author": "",
     "main": "main.py",
     "requirements": "requirements.txt",
     "commands": {}
