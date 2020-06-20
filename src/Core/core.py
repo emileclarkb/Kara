@@ -99,8 +99,26 @@ class Kara:
         for ability in self.abilities:
             for command in self.abilities[ability]['commands']:
                 # check command's keywords against given text
-                for keyword in self.abilities[ability]['commands'][command]['keywords']:
-                    if keyword in text:
+                for keys in self.abilities[ability]['commands'][command]['keywords']:
+                    # keywords match criteria
+                    match = True
+
+                    # iterate all keywords
+                    for keywords in keys.split(' '):
+                        # iterate all words
+                        for keyword in keywords:
+                            # keyword doesn't match
+                            if not keyword in text:
+                                match = False
+                                break
+                        # speed up exitting
+                        if not match:
+                            break
+
+                    # all keywords matched
+                    if match:
                         func = self.abilities[ability]['commands'][command]['target']
                         # pass Kara and command to command
                         exec('link.' + func + '(self, text)')
+
+                        return 0
