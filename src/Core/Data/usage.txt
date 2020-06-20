@@ -1,4 +1,4 @@
-USAGE: {python{3}} kara.py [-h] [-i] NAME [-v] [-s]
+USAGE: {python{3}} kara.py
        ALIASES: (-h --help)
               : (-i --init)
               : (-r -- recompile)
@@ -7,3 +7,4 @@ USAGE: {python{3}} kara.py [-h] [-i] NAME [-v] [-s]
               : (-c --cache)
               : (-v --version)
               : (-m --manual)
+              : (-t --time)
