@@ -46,7 +46,7 @@ def sunrise(Kara, command):
         time = time[1:]
 
 
-    # "Today in brisbane the sun will rise at 5:36PM"
+    # "Today in brisbane the sun will rise at 4:29AM"
     line = 'Today in {} the sun will rise at {}{}'.format(g.city, time, period)
     Kara.speak(line)
 
@@ -76,11 +76,23 @@ def sunset(Kara, command):
         time = time[1:]
 
 
-    # "Today in brisbane the sun will rise at 5:36PM"
+    # "Today in brisbane the sun will set at 5:36PM"
     line = 'Today in {} the sun will set at {}{}'.format(g.city, time, period)
     Kara.speak(line)
 
 
 # get air pressure (lol)
 def airPressure(Kara, command):
-    
+    # get current location from ip
+    g = geocoder.ip('me')
+
+    # pass city
+    data = forcast(g.city, days=1)
+
+    # get air pressure
+    pressure = data['weather'][0]['air_pressure']
+
+    # "Today in brisbane the average air pressure will be 1023.5 millibars"
+    line = 'Today in {} the average air pressure will be {} millibars'.format(
+           g.city, pressure)
+    Kara.speak(line)
