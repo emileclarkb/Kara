@@ -16,19 +16,19 @@ or
 ## Abilities
 
 Kara is designed specifically to be modified by the community and given additional
-functionality or "Abilities".
+functionality or "Abilities". By default she has no features program directly into
+her, all her capabilities come from stored Abilities,
 
 Initializing an Ability is as simple as:
 `python kara.py -i YOUR_ABILITY_NAME`
 
-Abilities are stored within `Core/Abilities`, an entire Ability will already be
-templated once it is initialized. It's up to you to give it a purpose!
+For more working with Abilities check out it's [documentation](Core/Data/Docs/abilities.md)!
 
 
 ## Arguements
 - -h or --help: show Kara's usage
 - -i or --init: initialize new Ability
-- -v or --validate: validate ability integrity
+- -r or --recompile: recompile abilities
 - -s or --setup: download all requirements
 - -l or --link: regenerate linking file
 - -c or --cache: remove all cached data (abilities.json, link.py)
