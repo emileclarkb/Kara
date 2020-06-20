@@ -41,6 +41,8 @@ This function takes two parameters: `Kara`, and `command`. This is the conventio
 naming given to them. `Kara` is an instance of Kara and currently is only capable
 of `Kara.speak()` and `Kara.listen()` within an Ability. Finally in the function
 we call `Kara.speak()` which obviously results in Kara's Text to Speech Abilities.
+When creating Abilities it is recommended to only store your commands within your
+main file and to import supporting code from a different python file.
 
 Although we've created a command Kara still doesn't know what to do with it, this
 is where we use `"commands"` within `config.json`. Let's create a basic command.
@@ -73,3 +75,35 @@ how keywords operate. For the given example it's target will activate if either:
 "what" AND "time" are in the command, OR "what" AND "date" are in the command.
 Everything within each key set goes through AND logic, if one key set doesn't
 result as `True` Kara moves on to looking through the next key set (OR logic).
+
+### Compiling Abilities
+
+Kara has a lot of command line arguements to make development easier for you.
+These are documented in the [README](../../../..README.md) or can be seen through
+`python kara.py -h`.
+
+Upon running Kara she goes through various booting stages, the most important for
+us is the compilation stage. During this the data of all Abilities is "compiled"
+into three files (these files are called our cached data). This allows Kara to
+have all her data in known locations, for greater simplicity, and also speed.
+
+Everytime your `config.json` is changed you must recompile UNLESS you don't want
+Kara to access the changes yet. Compilation automatically occurs when you run
+Kara. To manually call the compilation and nothing else we use `python kara.py
+-r`. To NOT compile while still booting Kara we use `python kara.py -r 0`. To
+empty our cache (if something went wrong during compilation) we have access to
+`python kara.py -c`.
+
+During compilation the compiler detects any changes that occured by comparing the
+new configs and the cached data. Any changes and their respective Abilities will
+be shown on the screen. When a change occurs to an Ability Kara will automatically
+attempt to install everything within the Ability's requirements file.
+
+Compilation can take some time and if you're not changing anything `-r 0` might
+speed up your booting process.
+
+
+## More
+
+If you're looking for a deeper look into Abilities check out the
+[source code](../../Abilities/) for other Abilities.
