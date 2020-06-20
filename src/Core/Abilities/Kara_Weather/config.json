@@ -1,10 +1,15 @@
 {
-    "name": "",
-    "version": "",
-    "description": "",
+    "name": "Weather",
+    "version": "1",
+    "description": "Kara Base Weather Library",
     "long-description": "",
-    "author": "",
+    "author": "Emile Clark-Boman",
     "main": "main.py",
     "requirements": "requirements.txt",
-    "commands": {}
+    "commands": {
+        "weather": {
+            "target": "weather",
+            "keywords": ["what weather"]
+        }
+    }
 }
