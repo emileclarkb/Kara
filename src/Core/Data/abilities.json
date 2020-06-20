@@ -32,6 +32,12 @@
     },
     "Kara_Weather": {
         "commands": {
+            "air-pressure": {
+                "keywords": [
+                    "what air pressure"
+                ],
+                "target": "airPressure"
+            },
             "sun-rise": {
                 "keywords": [
                     "when sun rise"

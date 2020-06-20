@@ -25,6 +25,12 @@
     },
     {
         "keywords": [
+            "what air pressure"
+        ],
+        "target": "airPressure"
+    },
+    {
+        "keywords": [
             "when sun rise"
         ],
         "target": "sunrise"
