@@ -27,7 +27,7 @@ def argHandle(kara, args):
     current = {'value': '', 'optional': False}
     # all commands
     commands = ['-h', '--help', '-i', '--init', '-r', '--recompile',
-                '-s', '--setup', '-l', '--link', '-c', '--cache',
+                '-s', '--setup', '-l', '--link', '-c', '--cached',
                 '-v', '--version', '-m', '--manual', '-t', '--time']
 
     for arg in args:

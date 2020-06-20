@@ -4,7 +4,7 @@ USAGE: {python{3}} kara.py
               : (-r -- recompile)
               : (-s -- setup)
               : (-l --link)
-              : (-c --cache)
+              : (-c --cached)
               : (-v --version)
               : (-m --manual)
               : (-t --time)
