@@ -34,16 +34,8 @@ def currentTime(Kara, command):
         # change period
         period = 'PM'
 
-    # not minute not double digits
-    if minute[0] == '0':
-        # split for better speech
-        # '05' -> '0 5'
-        minute = list(minute)
-        minute[0] = 'O' # use o instead of 0 so voice says it correct
-        minute = ' '.join(minute)
-        # minute = ' '.join(list(minute))
-
     # format speech
+    print('The time is {}:{} {}'.format(str(hour), minute, period))
     Kara.speak('The time is {}:{} {}'.format(str(hour), minute, period))
 
 
