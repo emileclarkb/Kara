@@ -10,6 +10,14 @@
         "weather": {
             "target": "weather",
             "keywords": ["what weather"]
+        },
+        "sun-rise": {
+            "target": "sunrise",
+            "keywords": ["when sun rise"]
+        },
+        "sun-set": {
+            "target": "sunset",
+            "keywords": ["when sun set"]
         }
     }
 }
