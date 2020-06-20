@@ -1,9 +1,9 @@
 {
     "name": "Weather",
     "version": "1",
+    "author": "Emile Clark-Boman",
     "description": "Kara Base Weather Library",
     "long-description": "",
-    "author": "Emile Clark-Boman",
     "main": "main.py",
     "requirements": "requirements.txt",
     "commands": {
