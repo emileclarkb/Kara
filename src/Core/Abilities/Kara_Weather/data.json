@@ -1,0 +1,17 @@
+{
+    "location": "Brisbane",
+    "sun_rise": "2020-06-20T06:37:35.157116+10:00",
+    "sun_set": "2020-06-20T17:01:39.340947+10:00",
+    "weather": [
+        {
+            "air_pressure": 1023.5,
+            "date": "2020-06-20",
+            "humidity": 79,
+            "max_temp": 20.32,
+            "min_temp": 15.405000000000001,
+            "visibility": 14.115378688459398,
+            "weather": "Light Rain",
+            "wind_speed": 4.02403550967417
+        }
+    ]
+}
