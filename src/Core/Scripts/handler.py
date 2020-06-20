@@ -21,14 +21,14 @@ def argHandle(kara, args):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
-    argReturn = {'manual': '', 'recompile': 1}
+    argReturn = {'manual': '', 'recompile': 1, 'time': 0}
 
     # looking for a value
     current = {'value': '', 'optional': False}
     # all commands
     commands = ['-h', '--help', '-i', '--init', '-r', '--recompile',
                 '-s', '--setup', '-l', '--link', '-c', '--cache',
-                '-v', '--version', '-m', '--manual']
+                '-v', '--version', '-m', '--manual', '-t', '--time']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -89,10 +89,19 @@ def argHandle(kara, args):
             link()
             print(green('\n[+] Generated Linking File!'))
         # clear cache files
-            # write nothing to file (wipe it)
         elif arg in commands[10:12]:
-            open('Core/Data/abilities.json', 'w').close()
+            # write empty braces to indict blank json file
+            # no data causes json.load to raise errors
+            f = open('Core/Data/abilities.json', 'w')
+            f.write('{}')
+            f.close()
+            # empty command data
+            f = open('Core/Data/commands.json', 'w')
+            f.write('{}')
+            f.close()
+            # write nothing to file (wipe it)
             open('Core/Data/link.py', 'w').close()
+            print(green('\n[+] Cleared Cached Data!'))
         # display current version
         elif arg in commands[12:14]:
             with open('Core/Data/kara.json', 'r') as config:
@@ -103,6 +112,12 @@ def argHandle(kara, args):
         elif arg in commands[14:16]:
             # look for value
             current['value'] = 'manual'
+        # time Kara
+        elif arg in commands[16:18]:
+            argReturn['time'] = 1
+            exit = False
+            # look into "optional"
+
 
 
     # on exitting check to see if nothing was ever passed to arguements
