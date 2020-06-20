@@ -35,7 +35,7 @@ def main():
     if args['recompile']:
         print(yellow('[!] Compiling Abilities...'))
         # compile abilities
-        compile()
+        compile(abilitiesPath='Core/Abilities/', cachePath='Core/Data/')
 
     # system progress
     print(yellow('[!] Reloading Linking File...'))
