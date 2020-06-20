@@ -25,7 +25,7 @@ class Kara:
         self.engine.setProperty('voice', self.voices[1].id)
 
         # read all logged abilities
-        with open('Core/Data/abilities.json', 'r') as log:
+        with open('Core/Data/commands.json', 'r') as log:
             self.abilities = json.load(log) # parse json
 
     # reload linking file
@@ -96,29 +96,23 @@ class Kara:
 
     def compile(self, text):
         # iterate abilities and their commands to find correct response
-        for ability in self.abilities:
-            for command in self.abilities[ability]['commands']:
-                # check command's keywords against given text
-                for keys in self.abilities[ability]['commands'][command]['keywords']:
-                    # keywords match criteria
-                    match = True
+        for command in self.abilities:
+            # check command's keywords against given text
+            for keywords in command['keywords']:
+                # keywords match criteria
+                match = True
 
-                    # iterate all keywords
-                    for keywords in keys.split(' '):
-                        # iterate all words
-                        for keyword in keywords:
-                            # keyword doesn't match
-                            if not keyword in text:
-                                match = False
-                                break
-                        # speed up exitting
-                        if not match:
-                            break
+                # iterate all keywords
+                for keyword in keywords.split(' '):
+                    # keyword doesn't match
+                    if not keyword in text:
+                        match = False
+                        break
 
-                    # all keywords matched
-                    if match:
-                        func = self.abilities[ability]['commands'][command]['target']
-                        # pass Kara and command to command
-                        exec('link.' + func + '(self, text)')
+                # all keywords matched
+                if match:
+                    func = command['target']
+                    # pass Kara and command to command
+                    exec('link.' + func + '(self, text)')
 
-                        return 0
+                    return 0
