@@ -6,7 +6,5 @@
     "author": "",
     "main": "main.py",
     "requirements": "requirements.txt",
-    "commands": {
-        }
-    }
+    "commands": {}
 }
