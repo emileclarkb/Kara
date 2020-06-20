@@ -5,6 +5,7 @@
 import sys
 import subprocess
 import os
+import time
 # kara
 from Core.core import Kara
 from Core.compiler import compile
@@ -15,11 +16,14 @@ from Core.Scripts.setup import setup
 
 
 def main():
+    # time comparison
+    start = time.time()
+
     # instance kara
     kara = Kara()
 
     # default args value
-    args = {'manual': '', 'recompile': 1}
+    args = {'manual': '', 'recompile': 1, 'time': 0}
     # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
@@ -48,7 +52,15 @@ def main():
     while True:
         # compile text not speech
         if args['manual']:
+            # run through Kara
             kara.compile(args['manual'])
+
+            # log time taken
+            if args['time']:
+                # rounded time taken
+                taken = round(time.time() - start, 3)
+                # time taken to complete
+                print(yellow("\n[!] Completed in: " + str(taken) + ' sec'))
             break
 
         # listen for input
@@ -61,7 +73,7 @@ def main():
                 # format text
                 text = text.split('kara')[-1].strip()
 
-                # speak result of input
+                # run through Kara
                 kara.compile(text)
 
                 # listen again
