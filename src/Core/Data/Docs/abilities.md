@@ -79,7 +79,7 @@ result as `True` Kara moves on to looking through the next key set (OR logic).
 ### Compiling Abilities
 
 Kara has a lot of command line arguements to make development easier for you.
-These are documented in the [README](../../../..README.md) or can be seen through
+These are documented in the [README](../../../../README.md) or can be seen through
 `python kara.py -h`.
 
 Upon running Kara she goes through various booting stages, the most important for
