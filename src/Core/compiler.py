@@ -143,6 +143,27 @@ def link():
                     link.write(line + '\n') # write import link
 
 
+# compress abilities to increase speed
+def compress():
+    # read abilities
+    with open('Core/Data/abilities.json', 'r') as abilities:
+        JSON = json.load(abilities) # parse json
+
+        # condensed json file to write to commands
+        compressed = []
+
+        # find all commands in find
+        for ability in JSON:
+            for command in JSON[ability]['commands']:
+                # add command
+                compressed.append(JSON[ability]['commands'][command])
+
+        # write compressed json
+        with open('Core/Data/commands.json', 'w') as commands:
+            # neatly dump data
+            json.dump(compressed, commands,
+                      sort_keys=True, indent=4, separators=(',', ': '))
+
 # error handling compilation process
 def compile():
     # abilities path
@@ -210,6 +231,10 @@ def compile():
     else:
         # no errors encountered
         print(green('[+] Successfully Compiled Abilities!'))
+
+    # generate compressed ability file
+    compress()
+    print(green('[+] Compressed Abilities File!'))
 
     # generate linking file
     link()
