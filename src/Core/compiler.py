@@ -8,14 +8,8 @@ from Core.Scripts.setup import setup
 
 
 # main compilation process
-def deepCompile(abilities):
+def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
     incorrect = {}
-
-    # Paths
-    # abilities main
-    path = 'Core/Abilities/'
-    # abilities stored in one place after compile
-    logPath = 'Core/Data/abilities.json'
 
     # json to dump into abilities.json
     abilitiesJSON = {}
@@ -32,7 +26,7 @@ def deepCompile(abilities):
         changes[ability] = []
 
         # config.json path
-        configPath = path + ability + '/config.json'
+        configPath = abilitiesPath + ability + '/config.json'
 
         # get ability files
         config = pathlib.Path(configPath)
@@ -42,14 +36,14 @@ def deepCompile(abilities):
                 configJSON = json.load(file) # parse json
 
                 # read correct main file
-                main = pathlib.Path(path + ability + '/' + configJSON['main'])
+                main = pathlib.Path(abilitiesPath + ability + '/' + configJSON['main'])
                 # main doesn't exists
                 if not main.is_file():
                     # issue encounter
                     issues.append('main')
 
                 # path to requirements
-                requirePath = path + ability + '/' + configJSON['requirements']
+                requirePath = abilitiesPath + ability + '/' + configJSON['requirements']
                 # requirement file given
                 if configJSON['requirements']:
                     # read correct requirements file
@@ -76,7 +70,7 @@ def deepCompile(abilities):
 
                         # change detection
                         # read previously logged configuration
-                        with open(logPath, 'r') as log:
+                        with open(cachePath + 'abilities.json', 'r') as log:
                             logJSON = json.load(log) # parse json
 
                             #abililty doesn't exist
@@ -112,7 +106,7 @@ def deepCompile(abilities):
             del changes[ability]
 
     # log compiled ability data
-    with open(logPath, 'w') as log:
+    with open(cachePath + 'abilities.json', 'w') as log:
         # dump json to file
         # arguements given make the json file look neat and structured
         json.dump(abilitiesJSON, log,
@@ -122,11 +116,11 @@ def deepCompile(abilities):
 
 
 # generate linking file
-def link():
+def link(abilitiesPath='Abilities/', cachePath='Cache/'):
     # write linking file
-    with open('Core/Data/link.py', 'w') as link:
+    with open(cachePath + 'link.py', 'w') as link:
         # read logged abilities
-        with open('Core/Data/abilities.json', 'r') as log:
+        with open(cachePath + 'abilities.json', 'r') as log:
             abilities = json.load(log) # parse json
 
             # iterate abilities and their commands
@@ -136,17 +130,18 @@ def link():
                     main = abilities[ability]['main']
                     main = main.split('.')[0] # "file.py" -> "file"
 
-                    # import relevent command
-                    line = 'from Core.Abilities.' + ability + '.' + main + \
-                           ' import ' + \
-                           abilities[ability]['commands'][command]['target']
+                    # "Core/Abilities/" -> "Core.Abilities."
+                    module = '.'.join(abilitiesPath.split('/'))
+
+                    line = 'from {}{}.{} import {}'.format(module, ability, main,
+                           abilities[ability]['commands'][command]['target'])
                     link.write(line + '\n') # write import link
 
 
 # compress abilities to increase speed
-def compress():
+def compress(cachePath='Cache/'):
     # read abilities
-    with open('Core/Data/abilities.json', 'r') as abilities:
+    with open(cachePath + 'abilities.json', 'r') as abilities:
         JSON = json.load(abilities) # parse json
 
         # condensed json file to write to commands
@@ -159,21 +154,22 @@ def compress():
                 compressed.append(JSON[ability]['commands'][command])
 
         # write compressed json
-        with open('Core/Data/commands.json', 'w') as commands:
+        with open(cachePath + 'commands.json', 'w') as commands:
             # neatly dump data
             json.dump(compressed, commands,
                       sort_keys=True, indent=4, separators=(',', ': '))
 
 # error handling compilation process
-def compile():
-    # abilities path
-    path = 'Core/Abilities/'
+def compile(abilitiesPath='Abilities/', cachePath='Cache/'):
+    # ability and cache path were implement for (and will only change when)
+    # using integrating Kara
 
     # get abilities
-    abilities = os.listdir(path)
+    abilities = os.listdir(abilitiesPath)
 
     # quick check for errors
-    errors, changes = deepCompile(abilities)
+    errors, changes = deepCompile(abilities,
+                      abilitiesPath=abilitiesPath, cachePath=cachePath)
 
 
     # changes detected
@@ -199,11 +195,11 @@ def compile():
 
             # install requirements of changed Ability
             # read config file
-            with open(path + ability + '/config.json', 'r') as config:
+            with open(abilitiesPath + ability + '/config.json', 'r') as config:
                 # get requirements file
                 require = json.load(config)['requirements'] # parse json
                 # setup correct requirements
-                setup(path + ability + '/' + require)
+                setup(abilitiesPath + ability + '/' + require)
 
         # format changes
         print(yellow('\n[!] Ability Changes Were Detected!'))
@@ -233,9 +229,9 @@ def compile():
         print(green('[+] Successfully Compiled Abilities!'))
 
     # generate compressed ability file
-    compress()
+    compress(cachePath=cachePath)
     print(green('[+] Compressed Abilities File!'))
 
     # generate linking file
-    link()
+    link(abilitiesPath=abilitiesPath, cachePath=cachePath)
     print(green('[+] Generated Linking File!'))
