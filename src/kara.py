@@ -37,7 +37,13 @@ def main():
     print(yellow('[!] Reloading Linking File...'))
     kara.reload()
 
-    print(yellow('[!] Listening'))
+    # using speech
+    if not args['manual']:
+        # finish booting
+        with open('Core/Data/boot.txt', 'r') as logo:
+            print(logo.read()) # logo
+
+
     # infinite listening
     while True:
         # compile text not speech
