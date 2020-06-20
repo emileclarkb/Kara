@@ -44,10 +44,8 @@ def currentTime(Kara, command):
         # minute = ' '.join(list(minute))
 
     # format speech
-    Kara.speak('The Time is ' + str(hour) + ' ' + minute + period)
+    Kara.speak('The time is {}:{} {}'.format(str(hour), minute, period))
 
-
-# Today is Thursday the 18th
 
 # date in the year
 def currentDate(Kara, command):
@@ -73,7 +71,7 @@ def currentDate(Kara, command):
         date += datetime.timedelta(days=int(days))
 
         # chaning opening to be relevent
-        opening = 'In ' + days + ' days it will be '
+        opening = 'In {} days it will be '.format(days)
 
     day = date.day # select day
     # get relevent ordinal indicator
@@ -84,7 +82,7 @@ def currentDate(Kara, command):
     weekday = weekdays[date.weekday()] # select weekday
 
     # format speech
-    Kara.speak(opening + weekday + ' the ' +  str(day) + indicator)
+    Kara.speak('{}{} the {}{}'.format(opening, weekday, str(day), indicator))
 
 
 
@@ -95,7 +93,7 @@ def currentMonth(Kara, command):
     month = date.month # select month and convert to int
 
     # format speech
-    Kara.speak('We are currently in ' + months[month - 1])
+    Kara.speak('We are currently in {}'.format(months[month - 1]))
 
 # the current year
 def currentYear(Kara, command):
@@ -109,4 +107,4 @@ def currentYear(Kara, command):
     b = year[2:] # final section
 
     # format speech
-    Kara.speak('The year is ' + a + ' ' + b)
+    Kara.speak('The year is {} {}'.format(a, b))
