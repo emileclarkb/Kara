@@ -1,5 +1,7 @@
 # Kara
 
+[![Discord](https://img.shields.io/discord/463752820026376202.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/7hK6PFT)
+
 ## Description
 Simply put, Kara is a voice assistant that steals 0% of your data so you stay free!
 She is a actively maintained, modular, and designed to customize.
