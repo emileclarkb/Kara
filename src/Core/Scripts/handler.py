@@ -59,7 +59,8 @@ def argHandle(kara, args):
                     exit = False # continue booting
                 # anything else given
                 else:
-                    compile()
+                    # non-integrated paths
+                    compile(abilitiesPath='Core/Abilities/', cachePath='Core/Data/')
             # add text to return
             elif current['value'] == 'manual':
                 argReturn['manual'] = arg
