@@ -1,0 +1,32 @@
+[
+    {
+        "keywords": [
+            "what date"
+        ],
+        "target": "currentDate"
+    },
+    {
+        "keywords": [
+            "what month"
+        ],
+        "target": "currentMonth"
+    },
+    {
+        "keywords": [
+            "what time"
+        ],
+        "target": "currentTime"
+    },
+    {
+        "keywords": [
+            "what year"
+        ],
+        "target": "currentYear"
+    },
+    {
+        "keywords": [
+            "what weather"
+        ],
+        "target": "weather"
+    }
+]
