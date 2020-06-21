@@ -1,0 +1,64 @@
+{
+    "Kara_Time": {
+        "commands": {
+            "date": {
+                "keywords": [
+                    "what date"
+                ],
+                "target": "currentDate"
+            },
+            "month": {
+                "keywords": [
+                    "what month"
+                ],
+                "target": "currentMonth"
+            },
+            "time": {
+                "keywords": [
+                    "what time"
+                ],
+                "target": "currentTime"
+            },
+            "year": {
+                "keywords": [
+                    "what year"
+                ],
+                "target": "currentYear"
+            }
+        },
+        "main": "main.py",
+        "requirements": "requirements.txt",
+        "version": "1.0"
+    },
+    "Kara_Weather": {
+        "commands": {
+            "air-pressure": {
+                "keywords": [
+                    "what air pressure"
+                ],
+                "target": "airPressure"
+            },
+            "sun-rise": {
+                "keywords": [
+                    "when sun rise"
+                ],
+                "target": "sunrise"
+            },
+            "sun-set": {
+                "keywords": [
+                    "when sun set"
+                ],
+                "target": "sunset"
+            },
+            "weather": {
+                "keywords": [
+                    "what weather"
+                ],
+                "target": "weather"
+            }
+        },
+        "main": "main.py",
+        "requirements": "requirements.txt",
+        "version": "1"
+    }
+}

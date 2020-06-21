@@ -33,3 +33,13 @@ All major changes and notable features will be documented in this file.
 - Added Change Log
 - Improved documentation
 - Improved release documentation
+
+## COMING SOON...
+### [v0.1.4-alpha] - Jun XX, 2020:
+- Various Documentation Improvements
+
+- Publish on PyPi
+- Add new abilities
+- Improve old abilities
+- Improve TTS
+- Integration Tutorial Documentation
