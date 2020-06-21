@@ -4,15 +4,15 @@
 import sys
 import json
 # Kara
-from Core.compiler import compile, link
-from Core.Scripts.colors import *
-from Core.Scripts.setup import setup
+from Kara.compiler import compile, link
+from Kara.Scripts.colors import *
+from Kara.Scripts.setup import setup
 
 
 # Kara usage
 def usage():
     # read usage
-    with open('Core/Data/usage.txt', 'r') as file:
+    with open('Kara/Data/usage.txt', 'r') as file:
         # return usage to screen
         print('\n' + white(file.read()))
 
@@ -86,7 +86,7 @@ def argHandle(kara, args):
             current['optional'] = True
         # download required modules
         elif arg in commands[6:8]:
-            setup('Core/Data/requirements.txt')
+            setup('Kara/Data/requirements.txt')
         # force ability linking
         elif arg in commands[8:10]:
             # generate linking file
@@ -96,19 +96,19 @@ def argHandle(kara, args):
         elif arg in commands[10:12]:
             # write empty braces to indict blank json file
             # no data causes json.load to raise errors
-            f = open('Core/Data/abilities.json', 'w')
+            f = open(kara.cachePath + 'abilities.json', 'w')
             f.write('{}')
             f.close()
             # empty command data
-            f = open('Core/Data/commands.json', 'w')
+            f = open(kara.cachePath + 'commands.json', 'w')
             f.write('{}')
             f.close()
             # write nothing to file (wipe it)
-            open('Core/Data/link.py', 'w').close()
+            open(kara.cachePath + 'link.py', 'w').close()
             print(green('\n[+] Cleared Cached Data!'))
         # display current version
         elif arg in commands[12:14]:
-            with open('Core/Data/kara.json', 'r') as config:
+            with open('Kara/Data/kara.json', 'r') as config:
                 # get Kara version
                 version = json.load(config)['version'] # parse json
                 print('Kara ' + version)

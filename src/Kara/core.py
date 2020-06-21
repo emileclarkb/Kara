@@ -9,7 +9,7 @@ import pathlib
 import pyttsx3
 import speech_recognition as sr
 # Kara
-from Core.Scripts.colors import red, yellow, green
+from Kara.Scripts.colors import red, yellow, green
 
 
 class Kara:
@@ -33,7 +33,7 @@ class Kara:
         try:
             # "Cache/" -> "Cache."
             cacheModule = cachePath.replace('/', '.')
-            #import Core.Data.Cache.link as link
+            #import Kara.Data.Cache.link as link
             self.link = importlib.import_module(cacheModule + 'link')
         except SyntaxError:
             print(red('\n[-] Failed to Load Linking File!'))

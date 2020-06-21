@@ -3,8 +3,8 @@ import os
 import pathlib
 import json
 # kara
-from Core.Scripts.colors import *
-from Core.Scripts.setup import setup
+from Kara.Scripts.colors import *
+from Kara.Scripts.setup import setup
 
 
 # main compilation process
@@ -130,7 +130,7 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
                     main = abilities[ability]['main']
                     main = main.split('.')[0] # "file.py" -> "file"
 
-                    # "Core/Abilities/" -> "Core.Abilities."
+                    # "Kara/Abilities/" -> "Kara.Abilities."
                     module = '.'.join(abilitiesPath.split('/'))
 
                     line = 'from {}{}.{} import {}'.format(module, ability, main,
