@@ -1,0 +1,22 @@
+Changelog(v0.1-alpha):
+    ~ Although she can only tell you the time... Kara is now in a functioning
+      state! A module system has been finalized, allowing for her Abilities to
+      be created with ease! This system took 4 days to make, Kara's time ability
+      took 10 minutes. She mightn't have much now but the potential is there for
+      anyone to create command's of their own.
+
+Changelog(v0.1.1-alpha):
+    ~ Added fully functioning time Ability
+    ~ Added 3 new commands: date, month, and year
+    ~ Various compilation improvements
+
+Changelog (v0.1.2-alpha):
+    ~ Added four new abilities: weather, sun rise, sun set, and air pressure (idk why lol)
+    ~ Fixed Issues with the the time Ability
+    ~ Added new arguements
+
+Changelog (v0.1.2-alpha):
+    ~ Added Kara Integration functionality
+    ~ Improved Documentation
+    ~ Added new arguements
+    ~ Added custom Ability and cache paths
