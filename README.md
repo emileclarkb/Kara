@@ -55,3 +55,8 @@ For more on working with Abilities check out it's
 - `-v` or `--version`: display current version of Kara
 - `-m` or `--manual`: pass text to Kara, temporarily disables STT
 - `-t` or `--time`: show the time taken for Kara to complete a command (only works for manual entries)
+
+## Change Log
+
+Detailed breakdown of important changes and new features can be found
+[here](src/Kara/Data/Docs/CHANGELOG.md)
