@@ -3,12 +3,13 @@
 # native
 import os
 import json
-import importlib #
+import importlib
+import pathlib
 # 3rd Party
 import pyttsx3
 import speech_recognition as sr
 # Kara
-from Core.Scripts.colors import red
+from Core.Scripts.colors import red, yellow, green
 # linking file
 try:
     import Core.Data.link as link
@@ -17,7 +18,11 @@ except SyntaxError:
 
 
 class Kara:
-    def __init__(self):
+    def __init__(self, abilitiesPath='Abilities/', cachePath='Cache/'):
+        # custom paths
+        self.abilitiesPath = abilitiesPath
+        self.cachePath = cachePath
+
         # wake words (my lisp sucks...)
         self.wake = ['kara', 'cara', 'kawa']
 
@@ -29,10 +34,6 @@ class Kara:
         self.engine.setProperty('volume',1.0)
         self.engine.setProperty('voice', self.voices[1].id)
 
-        # read all logged abilities
-        with open('Core/Data/commands.json', 'r') as log:
-            self.abilities = json.load(log) # parse json
-
     # reload linking file
     def reload(self):
         # handle if link was made incorrectly
@@ -43,11 +44,11 @@ class Kara:
             sys.exit(1)
 
     # text to speech
-    def speak(self, text, save=False):
+    def speak(self, text, path='', save=False):
         # save text to file
         if save:
             filename = text.replace(' ', '_')
-            self.engine.save_to_file(text, filename+'.mp3')
+            self.engine.save_to_file(text, path + filename + '.mp3')
         else:
             self.engine.say(text)
 
@@ -70,7 +71,7 @@ class Kara:
     # create new ability template
     def abilityTemp(self, name):
         # path to abilities
-        path = 'Core/Abilities/' + name
+        path = self.abilitiesPath + name
 
         # make ability
         try:
@@ -79,8 +80,11 @@ class Kara:
             # error message
             return 1
 
+        # absolute path (so templating works with integration)
+        absPath = os.path.abspath(os.path.dirname(__file__))
+
         # write main.py template
-        with open('Core/Data/Templates/main.py', 'r') as template:
+        with open(absPath + 'Data/Templates/main.py', 'r') as template:
             # write config
             with open(path + '/main.py', 'w') as file:
                 # write template to main.py
@@ -88,7 +92,7 @@ class Kara:
 
         # write config.json file
         # open template
-        with open('Core/Data/Templates/config.json', 'r') as template:
+        with open(absPath + 'Data/Templates/config.json', 'r') as template:
             # write config
             with open(path + '/config.json', 'w') as file:
                 # write template to config.json
@@ -96,7 +100,7 @@ class Kara:
 
         # write requirements.txt file
         # open template
-        with open('Core/Data/Templates/requirements.txt', 'r') as template:
+        with open(absPath + 'Data/Templates/requirements.txt', 'r') as template:
             # write config
             with open(path + '/requirements.txt', 'w') as file:
                 # write template to requirements.txt
@@ -104,7 +108,39 @@ class Kara:
 
         return 0
 
+
+    # init new integration
+    def integrate(self):
+        print(green('\n[+] Creating Default Paths...'))
+        # make default paths
+        try:
+            # abilities
+            os.mkdir(self.abilitiesPath)
+        except FileExistsError:
+            # error message
+            print(yellow('[!] Abilities Path Already Exists...'))
+        try:
+            # cache
+            os.mkdir(self.cachePath)
+        except FileExistsError:
+            # error message
+            print(yellow('[!] Cache Path Already Exists...'))
+
+        print(green('[+] Creating Cache Files...'))
+
+        # if file doens't exist
+        # write empty json file
+        with open(self.cachePath + 'abilities.json', 'w') as file:
+            file.write('{}') # empty json
+
+        print(green('\n[+] Successfully Instanced New Integration!'))
+
+
     def compile(self, text):
+        # read all logged abilities
+        with open(self.cachePath + 'commands.json', 'r') as log:
+            self.abilities = json.load(log) # parse json
+
         # iterate abilities and their commands to find correct response
         for command in self.abilities:
             # check command's keywords against given text
