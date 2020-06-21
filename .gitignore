@@ -1,3 +1,13 @@
 __pycache__/
+
+# important data for me (the developer)
 data.json
 links.txt
+
+# ignore pypi build files
+build/
+dist/
+Kara.egg-info/
+
+# tools
+rmbuild.bat
