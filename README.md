@@ -9,6 +9,10 @@ however I have decided to continue production while also maintaining other proje
 Currently Kara does not have many "Abilities" though many are planned for release within
 the next weeks!
 
+If you're interested in supporting, adding to, or using the project check out
+our [official server](https://discord.gg/7hK6PFT)! I'm always online and happy
+to help people.
+
 ## Installation
 `python kara.py -s`
 or
