@@ -64,3 +64,13 @@ For more on working with Abilities check out it's
 
 Detailed breakdown of important changes and new features can be found
 [here](src/Kara/Data/Docs/CHANGELOG.md)
+
+## All Links
+
+### General
+- [Discord](https://discord.gg/7hK6PFT)
+- [Trello Board](https://trello.com/b/O3cQUJXu)
+### Technical
+- [Change Log](src/Kara/Data/Docs/CHANGELOG.md)
+- [Ability Documentation](src/Kara/Data/Docs/abilities.md)
+- [Integration Documentation](src/Kara/Data/Docs/integrations.md)
