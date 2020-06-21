@@ -1,0 +1,12 @@
+# include all files by default
+recursive-include Kara *
+
+# include important files
+include LICENSE README.md
+
+# exclude all __pycache__
+global-exclude */__pycache__/*
+
+# exclude developer resources
+global-exclude */data.json
+global-exclude */links.txt
