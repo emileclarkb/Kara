@@ -26,9 +26,11 @@ def argHandle(kara, args):
     # looking for a value
     current = {'value': '', 'optional': False}
     # all commands
-    commands = ['-h', '--help', '-i', '--init', '-r', '--recompile',
+    commands = ['-h', '--help', '-a', '--ability', '-r', '--recompile',
                 '-s', '--setup', '-l', '--link', '-c', '--cached',
-                '-v', '--version', '-m', '--manual', '-t', '--time']
+                '-v', '--version', '-m', '--manual', '-t', '--time',
+                '-i', '--init']
+
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -59,8 +61,9 @@ def argHandle(kara, args):
                     exit = False # continue booting
                 # anything else given
                 else:
-                    # non-integrated paths
-                    compile(abilitiesPath='Core/Abilities/', cachePath='Core/Data/')
+                    # compile through Kara's given paths
+                    compile(abilitiesPath=kara.abilitiesPath,
+                            cachePath=kara.cachePath)
             # add text to return
             elif current['value'] == 'manual':
                 argReturn['manual'] = arg
@@ -118,13 +121,16 @@ def argHandle(kara, args):
             argReturn['time'] = 1
             exit = False
             # look into "optional"
+        # init new integration
+        elif arg in commands[18:20]:
+            kara.integrate()
 
 
     # on exitting check to see if nothing was ever passed to arguements
     # recompile abilities
     if current['value'] == 'recompile':
         print(yellow('\n[!] Forcing Compilation...'))
-        compile()
+        compile(abilitiesPath=kara.abilitiesPath, cachePath=kara.cachePath)
 
     # value never passed to arguement (and not optional)
     if current['value'] and not current['optional']:
