@@ -5,7 +5,7 @@ All major changes and notable features will be documented in this file.
 ### Project Start: June 15th, 2020
 
 
-## Kara is Now in ALpha!
+## Kara is Now in Alpha!
 ### [v0.1-alpha] - Jun 19, 2020:
 - Although she can only tell you the time... Kara is now in a functioning
   state! A module system has been finalized, allowing for her Abilities to
