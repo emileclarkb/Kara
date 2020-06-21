@@ -2,7 +2,7 @@
 recursive-include Kara *
 
 # include important files
-include LICENSE README.md
+# include LICENSE README.md requirements.txt
 
 # exclude all __pycache__
 global-exclude */__pycache__/*
