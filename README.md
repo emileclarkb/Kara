@@ -27,10 +27,10 @@ Initializing a new integration is as simple as:
 Integrations are different from Abilities. Imagine it like it this, Abilities give
 Kara functionality and allow her to perform and control new commands.
 Integrations allow Kara to work inside of your project and hand the controller
-over to it too. This means you can have greater control of how she performs tasks
+over to it too. This means you can have greater control of how she performs tasks.
 
 For more on working integrating Kara check out it's
-[documentation](src/Core/Data/Docs/integrations.md)!
+[documentation](src/Kara/Data/Docs/integrations.md)!
 
 ## Abilities
 
@@ -42,7 +42,7 @@ Initializing an Ability is as simple as:
 `python kara.py -a YOUR_ABILITY_NAME`
 
 For more on working with Abilities check out it's
-[documentation](src/Core/Data/Docs/abilities.md)!
+[documentation](src/Kara/Data/Docs/abilities.md)!
 
 
 ## Arguements
