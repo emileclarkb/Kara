@@ -4,20 +4,22 @@
 import sys
 import json
 # Kara
-from Kara.compiler import compile, link
-from Kara.Scripts.colors import *
-from Kara.Scripts.setup import setup
+from Kara.Kara.core import Kara
+from Kara.Kara.compiler import compile, link
+from Kara.Kara.Scripts.colors import *
+from Kara.Kara.Scripts.setup import setup
+from Kara.Kara.Scripts.creation import template, integration
 
 
 # Kara usage
 def usage():
     # read usage
-    with open('Kara/Data/usage.txt', 'r') as file:
+    with open('Kara/Kara/Data/usage.txt', 'r') as file:
         # return usage to screen
         print('\n' + white(file.read()))
 
 # main handler
-def argHandle(kara, args):
+def argHandle(args, abilitiesPath='Abilities/', cachePath='Cache/'):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
@@ -47,7 +49,7 @@ def argHandle(kara, args):
 
             # create new ability
             if current['value'] == 'init':
-                result = kara.abilityTemp(arg)
+                result = template(arg, abilitiesPath=abilitiesPath, cachePath=cachePath)
                 if result:
                     print(red('\n[-] Failed To Template New Ability: ' + \
                     'Directory Already Exists'))
@@ -62,8 +64,8 @@ def argHandle(kara, args):
                 # anything else given
                 else:
                     # compile through Kara's given paths
-                    compile(abilitiesPath=kara.abilitiesPath,
-                            cachePath=kara.cachePath)
+                    compile(abilitiesPath=abilitiesPath,
+                            cachePath=cachePath)
             # add text to return
             elif current['value'] == 'manual':
                 argReturn['manual'] = arg
@@ -86,7 +88,7 @@ def argHandle(kara, args):
             current['optional'] = True
         # download required modules
         elif arg in commands[6:8]:
-            setup('Kara/Data/requirements.txt')
+            setup('Kara/Kara/Data/requirements.txt')
         # force ability linking
         elif arg in commands[8:10]:
             # generate linking file
@@ -96,19 +98,19 @@ def argHandle(kara, args):
         elif arg in commands[10:12]:
             # write empty braces to indict blank json file
             # no data causes json.load to raise errors
-            f = open(kara.cachePath + 'abilities.json', 'w')
+            f = open(cachePath + 'abilities.json', 'w')
             f.write('{}')
             f.close()
             # empty command data
-            f = open(kara.cachePath + 'commands.json', 'w')
+            f = open(cachePath + 'commands.json', 'w')
             f.write('{}')
             f.close()
             # write nothing to file (wipe it)
-            open(kara.cachePath + 'link.py', 'w').close()
+            open(cachePath + 'link.py', 'w').close()
             print(green('\n[+] Cleared Cached Data!'))
         # display current version
         elif arg in commands[12:14]:
-            with open('Kara/Data/kara.json', 'r') as config:
+            with open('Kara/Kara/Data/kara.json', 'r') as config:
                 # get Kara version
                 version = json.load(config)['version'] # parse json
                 print('Kara ' + version)
@@ -123,14 +125,14 @@ def argHandle(kara, args):
             # look into "optional"
         # init new integration
         elif arg in commands[18:20]:
-            kara.integrate()
+            integation(abilitiesPath=abilitiesPath, cachePath=cachePath)
 
 
     # on exitting check to see if nothing was ever passed to arguements
     # recompile abilities
     if current['value'] == 'recompile':
         print(yellow('\n[!] Forcing Compilation...'))
-        compile(abilitiesPath=kara.abilitiesPath, cachePath=kara.cachePath)
+        compile(abilitiesPath=abilitiesPath, cachePath=cachePath)
 
     # value never passed to arguement (and not optional)
     if current['value'] and not current['optional']:
