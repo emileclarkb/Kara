@@ -1,7 +1,7 @@
 # geolocation (ip to location)
 import geocoder
 # Kara Weather
-from Core.Abilities.Kara_Weather.weather import forcast, sunFormat
+from .weather import forcast, sunFormat
 
 
 # weather at a location
