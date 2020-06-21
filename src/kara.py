@@ -20,7 +20,7 @@ def main():
     start = time.time()
 
     # instance kara
-    kara = Kara()
+    kara = Kara(abilitiesPath='Core/Abilities/', cachePath='Core/Data/')
 
     # default args value
     args = {'manual': '', 'recompile': 1, 'time': 0}
