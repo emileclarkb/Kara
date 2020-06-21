@@ -23,17 +23,17 @@ def main():
     abPath = 'Kara/Kara/Abilities/'
     cPath = 'Kara/Kara/Data/Cache/'
 
+    # instance kara
+    kara = Kara(abilitiesPath=abPath, cachePath=cPath)
 
     # default args value
     args = {'manual': '', 'recompile': 1, 'time': 0}
     # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
-        args = argHandle(sys.argv[1:], abilitiesPath=abPath, cachePath=cPath)
+        args = argHandle(kara, sys.argv[1:])
 
 
-    # instance kara
-    kara = Kara(abilitiesPath=abPath, cachePath=cPath)
 
     # system progress
     print(green('\n[+] Arguements Active!'))

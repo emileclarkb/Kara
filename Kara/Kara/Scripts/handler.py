@@ -8,7 +8,6 @@ from Kara.Kara.core import Kara
 from Kara.Kara.compiler import compile, link
 from Kara.Kara.Scripts.colors import *
 from Kara.Kara.Scripts.setup import setup
-from Kara.Kara.Scripts.creation import template, integration
 
 
 # Kara usage
@@ -19,7 +18,7 @@ def usage():
         print('\n' + white(file.read()))
 
 # main handler
-def argHandle(args, abilitiesPath='Abilities/', cachePath='Cache/'):
+def argHandle(kara, args):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
@@ -49,7 +48,7 @@ def argHandle(args, abilitiesPath='Abilities/', cachePath='Cache/'):
 
             # create new ability
             if current['value'] == 'init':
-                result = template(arg, abilitiesPath=abilitiesPath, cachePath=cachePath)
+                result = kara.template(arg)
                 if result:
                     print(red('\n[-] Failed To Template New Ability: ' + \
                     'Directory Already Exists'))
@@ -64,8 +63,8 @@ def argHandle(args, abilitiesPath='Abilities/', cachePath='Cache/'):
                 # anything else given
                 else:
                     # compile through Kara's given paths
-                    compile(abilitiesPath=abilitiesPath,
-                            cachePath=cachePath)
+                    compile(abilitiesPath=kara.abilitiesPath,
+                            cachePath=kara.cachePath)
             # add text to return
             elif current['value'] == 'manual':
                 argReturn['manual'] = arg
@@ -125,14 +124,14 @@ def argHandle(args, abilitiesPath='Abilities/', cachePath='Cache/'):
             # look into "optional"
         # init new integration
         elif arg in commands[18:20]:
-            integation(abilitiesPath=abilitiesPath, cachePath=cachePath)
+            kara.integation()
 
 
     # on exitting check to see if nothing was ever passed to arguements
     # recompile abilities
     if current['value'] == 'recompile':
         print(yellow('\n[!] Forcing Compilation...'))
-        compile(abilitiesPath=abilitiesPath, cachePath=cachePath)
+        compile(abilitiesPath=kara.abilitiesPath, cachePath=kara.cachePath)
 
     # value never passed to arguement (and not optional)
     if current['value'] and not current['optional']:

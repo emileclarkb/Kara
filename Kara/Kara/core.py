@@ -1,13 +1,15 @@
 # Kara Object
 
 # native
+import os
 import json
 import importlib
+import pathlib
 # 3rd Party
 import pyttsx3
 import speech_recognition as sr
 # Kara
-from Kara.Kara.Scripts.colors import red
+from Kara.Kara.Scripts.colors import red, yellow, green
 
 
 class Kara:
@@ -70,6 +72,72 @@ class Kara:
                 print("Exception: " + str(e))
 
         return text.lower()
+
+
+    # create new ability template
+    def template(self, name):
+        # path to abilities
+        path = self.abilitiesPath + name
+
+        # make ability
+        try:
+            os.mkdir(path)
+        except FileExistsError:
+            # error message
+            return 1
+
+        # absolute path (so templating works with integration)
+        absPath = os.path.abspath(os.path.dirname(__file__))
+
+        # read main.py template
+        with open(absPath + 'Data/Templates/main.py', 'r') as template:
+            # write config
+            with open(path + '/main.py', 'w') as file:
+                # write template to main.py
+                file.write(template.read())
+
+        # read config.json template
+        with open(absPath + 'Data/Templates/config.json', 'r') as template:
+            # write config
+            with open(path + '/config.json', 'w') as file:
+                # write template to config.json
+                file.write(template.read())
+
+        # read requirements.txt template
+        with open(absPath + 'Data/Templates/requirements.txt', 'r') as template:
+            # write config
+            with open(path + '/requirements.txt', 'w') as file:
+                # write template to requirements.txt
+                file.write(template.read())
+
+        return 0
+
+
+    # init new integration
+    def integration(self):
+        print(green('\n[+] Creating Default Paths...'))
+        # make default paths
+        try:
+            # abilities
+            os.mkdir(self.abilitiesPath)
+        except FileExistsError:
+            # error message
+            print(yellow('[!] Abilities Path Already Exists...'))
+        try:
+            # cache
+            os.mkdir(self.cachePath)
+        except FileExistsError:
+            # error message
+            print(yellow('[!] Cache Path Already Exists...'))
+
+        print(green('[+] Creating Cache Files...'))
+
+        # if file doens't exist
+        # write empty json file
+        with open(self.cachePath + 'abilities.json', 'w') as file:
+            file.write('{}') # empty json
+
+        print(green('\n[+] Successfully Instanced New Integration!'))
 
 
     def compile(self, text):
