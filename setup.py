@@ -6,6 +6,10 @@ import Kara
 # current path
 path = pathlib.Path(__file__).parent
 
+# read requirements
+with open('requirements.txt', 'r') as file:
+    DEPENDENCIES = file.read().split('\n')
+
 # read README
 with open(path / 'README.md', 'r') as file:
     README = file.read()
@@ -22,6 +26,7 @@ setup(
     author_email = 'eclarkboman@gmail.com',
     license = 'GPLv3',
     classifiers = [
+        'Development Status :: 5 - Alpha',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
@@ -38,15 +43,6 @@ setup(
         ]
     },
     python_requires = '>=3.0',
-    setup_requires = [
-          'SpeechRecognition>=3.8.1',
-          'pyttsx3>=2.88',
-          'pywin32>=228',
-          'pyaudio>=0.2.11',
-          'wheel>=0.34.2',
-          'pathlib>=0.34.2',
-          'termcolor>=1.1.0',
-          'colorama>=0.4.3',
-          'ffmpeg>=1.4'
-    ]
+    install_requires = DEPENDENCIES,
+    setup_requires = DEPENDENCIES
 )
