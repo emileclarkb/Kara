@@ -1,0 +1,9 @@
+SpeechRecognition>=3.8.1
+pyttsx3>=2.88
+pywin32>=228
+pyaudio>=0.2.11
+wheel>=0.34.2
+pathlib>=0.34.2
+termcolor>=1.1.0
+colorama>=0.4.3
+ffmpeg>=1.4
