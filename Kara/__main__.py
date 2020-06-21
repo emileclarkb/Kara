@@ -7,11 +7,11 @@ import subprocess
 import os
 import time
 # kara
-from Kara.core import Kara
-from Kara.compiler import compile
-from Kara.Scripts.handler import argHandle
-from Kara.Scripts.colors import green, yellow
-from Kara.Scripts.setup import setup
+from Kara.Kara.core import Kara
+from Kara.Kara.compiler import compile
+from Kara.Kara.Scripts.handler import argHandle
+from Kara.Kara.Scripts.colors import green, yellow
+from Kara.Kara.Scripts.setup import setup
 
 
 
@@ -20,18 +20,20 @@ def main():
     start = time.time()
 
     # ability and cache paths
-    abPath = 'Kara/Abilities/'
-    cPath = 'Kara/Data/Cache/'
+    abPath = 'Kara/Kara/Abilities/'
+    cPath = 'Kara/Kara/Data/Cache/'
 
-    # instance kara
-    kara = Kara(abilitiesPath=abPath, cachePath=cPath)
 
     # default args value
     args = {'manual': '', 'recompile': 1, 'time': 0}
     # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
-        args = argHandle(kara, sys.argv[1:])
+        args = argHandle(sys.argv[1:], abilitiesPath=abPath, cachePath=cPath)
+
+
+    # instance kara
+    kara = Kara(abilitiesPath=abPath, cachePath=cPath)
 
     # system progress
     print(green('\n[+] Arguements Active!'))
@@ -48,7 +50,7 @@ def main():
     # using speech
     if not args['manual']:
         # finish booting
-        with open('Kara/Data/boot.txt', 'r') as logo:
+        with open('Kara/Kara/Data/boot.txt', 'r') as logo:
             print(logo.read()) # logo
 
 
