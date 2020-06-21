@@ -3,6 +3,11 @@ __pycache__/
 # important data for me (the developer)
 data.json
 links.txt
+cmds.txt
+
+# pypi credentials
+.pypirc
+token.txt
 
 # ignore pypi build files
 build/
