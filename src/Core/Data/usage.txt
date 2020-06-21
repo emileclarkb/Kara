@@ -1,6 +1,6 @@
 USAGE: {python{3}} kara.py
        ALIASES: (-h --help)
-              : (-i --init)
+              : (-a --ability)
               : (-r -- recompile)
               : (-s -- setup)
               : (-l --link)
@@ -8,3 +8,4 @@ USAGE: {python{3}} kara.py
               : (-v --version)
               : (-m --manual)
               : (-t --time)
+              : (-i --init)
