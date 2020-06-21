@@ -10,11 +10,6 @@ import pyttsx3
 import speech_recognition as sr
 # Kara
 from Core.Scripts.colors import red, yellow, green
-# linking file
-try:
-    import Core.Data.link as link
-except SyntaxError:
-    print(red('\n[-] Failed to Load Linking File!'))
 
 
 class Kara:
@@ -34,11 +29,21 @@ class Kara:
         self.engine.setProperty('volume',1.0)
         self.engine.setProperty('voice', self.voices[1].id)
 
+        # import linking file
+        try:
+            # "Cache/" -> "Cache."
+            cacheModule = cachePath.replace('/', '.')
+            #import Core.Data.Cache.link as link
+            self.link = importlib.import_module(cacheModule + 'link')
+        except SyntaxError:
+            print(red('\n[-] Failed to Load Linking File!'))
+
+
     # reload linking file
     def reload(self):
         # handle if link was made incorrectly
         try:
-            importlib.reload(link)
+            importlib.reload(self.link)
         except NameError:
             print(red('\n[-] Cached Linking File Failed to Operate!'))
             sys.exit(1)
@@ -159,6 +164,6 @@ class Kara:
                 if match:
                     func = command['target']
                     # pass Kara and command to command
-                    exec('link.' + func + '(self, text)')
+                    exec('self.link.{}(self, text)'.format(func))
 
                     return 0
