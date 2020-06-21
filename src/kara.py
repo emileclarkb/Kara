@@ -19,8 +19,12 @@ def main():
     # time comparison
     start = time.time()
 
+    # ability and cache paths
+    abPath = 'Core/Abilities/'
+    cPath = 'Core/Data/Cache/'
+
     # instance kara
-    kara = Kara(abilitiesPath='Core/Abilities/', cachePath='Core/Data/')
+    kara = Kara(abilitiesPath=abPath, cachePath=cPath)
 
     # default args value
     args = {'manual': '', 'recompile': 1, 'time': 0}
@@ -35,7 +39,7 @@ def main():
     if args['recompile']:
         print(yellow('[!] Compiling Abilities...'))
         # compile abilities
-        compile(abilitiesPath='Core/Abilities/', cachePath='Core/Data/')
+        compile(abilitiesPath=abPath, cachePath=cPath)
 
     # system progress
     print(yellow('[!] Reloading Linking File...'))
