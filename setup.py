@@ -2,7 +2,6 @@
 
 import pathlib
 from setuptools import setup
-
 import Kara
 # current path
 path = pathlib.Path(__file__).parent
@@ -35,7 +34,8 @@ setup(
                 'artificial', 'intelligence'],
     entry_points = {
         'console_scripts': [
-            'realpython = reader.__main__:main',
+            'kara = Kara.__main__:main',
         ]
     },
+    python_requires = '>=3.0'
 )
