@@ -26,6 +26,10 @@ Although unnecessary it is recommended to fill in the name, version, author,
 description, and long description. If `config.json` is filled incorrectly Kara
 will automatically inform you.
 
+Additionally when using Kara for your own project you don't have to use the
+Abilities that come with here (ie. Time, Weather, etc.). You can simply delete
+these and recompile her. Everything about Kara is customizable!
+
 ### Making Your First Ability
 
 By this point you should have an empty Ability template. An Ability by itself won't
