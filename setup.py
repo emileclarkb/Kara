@@ -26,7 +26,7 @@ setup(
     author_email = 'eclarkboman@gmail.com',
     license = 'GPLv3',
     classifiers = [
-        'Development Status :: 5 - Alpha',
+        'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
@@ -44,5 +44,5 @@ setup(
     },
     python_requires = '>=3.0',
     install_requires = DEPENDENCIES,
-    setup_requires = DEPENDENCIES
 )
+#setup_requires = DEPENDENCIES
