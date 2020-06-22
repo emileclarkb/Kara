@@ -3,8 +3,8 @@ import os
 import pathlib
 import json
 # kara
-from Kara.Kara.Scripts.colors import *
-from Kara.Kara.Scripts.setup import setup
+from Kara.Core.Scripts.colors import *
+from Kara.Core.Scripts.setup import setup
 
 
 # main compilation process

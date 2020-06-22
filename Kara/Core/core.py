@@ -9,7 +9,7 @@ import pathlib
 import pyttsx3
 import speech_recognition as sr
 # Kara
-from Kara.Kara.Scripts.colors import red, yellow, green
+from Kara.Core.Scripts.colors import red, yellow, green
 
 
 class Kara:
