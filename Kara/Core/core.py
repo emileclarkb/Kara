@@ -36,7 +36,7 @@ class Kara:
             cacheModule = cachePath.replace('/', '.')
             #import Kara.Data.Cache.link as link
             self.link = importlib.import_module(cacheModule + 'link')
-        except ModuleNotFoundError:
+        except:
             print(red('\n[-] Failed to Load Linking File!'))
 
 
