@@ -34,8 +34,17 @@ class Kara:
         try:
             # "Cache/" -> "Cache."
             cacheModule = cachePath.replace('/', '.')
-            #import Kara.Data.Cache.link as link
-            self.link = importlib.import_module(cacheModule + 'link')
+            cacheModule = cacheModule.replace('\\', '.')
+
+            # current path
+            current = os.path.dirname(os.path.abspath(__file__))
+            current = current.replace('/', '.')
+            current = current.replace('\\', '.')
+
+            # remove full directory to leave relative path to Abilities
+            cacheModule = cacheModule.replace(current, '')
+
+            self.link = importlib.import_module('Core.Data.Cache.link')#cacheModule + 'link', package='Core')
         except:
             print(red('\n[-] Failed to Load Linking File!'))
 
