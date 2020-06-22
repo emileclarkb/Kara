@@ -6,6 +6,9 @@ links.txt
 cmds.txt
 versions.txt
 
+# design and images
+Store/
+
 # pypi credentials
 .pypirc
 token.txt
