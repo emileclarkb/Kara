@@ -1,5 +1,7 @@
 # Kara
 
+![Kara Logo](/design/logo.png)
+
 ## Description
 Simply put, Kara is a voice assistant that steals 0% of your data so you stay free!
 She is a actively maintained, modular, and designed to customize.
