@@ -4,6 +4,7 @@ __pycache__/
 data.json
 links.txt
 cmds.txt
+versions.txt
 
 # pypi credentials
 .pypirc
