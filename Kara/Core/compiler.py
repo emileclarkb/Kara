@@ -3,9 +3,8 @@ import os
 import pathlib
 import json
 # kara
-from Kara.Core.Scripts.colors import *
-from Kara.Core.Scripts.setup import setup
-
+from Core.Scripts.colors import *
+from Core.Scripts.setup import setup
 
 # main compilation process
 def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):

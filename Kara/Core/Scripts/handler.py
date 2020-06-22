@@ -4,16 +4,16 @@
 import sys
 import json
 # Kara
-from Kara.Core.core import Kara
-from Kara.Core.compiler import compile, link
-from Kara.Core.Scripts.colors import *
-from Kara.Core.Scripts.setup import setup
+from Core.core import Kara
+from Core.compiler import compile, link
+from Core.Scripts.colors import *
+from Core.Scripts.setup import setup
 
 
 # Kara usage
 def usage():
     # read usage
-    with open('Kara/Core/Data/usage.txt', 'r') as file:
+    with open('Core/Data/usage.txt', 'r') as file:
         # return usage to screen
         print('\n' + white(file.read()))
 
@@ -87,7 +87,7 @@ def argHandle(kara, args):
             current['optional'] = True
         # download required modules
         elif arg in commands[6:8]:
-            setup('Kara/Core/Data/requirements.txt')
+            setup('Core/Data/requirements.txt')
         # force ability linking
         elif arg in commands[8:10]:
             # generate linking file
@@ -109,7 +109,7 @@ def argHandle(kara, args):
             print(green('\n[+] Cleared Cached Data!'))
         # display current version
         elif arg in commands[12:14]:
-            with open('Kara/Core/Data/kara.json', 'r') as config:
+            with open('Core/Data/kara.json', 'r') as config:
                 # get Kara version
                 version = json.load(config)['version'] # parse json
                 print('Kara ' + version)

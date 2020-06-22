@@ -7,11 +7,11 @@ import subprocess
 import os
 import time
 # kara
-from Kara.Core.core import Kara
-from Kara.Core.compiler import compile
-from Kara.Core.Scripts.handler import argHandle
-from Kara.Core.Scripts.colors import green, yellow
-from Kara.Core.Scripts.setup import setup
+from Core.core import Kara
+from Core.compiler import compile
+from Core.Scripts.handler import argHandle
+from Core.Scripts.colors import green, yellow
+from Core.Scripts.setup import setup
 
 
 
@@ -20,8 +20,8 @@ def main():
     start = time.time()
 
     # ability and cache paths
-    abPath = 'Kara/Core/Abilities/'
-    cPath = 'Kara/Core/Data/Cache/'
+    abPath = 'Core/Abilities/'
+    cPath = 'Core/Data/Cache/'
 
     # instance kara
     kara = Kara(abilitiesPath=abPath, cachePath=cPath)
@@ -50,7 +50,7 @@ def main():
     # using speech
     if not args['manual']:
         # finish booting
-        with open('Kara/Core/Data/boot.txt', 'r') as logo:
+        with open('Core/Data/boot.txt', 'r') as logo:
             print(logo.read()) # logo
 
 

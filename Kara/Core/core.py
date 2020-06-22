@@ -2,6 +2,7 @@
 
 # native
 import os
+import sys
 import json
 import importlib
 import pathlib
@@ -9,7 +10,7 @@ import pathlib
 import pyttsx3
 import speech_recognition as sr
 # Kara
-from Kara.Core.Scripts.colors import red, yellow, green
+from Core.Scripts.colors import red, yellow, green
 
 
 class Kara:
