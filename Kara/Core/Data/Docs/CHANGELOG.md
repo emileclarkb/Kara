@@ -34,12 +34,13 @@ All major changes and notable features will be documented in this file.
 - Improved documentation
 - Improved release documentation
 
-## COMING SOON...
-### [v0.1.4-alpha] - Jun XX, 2020:
+## Stability
+### [v0.1.4-alpha] - Jun 22, 2020:
 - Various Documentation Improvements
-
-- Publish on PyPi
-- Add new abilities
-- Improve old abilities
-- Improve TTS
-- Integration Tutorial Documentation
+- Added Kara logo and icon
+- Altered all paths to support relative methods
+- Allow Kara to work when being called from anywhere
+- Fixed a plethora of bugs
+- Improved Error Handling
+- Fixed a bug that stopped cache clearing when the cache was corrupt
+- Prepared project for package upload
