@@ -130,9 +130,17 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
                     main = main.split('.')[0] # "file.py" -> "file"
 
                     # "Kara/Abilities/" -> "Kara.Abilities."
-                    module = '.'.join(abilitiesPath.split('/'))
+                    module = abilitiesPath.replace('/', '.')
+                    module = module.replace('\\', '.')
+                    # current path
+                    current = os.path.dirname(os.path.abspath(__file__))
+                    current = current.replace('/', '.')
+                    current = current.replace('\\', '.')
 
-                    line = 'from {}{}.{} import {}'.format(module, ability, main,
+                    # remove full directory to leave relative path to Abilities
+                    module = module.replace(current, '')
+
+                    line = 'from ..{}{}.{} import {}'.format(module, ability, main,
                            abilities[ability]['commands'][command]['target'])
                     link.write(line + '\n') # write import link
 
