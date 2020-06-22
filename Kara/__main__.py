@@ -23,10 +23,10 @@ def main():
     path = os.path.dirname(os.path.abspath(__file__))
 
     # ability and cache paths
-    #abPath = path + '/Core/Abilities/'
-    #cPath = path + '/Core/Data/Cache/'
-    abPath = 'Core/Abilities/'
-    cPath = 'Core/Data/Cache/'
+    abPath = path + '/Core/Abilities/'
+    cPath = path + '/Core/Data/Cache/'
+    #abPath = 'Core/Abilities/'
+    #cPath = 'Core/Data/Cache/'
 
     # instance kara
     kara = Kara(abilitiesPath=abPath, cachePath=cPath)
@@ -54,7 +54,7 @@ def main():
     # using speech
     if not args['manual']:
         # finish booting
-        with open('Core/Data/boot.txt', 'r') as logo:
+        with open(path + '/Core/Data/boot.txt', 'r') as logo:
             print(logo.read()) # logo
 
 
