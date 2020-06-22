@@ -97,15 +97,15 @@ def argHandle(kara, args):
         elif arg in commands[10:12]:
             # write empty braces to indict blank json file
             # no data causes json.load to raise errors
-            f = open(cachePath + 'abilities.json', 'w')
+            f = open(kara.cachePath + 'abilities.json', 'w')
             f.write('{}')
             f.close()
             # empty command data
-            f = open(cachePath + 'commands.json', 'w')
+            f = open(kara.cachePath + 'commands.json', 'w')
             f.write('{}')
             f.close()
             # write nothing to file (wipe it)
-            open(cachePath + 'link.py', 'w').close()
+            open(kara.cachePath + 'link.py', 'w').close()
             print(green('\n[+] Cleared Cached Data!'))
         # display current version
         elif arg in commands[12:14]:
