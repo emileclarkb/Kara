@@ -6,6 +6,7 @@ import sys
 import json
 import importlib
 import pathlib
+import shutil
 # 3rd Party
 import pyttsx3
 import speech_recognition as sr
@@ -29,6 +30,9 @@ class Kara:
         self.engine.setProperty('rate', 125)
         self.engine.setProperty('volume',1.0)
         self.engine.setProperty('voice', self.voices[1].id)
+
+        # don't speak, just time how long abilities take to work
+        self.debugTime = False
 
         # import linking file
         try:
@@ -60,6 +64,10 @@ class Kara:
 
     # text to speech
     def speak(self, text, path='', save=False):
+        # don't speak anything (measure speed of an ability)
+        if self.debugTime:
+            return
+
         # save text to file
         if save:
             filename = text.replace(' ', '_')
@@ -86,66 +94,69 @@ class Kara:
 
     # create new ability template
     def template(self, name):
-        # path to abilities
-        path = self.abilitiesPath + name
+        # get Kara's path (so templating works with integration)
+        absPath = os.path.abspath(os.path.dirname(__file__))
+
+        print(yellow('[!] Making Directory...'))
 
         # make ability
         try:
-            os.mkdir(path)
+            os.mkdir(name)
         except FileExistsError:
             # error message
             return 1
 
-        # absolute path (so templating works with integration)
-        absPath = os.path.abspath(os.path.dirname(__file__))
+        print(yellow('[!] Referencing Templates...'))
 
-        # read main.py template
-        with open(absPath + 'Data/Templates/main.py', 'r') as template:
-            # write config
-            with open(path + '/main.py', 'w') as file:
-                # write template to main.py
-                file.write(template.read())
+        # Copy Template Files
+        # main.py
+        shutil.copyfile(absPath + '/Data/Templates/Ability/main.py',
+                        name + '/main.py')
+        # config.json
+        shutil.copyfile(absPath + '/Data/Templates/Ability/config.json',
+                        name + '/config.json')
+        # requirements.txt
+        shutil.copyfile(absPath + '/Data/Templates/Ability/requirements.txt',
+                        name + '/requirements.txt')
 
-        # read config.json template
-        with open(absPath + 'Data/Templates/config.json', 'r') as template:
-            # write config
-            with open(path + '/config.json', 'w') as file:
-                # write template to config.json
-                file.write(template.read())
-
-        # read requirements.txt template
-        with open(absPath + 'Data/Templates/requirements.txt', 'r') as template:
-            # write config
-            with open(path + '/requirements.txt', 'w') as file:
-                # write template to requirements.txt
-                file.write(template.read())
 
         return 0
 
 
     # init new integration
     def integration(self):
-        print(green('\n[+] Creating Default Paths...'))
+        # get Kara's path (so Kara can be called from anywhere)
+        absPath = os.path.abspath(os.path.dirname(__file__))
+
+        print(yellow('\n[!] Creating Default Paths...'))
         # make default paths
         try:
             # abilities
-            os.mkdir(self.abilitiesPath)
+            os.mkdir('Ability')
         except FileExistsError:
             # error message
-            print(yellow('[!] Abilities Path Already Exists...'))
+            print(red('[!] Abilities Path Already Exists!'))
+
         try:
             # cache
-            os.mkdir(self.cachePath)
+            os.mkdir('Cache')
+
+            print(yellow('[!] Creating Cache...'))
+
+            # write empty ability cache file
+            with open('Cache/abilities.json', 'w') as file:
+                file.write('{}') # empty json
         except FileExistsError:
             # error message
-            print(yellow('[!] Cache Path Already Exists...'))
+            print(red('[!] Cache Path Already Exists!'))
 
-        print(green('[+] Creating Cache Files...'))
 
-        # if file doens't exist
-        # write empty json file
-        with open(self.cachePath + 'abilities.json', 'w') as file:
-            file.write('{}') # empty json
+        print(yellow('[!] Referencing Templates...'))
+
+        # config.json
+        shutil.copyfile(absPath + '/Data/Templates/Integration/config.json', 'config.json')
+        # main.py
+        shutil.copyfile(absPath + '/Data/Templates/Integration/main.py', 'main.py')
 
         print(green('\n[+] Successfully Instanced New Integration!'))
 
