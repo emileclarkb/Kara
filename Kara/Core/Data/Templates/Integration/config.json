@@ -1,0 +1,12 @@
+{
+    "name": "",
+    "version": "",
+    "author": "",
+    "description": "",
+    "long-description": "",
+    "main": "main.py",
+    "paths": {
+        "ability": "Abilities/",
+        "cache": "Cache/",
+    }
+}
