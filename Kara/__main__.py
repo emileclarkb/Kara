@@ -32,12 +32,14 @@ def main():
     kara = Kara(abilitiesPath=abPath, cachePath=cPath)
 
     # default args value
-    args = {'manual': '', 'recompile': 1, 'time': 0}
+    args = {'manual': '', 'recompile': 1, 'time': 0, 'debugTime': 0}
     # handle arguements
     if len(sys.argv) > 1:
         # skip first arguement (*.py)
         args = argHandle(kara, sys.argv[1:])
 
+    # whether to debug time
+    kara.debugTime = args['debugTime']
 
     # system progress
     print(green('\n[+] Arguements Active!'))

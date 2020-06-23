@@ -22,7 +22,7 @@ def argHandle(kara, args):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
-    argReturn = {'manual': '', 'recompile': 1, 'time': 0}
+    argReturn = {'manual': '', 'recompile': 1, 'time': 0, 'debugTime': 0}
 
     # looking for a value
     current = {'value': '', 'optional': False}
@@ -55,7 +55,7 @@ def argHandle(kara, args):
                 else:
                     print(green('\n[+] Template Successful! New Ability Created'))
             # recompile abilities
-            if current['value'] == 'recompile':
+            elif current['value'] == 'recompile':
                 # skip compilation process
                 if arg == '0':
                     argReturn['recompile'] = 0
@@ -65,10 +65,17 @@ def argHandle(kara, args):
                     # compile through Kara's given paths
                     compile(abilitiesPath=kara.abilitiesPath,
                             cachePath=kara.cachePath)
-            # add text to return
+            # manual compile text
             elif current['value'] == 'manual':
+                # add text to return
                 argReturn['manual'] = arg
                 exit = False
+            # time Kara
+            elif current['value'] == 'time':
+                # skip compilation process
+                if arg == '1':
+                    argReturn['debugTime'] = 1
+
 
             # reset current
             current['value'] = ''
@@ -119,9 +126,13 @@ def argHandle(kara, args):
             current['value'] = 'manual'
         # time Kara
         elif arg in commands[16:18]:
+            # look for supporting value
+            current['value'] = 'time'
+            current['optional'] = True
+            # start timing
             argReturn['time'] = 1
             exit = False
-            # look into "optional"
+            ''' Note: look into "optional" '''
         # init new integration
         elif arg in commands[18:20]:
             kara.integation()
