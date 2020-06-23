@@ -66,14 +66,19 @@ def currentDate(Kara, command):
 
     day = date.day # select day
     # get relevent ordinal indicator
-    # clamp to stay within the list
     indicator = int(str(day)[-1]) - 1 # get final place and align with list (-1)
+    # clamp value
+    if indicator > 3:
+        indicator = 3
     indicator = indicators[indicator]
 
     weekday = weekdays[date.weekday()] # select weekday
 
+    # get month
+    month = months[date.month - 1]
+
     # format speech
-    Kara.speak('{}{} the {}{}'.format(opening, weekday, str(day), indicator))
+    Kara.speak('{}{} the {}{} of {}'.format(opening, weekday, str(day), indicator, month))
 
 
 
