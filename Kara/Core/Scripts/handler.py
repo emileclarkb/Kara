@@ -8,6 +8,7 @@ from Core.core import Kara
 from Core.compiler import compile, link
 from Core.Scripts.colors import *
 from Core.Scripts.setup import setup
+from __init__ import __version__
 
 
 # Kara usage
@@ -116,10 +117,7 @@ def argHandle(kara, args):
             print(green('\n[+] Cleared Cached Data!'))
         # display current version
         elif arg in commands[12:14]:
-            with open('Core/Data/kara.json', 'r') as config:
-                # get Kara version
-                version = json.load(config)['version'] # parse json
-                print('Kara ' + version)
+            print('Kara ' + __version__)
         # skip voice step and use text instead
         elif arg in commands[14:16]:
             # look for value
