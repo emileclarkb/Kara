@@ -25,6 +25,10 @@ def argHandle(kara, args):
     # arguements to return to Kara
     argReturn = {'manual': '', 'recompile': 1, 'time': 0, 'debugTime': 0}
 
+    # no arguements given
+    if not len(args):
+        return argReturn
+
     # looking for a value
     current = {'value': '', 'optional': False}
     # all commands
@@ -32,7 +36,6 @@ def argHandle(kara, args):
                 '-s', '--setup', '-l', '--link', '-c', '--cached',
                 '-v', '--version', '-m', '--manual', '-t', '--time',
                 '-i', '--init']
-
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -134,6 +137,10 @@ def argHandle(kara, args):
         # init new integration
         elif arg in commands[18:20]:
             kara.integation()
+        # unknown arguement
+        else:
+            if arg[0] == '-':
+                print(red('\n[-] Unkown Arguement \"' + arg + '\"! Try -h For Help'))
 
 
     # on exitting check to see if nothing was ever passed to arguements
