@@ -194,12 +194,23 @@ class Kara:
 
             # check if a match was detected
             if match:
+                # default new "last" as failed message
+                last = 'failed'
+
                 # target given
                 if 'target' in command:
                     func = command['target']
+                    # "last" command
+                    last = 'self.link.{}(self, text)'.format(func)
                     # pass Kara and command to command
-                    exec('self.link.{}(self, text)'.format(func))
+                    exec(last)
                 else:
                     print(red('\n[!] No Target Specified For Command!'))
+
+                # don't log a repeat command (causes a weird infinite loop)
+                if not '.repeat ' in last:
+                    # log command for "repeat"
+                    with open(self.cachePath + 'last.txt', 'w') as file:
+                        file.write(last)
 
                 return 0
