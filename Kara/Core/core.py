@@ -168,22 +168,38 @@ class Kara:
 
         # iterate abilities and their commands to find correct response
         for command in self.abilities:
-            # check command's keywords against given text
-            for keywords in command['keywords']:
-                # keywords match criteria
-                match = True
+            # command match found
+            match = False
 
-                # iterate all keywords
-                for keyword in keywords.split(' '):
-                    # keyword doesn't match
-                    if not keyword in text:
-                        match = False
+            # use exact value
+            if 'exact' in command:
+                for val in command[exact]:
+                    if val == text:
+                        match = True
                         break
 
-                # all keywords matched
-                if match:
+            # keywords exist and match wasn't already found
+            if 'keywords' in command and not match:
+                # check command's keywords against given text
+                for keywords in command['keywords']:
+                    # use True as default for greater efficency
+                    match = True
+
+                    # iterate all keywords
+                    for keyword in keywords.split(' '):
+                        # keyword doesn't match
+                        if not keyword in text:
+                            match = False
+                            break
+
+            # check if a match was detected
+            if match:
+                # target given
+                if 'target' in command:
                     func = command['target']
                     # pass Kara and command to command
                     exec('self.link.{}(self, text)'.format(func))
+                else:
+                    print(red('\n[!] No Target Specified For Command!'))
 
-                    return 0
+                return 0
