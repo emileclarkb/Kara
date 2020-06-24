@@ -117,6 +117,8 @@ def argHandle(kara, args):
             f.close()
             # write nothing to file (wipe it)
             open(kara.cachePath + 'link.py', 'w').close()
+            # write nothing to file (wipe it)
+            open(kara.cachePath + 'last.txt', 'w').close()
             print(green('\n[+] Cleared Cached Data!'))
         # display current version
         elif arg in commands[12:14]:
