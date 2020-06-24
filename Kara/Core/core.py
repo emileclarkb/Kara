@@ -34,6 +34,9 @@ class Kara:
         # don't speak, just time how long abilities take to work
         self.debugTime = False
 
+        # last command
+        self.last = ''
+
         # import linking file
         try:
             # "Cache/" -> "Cache."
@@ -208,9 +211,10 @@ class Kara:
                     print(red('\n[!] No Target Specified For Command!'))
 
                 # don't log a repeat command (causes a weird infinite loop)
-                if not '.repeat ' in last:
+                if not '.repeat(' in last:
                     # log command for "repeat"
                     with open(self.cachePath + 'last.txt', 'w') as file:
-                        file.write(last)
+                        # write executable code for repeat function()
+                        file.write('Kara.link.{}(Kara, \"{}\")'.format(func, text))
 
                 return 0
