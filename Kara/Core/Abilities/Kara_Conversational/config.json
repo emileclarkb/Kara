@@ -13,9 +13,7 @@
         },
         "howru": {
             "target": "howru",
-            "keywords": ["how are you",
-                         "how are you doing",
-                         "how is it"]
+            "keywords": ["how you"]
         },
         "thanks": {
             "target": "thanks",
