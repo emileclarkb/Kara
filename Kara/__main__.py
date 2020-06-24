@@ -31,12 +31,8 @@ def main():
     # instance kara
     kara = Kara(abilitiesPath=abPath, cachePath=cPath)
 
-    # default args value
-    args = {'manual': '', 'recompile': 1, 'time': 0, 'debugTime': 0}
-    # handle arguements
-    if len(sys.argv) > 1:
-        # skip first arguement (*.py)
-        args = argHandle(kara, sys.argv[1:])
+    # handler given arguements (excluding *.py)
+    args = argHandle(kara, sys.argv[1:])
 
     # whether to debug time
     kara.debugTime = args['debugTime']
@@ -77,13 +73,14 @@ def main():
 
         # listen for input
         text = kara.listen()
+        print(text)
 
         # wake word in input
         for word in kara.wake:
             # wake word detected in text
             if word in text:
-                # format text
-                text = text.split('kara')[-1].strip()
+                # only "listen" once kara is said
+                text = text.split(word)[-1].strip()
 
                 # run through Kara
                 kara.compile(text)
