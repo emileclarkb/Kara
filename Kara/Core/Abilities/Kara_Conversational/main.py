@@ -15,3 +15,20 @@ def howru(Kara, command):
 # thanks
 def thanks(Kara, command):
     Kara.speak(choice(thank))
+
+# repeat last command
+def repeat(Kara, command):
+    try:
+        # read last file
+        with open(Kara.cachePath + 'last.txt', 'r') as file:
+            # get last command
+            last = file.readline()
+
+            # last command failed
+            if last == 'failed':
+                Kara.speak('Your last command failed')
+            else:
+                # execute command
+                exec(last)
+    except:
+        Kara.speak('You haven\'t said anything yet')
