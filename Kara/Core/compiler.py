@@ -206,7 +206,8 @@ def compile(abilitiesPath='Abilities/', cachePath='Cache/'):
                 # get requirements file
                 require = json.load(config)['requirements'] # parse json
                 # setup correct requirements
-                setup(abilitiesPath + ability + '/' + require)
+                if require:
+                    setup(abilitiesPath + ability + '/' + require)
 
         # format changes
         print(yellow('\n[!] Ability Changes Were Detected!'))
