@@ -18,6 +18,10 @@
         "thanks": {
             "target": "thanks",
             "keywords": ["thank", "thanks"]
+        },
+        "repeat": {
+            "target": "repeat",
+            "keywords": ["repeat", "again"]
         }
     }
 }
