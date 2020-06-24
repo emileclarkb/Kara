@@ -1,6 +1,6 @@
 from random import choice
 
-greetings = ['hey', 'hi', 'hello', 'g\'day']
+greetings = ['hey', 'hi', 'hello', 'how\'s it going']
 status = ['amazing', 'i\'m great today! How are you?', 'spectacular', 'better than ever']
 thank = ['my pleasure', 'you\'re welcome', 'just doing my job', 'all good']
 
