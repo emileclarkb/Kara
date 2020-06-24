@@ -21,14 +21,14 @@ class Kara:
         self.cachePath = cachePath
 
         # wake words (my lisp sucks...)
-        self.wake = ['kara', 'cara', 'kawa']
+        self.wake = ['kara', 'cara', 'kawa', 'cowra']
 
         # init engine and voices
         self.engine = pyttsx3.init()
         self.voices = self.engine.getProperty('voices')
         # set properties
         self.engine.setProperty('rate', 125)
-        self.engine.setProperty('volume',1.0)
+        self.engine.setProperty('volume', 1.0)
         self.engine.setProperty('voice', self.voices[1].id)
 
         # don't speak, just time how long abilities take to work
