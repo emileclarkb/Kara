@@ -171,67 +171,67 @@ class Kara:
     def compile(self, text):
         # read all logged abilities
         with open(self.cachePath + 'commands.json', 'r') as log:
-            self.abilities = json.load(log) # parse json
+            commands = json.load(log) # parse json
 
-        # iterate abilities and their commands to find correct response
-        for command in self.abilities:
-            # command match found
-            match = False
+            # iterate abilities and their commands to find correct response
+            for command in commands:
+                # command match found
+                match = False
 
-            # use exact value
-            if 'exact' in command:
-                # given as string
-                if type(command['exact']) == type(''):
-                    # string matches command
-                    if command['exact'] == text:
-                        match = True
-                else:
-                    # given as list
-                    for val in command['exact']:
-                        if val == text:
+                # use exact value
+                if 'exact' in command:
+                    # given as string
+                    if type(command['exact']) == type(''):
+                        # string matches command
+                        if command['exact'] == text:
                             match = True
+                    else:
+                        # given as list
+                        for val in command['exact']:
+                            if val == text:
+                                match = True
+                                break
+
+                # keywords exist and match wasn't already found
+                if 'keywords' in command and not match:
+                    # check command's keywords against given text
+                    for keywords in command['keywords']:
+                        # use True as default for greater efficency
+                        match = True
+
+                        # iterate all keywords
+                        for keyword in keywords.split(' '):
+                            # keyword doesn't match
+                            if not keyword in text:
+                                match = False
+                                break
+                        # keywords match
+                        if match:
                             break
 
-            # keywords exist and match wasn't already found
-            if 'keywords' in command and not match:
-                # check command's keywords against given text
-                for keywords in command['keywords']:
-                    # use True as default for greater efficency
-                    match = True
+                # check if a match was detected
+                if match:
+                    # default new "last" as failed message
+                    last = 'failed'
 
-                    # iterate all keywords
-                    for keyword in keywords.split(' '):
-                        # keyword doesn't match
-                        if not keyword in text:
-                            match = False
-                            break
-                    # keywords match
-                    if match:
-                        break
+                    # target given
+                    if 'target' in command:
+                        func = command['target']
+                        # "last" command
+                        last = 'self.link.{}(self, text)'.format(func)
+                        # pass Kara and command to command
+                        exec(last)
+                    else:
+                        print(red('\n[!] No Target Specified For Command!'))
 
-            # check if a match was detected
-            if match:
-                # default new "last" as failed message
-                last = 'failed'
+                    # don't log a repeat command (causes a weird infinite loop)
+                    if not '.repeat(' in last:
+                        # log command for "repeat"
+                        with open(self.cachePath + 'last.txt', 'w') as file:
+                            # write executable code for repeat function()
+                            file.write('Kara.link.{}(Kara, \"{}\")'.format(func, text))
 
-                # target given
-                if 'target' in command:
-                    func = command['target']
-                    # "last" command
-                    last = 'self.link.{}(self, text)'.format(func)
-                    # pass Kara and command to command
-                    exec(last)
-                else:
-                    print(red('\n[!] No Target Specified For Command!'))
-
-                # don't log a repeat command (causes a weird infinite loop)
-                if not '.repeat(' in last:
-                    # log command for "repeat"
-                    with open(self.cachePath + 'last.txt', 'w') as file:
-                        # write executable code for repeat function()
-                        file.write('Kara.link.{}(Kara, \"{}\")'.format(func, text))
-
-                    return
+                        return
 
         # no matches
         # execute fallback command
@@ -239,10 +239,9 @@ class Kara:
             # get fallback command
             fallback = last.readline()
 
-            print('Fallback: ' + fallback)
             # no fallback given
             if not fallback:
-                self.Speak('Sorry, I don\'t know that')
+                self.speak('Sorry, I don\'t know that')
                 return
 
             # run fallback func
