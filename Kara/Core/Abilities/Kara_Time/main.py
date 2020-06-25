@@ -34,6 +34,11 @@ def currentTime(Kara, command):
         # change period
         period = 'PM'
 
+    # 12 % 12 = 0
+    if hour == 0:
+        # reset hour
+        hour == 12
+
     # format speech
     Kara.speak('The time is {}:{} {}'.format(str(hour), minute, period))
 
