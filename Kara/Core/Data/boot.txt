@@ -8,4 +8,3 @@ Try Asking:
     ~ "Hey Kara what time is it?"
     ~ "Hey Kara what's the weather like in Toronto?"
     ~ "Hey Kara what's the date in 6 days?"
-    
