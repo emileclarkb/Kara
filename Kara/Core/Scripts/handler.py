@@ -23,7 +23,7 @@ def argHandle(kara, args):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
-    argReturn = {'manual': '', 'recompile': 1, 'time': 0, 'debugTime': 0}
+    argReturn = {'manual': 0, 'recompile': 1, 'time': 0, 'debugTime': 0}
 
     # no arguements given
     if not len(args):
@@ -136,8 +136,10 @@ def argHandle(kara, args):
             kara.integation()
         # unknown arguement
         else:
-            if arg[0] == '-':
-                print(red('\n[-] Unkown Arguement \"' + arg + '\"! Try -h For Help'))
+            # if no arguement given (ie. "")
+            if arg:
+                if arg[0] == '-':
+                    print(red('\n[-] Unkown Arguement \"' + arg + '\"! Try -h For Help'))
 
 
     # on exitting check to see if nothing was ever passed to arguements
