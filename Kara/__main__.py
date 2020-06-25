@@ -50,7 +50,7 @@ def main():
     kara.reload()
 
     # using speech
-    if not args['manual']:
+    if not type(args['manual']) == type(''):
         # finish booting
         with open(path + '/Core/Data/boot.txt', 'r') as logo:
             print(logo.read()) # logo
@@ -59,7 +59,8 @@ def main():
     # infinite listening
     while True:
         # compile text not speech
-        if args['manual']:
+        # manual data given
+        if type(args['manual']) == type(''):
             # run through Kara
             kara.compile(args['manual'])
 
