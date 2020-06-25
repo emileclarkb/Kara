@@ -175,7 +175,7 @@ def fallback(abilitiesPath='Abilities/', cachePath='Cache/'):
             # no fallback given
             elif not len(fallbacks):
                 # write empty
-                file.write()
+                file.write('')
                 return
 
             # write executable command
