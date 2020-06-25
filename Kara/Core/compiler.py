@@ -151,7 +151,7 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
 # store fallback command
 def fallback(abilitiesPath='Abilities/', cachePath='Cache/'):
     # write fallback file
-    with open(cachePath + 'last.txt', 'w') as file:
+    with open(cachePath + 'fallback.txt', 'w') as file:
         # read logged abilities
         with open(cachePath + 'commands.json', 'r') as log:
             commands = json.load(log) # parse json
