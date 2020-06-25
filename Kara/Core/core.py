@@ -169,6 +169,11 @@ class Kara:
 
 
     def compile(self, text):
+        # no text given
+        if not text:
+            self.speak('Sorry, I didn\'t get that')
+            return
+
         # read all logged abilities
         with open(self.cachePath + 'commands.json', 'r') as log:
             commands = json.load(log) # parse json
