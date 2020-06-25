@@ -34,6 +34,62 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
             with open(configPath, 'r') as file:
                 configJSON = json.load(file) # parse json
 
+                # check what keys given in config file
+                # required fields
+                keyRequire = ['name', 'version', 'author', 'description', 'main']
+                # optional fields (recommended though)
+                keyRecommend = ['long-description', 'requirements', 'commands']
+
+                # all config keys
+                keys = list(configJSON.keys())
+
+                keyErrors = {'require': [], 'recommend': []}
+
+                # check which key fields exist
+                # required fields
+                for key in keyRequire:
+                    # not found
+                    if not key in keys:
+                        keyErrors['require'].append(key)
+                # recommended fields
+                for key in keyRecommend:
+                    # not found
+                    if not key in keys:
+                        keyErrors['recommend'].append(key)
+
+                # config key errors found
+                if keyErrors['require'] or keyErrors['recommend']:
+                    # error statement
+                    print(red('\n[-] Config Fields Were Not Detected For' +
+                              '\"' + ability + '\"!'))
+                    print(yellow('[!] Ability May Not Function As Expected...'))
+
+                    # check required
+                    if keyErrors['require']:
+                        # indent
+                        print(red((' ' * 4) + 'Required:'))
+                        # list errors
+                        for error in keyErrors['require']:
+                            print(red((' ' * 8) + '~ ' + error))
+                    # check recommended
+                    if keyErrors['recommend']:
+                        # indent
+                        print(yellow((' ' * 4) + 'Recommended:'))
+                        # list errors
+                        for error in keyErrors['recommend']:
+                            print(yellow((' ' * 8) + '~ ' + error))
+                    # empty line
+                    print()
+
+                    # remove change data
+                    del changes[ability]
+                    continue
+
+
+                #print(red('[!] Required Field \"' + key +'\" Not in ' +
+                #      ability + '\'s Config!'))
+
+
                 # read correct main file
                 main = pathlib.Path(abilitiesPath + ability + '/' + configJSON['main'])
                 # main doesn't exists
