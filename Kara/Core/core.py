@@ -168,6 +168,7 @@ class Kara:
         print(green('\n[+] Successfully Instanced New Integration!'))
 
 
+    # compile given text to find relevant command to execute
     def compile(self, text):
         # no text given
         if not text:
@@ -207,9 +208,10 @@ class Kara:
                         # iterate all keywords
                         for keyword in keywords.split(' '):
                             # keyword doesn't match
-                            if not keyword in text:
+                            if not keyword in text.split(' '):
                                 match = False
                                 break
+
                         # keywords match
                         if match:
                             break
