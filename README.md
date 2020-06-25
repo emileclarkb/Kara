@@ -55,7 +55,6 @@ For more on working with Abilities check out it's
 - `-h` or `--help`: show Kara's usage
 - `-a` or `--ability`: initialize new Ability
 - `-r` or `--recompile`: recompile abilities
-- `-s` or `--setup`: download all requirements
 - `-c` or `--cached`: remove all cached data (abilities.json, link.py)
 - `-v` or `--version`: display current version of Kara
 - `-m` or `--manual`: pass text to Kara, temporarily disables STT
