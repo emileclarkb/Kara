@@ -6,17 +6,26 @@ from .weather import forcast, sunFormat
 
 # weather at a location
 def weather(Kara, command):
-    # get current location from ip
-    g = geocoder.ip('me')
+    # location specified
+    if 'in' in command:
+        # split command
+        cmdSplit = command.split()
+        pos = cmdSplit.index('in')
+        # get city
+        city = cmdSplit[pos + 1]
+    else:
+        # get current location from ip
+        g = geocoder.ip('me')
+        city = g.city
 
     # pass city
-    data = forcast(g.city, days=1)
+    data = forcast(city, days=1)
 
     # ie. light showers
     weatherState = data['weather'][0]['weather']
 
     # "Today in brisbane you can expect light rain"
-    line = 'Today in {} you can expect {}'.format(g.city, weatherState)
+    line = 'Today in {} you can expect {}'.format(city, weatherState)
     Kara.speak(line)
 
 
