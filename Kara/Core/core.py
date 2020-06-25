@@ -231,4 +231,19 @@ class Kara:
                         # write executable code for repeat function()
                         file.write('Kara.link.{}(Kara, \"{}\")'.format(func, text))
 
-                return 0
+                    return
+
+        # no matches
+        # execute fallback command
+        with open(self.cachePath + 'fallback.txt') as last:
+            # get fallback command
+            fallback = last.readline()
+
+            print('Fallback: ' + fallback)
+            # no fallback given
+            if not fallback:
+                self.Speak('Sorry, I don\'t know that')
+                return
+
+            # run fallback func
+            exec(fallback)
