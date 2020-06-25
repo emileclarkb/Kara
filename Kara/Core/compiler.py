@@ -60,7 +60,7 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
                 # config key errors found
                 if keyErrors['require'] or keyErrors['recommend']:
                     # error statement
-                    print(red('\n[-] Config Fields Were Not Detected For' +
+                    print(red('\n[-] Config Keys Were Not Detected For ' +
                               '\"' + ability + '\"!'))
                     print(yellow('[!] Ability May Not Function As Expected...'))
 
