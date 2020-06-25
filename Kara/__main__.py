@@ -73,7 +73,6 @@ def main():
 
         # listen for input
         text = kara.listen()
-        print(text)
 
         # wake word in input
         for word in kara.wake:
