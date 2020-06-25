@@ -20,6 +20,11 @@ class Kara:
         self.abilitiesPath = abilitiesPath
         self.cachePath = cachePath
 
+        # speech recognizer
+        self.recognizer = sr.Recognizer()
+        # speech microphone
+        self.microphone = sr.Microphone()
+
         # wake words (my lisp sucks...)
         self.wake = ['kara', 'cara', 'kawa', 'cowra']
 
@@ -82,13 +87,12 @@ class Kara:
 
     # speech to text
     def listen(self):
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            audio = r.listen(source)
+        with self.microphone as source:
+            audio = self.recognizer.listen(source)
             text = ""
 
             try:
-                text = r.recognize_google(audio)
+                text = self.recognizer.recognize_google(audio)
             except Exception as e:
                 print("Exception: " + str(e))
 
@@ -176,10 +180,17 @@ class Kara:
 
             # use exact value
             if 'exact' in command:
-                for val in command[exact]:
-                    if val == text:
+                # given as string
+                if type(command['exact']) == type(''):
+                    # string matches command
+                    if command['exact'] == text:
                         match = True
-                        break
+                else:
+                    # given as list
+                    for val in command['exact']:
+                        if val == text:
+                            match = True
+                            break
 
             # keywords exist and match wasn't already found
             if 'keywords' in command and not match:
@@ -194,6 +205,9 @@ class Kara:
                         if not keyword in text:
                             match = False
                             break
+                    # keywords match
+                    if match:
+                        break
 
             # check if a match was detected
             if match:
