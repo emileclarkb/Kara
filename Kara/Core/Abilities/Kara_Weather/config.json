@@ -9,7 +9,7 @@
     "commands": {
         "weather": {
             "target": "weather",
-            "keywords": ["what weather"]
+            "keywords": ["weather"]
         },
         "sun-rise": {
             "target": "sunrise",
