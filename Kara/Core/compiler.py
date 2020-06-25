@@ -151,7 +151,7 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
 # store fallback command
 def fallback(abilitiesPath='Abilities/', cachePath='Cache/'):
     # write fallback file
-    with open(cachePath + 'link.py', 'w') as file:
+    with open(cachePath + 'last.txt', 'w') as file:
         # read logged abilities
         with open(cachePath + 'commands.json', 'r') as log:
             commands = json.load(log) # parse json
@@ -174,9 +174,12 @@ def fallback(abilitiesPath='Abilities/', cachePath='Cache/'):
                 print(yellow('[!] Using First Fallback as Default...\n'))
             # no fallback given
             elif not len(fallbacks):
-                pass
+                # write empty
+                file.write()
+                return
 
-            print(fallbacks)
+            # write executable comman
+            file.write('self.link.{}(self, text)'.format(fallbacks[0]['target']))
 
 
 
