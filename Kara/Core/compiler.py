@@ -178,7 +178,7 @@ def fallback(abilitiesPath='Abilities/', cachePath='Cache/'):
                 file.write()
                 return
 
-            # write executable comman
+            # write executable command
             file.write('self.link.{}(self, text)'.format(fallbacks[0]['target']))
 
 
