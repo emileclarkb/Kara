@@ -139,10 +139,47 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
 
                     # remove full directory to leave relative path to Abilities
                     module = module.replace(current, '')
+                    try:
+                        line = 'from ..{}{}.{} import {}'.format(module, ability, main,
+                               abilities[ability]['commands'][command]['target'])
+                        link.write(line + '\n') # write import link
+                    # no target given
+                    except KeyError:
+                        pass
 
-                    line = 'from ..{}{}.{} import {}'.format(module, ability, main,
-                           abilities[ability]['commands'][command]['target'])
-                    link.write(line + '\n') # write import link
+
+# store fallback command
+def fallback(abilitiesPath='Abilities/', cachePath='Cache/'):
+    # write fallback file
+    with open(cachePath + 'link.py', 'w') as file:
+        # read logged abilities
+        with open(cachePath + 'commands.json', 'r') as log:
+            commands = json.load(log) # parse json
+
+            # all fallback commands given
+            fallbacks = []
+
+            # iterate commands
+            for command in commands:
+                #print(commands)
+                # fallback given
+                if 'fallback' in command:
+                    # is fallback
+                    if command['fallback']:
+                        fallbacks.append(command)
+
+            # multiple fallbacks given
+            if len(fallbacks) > 1:
+                print(red('\n[-] Multiple Fallback Commands Given!'))
+                print(yellow('[!] Using First Fallback as Default...\n'))
+            # no fallback given
+            elif not len(fallbacks):
+                pass
+
+            print(fallbacks)
+
+
+
 
 
 # compress abilities to increase speed
@@ -157,8 +194,18 @@ def compress(cachePath='Cache/'):
         # find all commands in find
         for ability in JSON:
             for command in JSON[ability]['commands']:
-                # add command
-                compressed.append(JSON[ability]['commands'][command])
+                # get all data on command
+                commandData = JSON[ability]['commands'][command]
+                # target given
+                if 'target' in commandData:
+                    # add command
+                    compressed.append(JSON[ability]['commands'][command])
+                # no target given
+                else:
+                    print(red('\n[-] No Target Given For Command \"' +
+                          command + '\"!'))
+                    print(yellow('[!] Skipping Command...\n'))
+
 
         # write compressed json
         with open(cachePath + 'commands.json', 'w') as commands:
@@ -243,3 +290,7 @@ def compile(abilitiesPath='Abilities/', cachePath='Cache/'):
     # generate linking file
     link(abilitiesPath=abilitiesPath, cachePath=cachePath)
     print(green('[+] Generated Linking File!'))
+
+    # generate fallback file
+    fallback(abilitiesPath=abilitiesPath, cachePath=cachePath)
+    print(green('[+] Generated Fallback Data!'))
