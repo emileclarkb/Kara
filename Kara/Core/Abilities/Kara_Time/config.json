@@ -9,19 +9,19 @@
     "commands": {
         "time": {
             "target": "currentTime",
-            "keywords": ["what time"]
+            "keywords": ["time"]
         },
         "date": {
             "target": "currentDate",
-            "keywords": ["what date"]
+            "keywords": ["date"]
         },
         "month": {
             "target": "currentMonth",
-            "keywords": ["what month"]
+            "keywords": ["month"]
         },
         "year": {
             "target": "currentYear",
-            "keywords": ["what year"]
+            "keywords": ["year"]
         }
     }
 }
