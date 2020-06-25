@@ -5,7 +5,7 @@ import sys
 import json
 # Kara
 from Core.core import Kara
-from Core.compiler import compile, link
+from Core.compiler import compile
 from Core.Scripts.colors import *
 from Core.Scripts.setup import setup
 from __init__ import __version__
@@ -33,7 +33,7 @@ def argHandle(kara, args):
     current = {'value': '', 'optional': False}
     # all commands
     commands = ['-h', '--help', '-a', '--ability', '-r', '--recompile',
-                '-s', '--setup', '-l', '--link', '-c', '--cached',
+                '-s', '--setup', '-c', '--cached',
                 '-v', '--version', '-m', '--manual', '-t', '--time',
                 '-i', '--init']
 
@@ -99,13 +99,8 @@ def argHandle(kara, args):
         # download required modules
         elif arg in commands[6:8]:
             setup('Core/Data/requirements.txt')
-        # force ability linking
-        elif arg in commands[8:10]:
-            # generate linking file
-            link()
-            print(green('\n[+] Generated Linking File!'))
         # clear cache files
-        elif arg in commands[10:12]:
+        elif arg in commands[8:10]:
             # write empty braces to indict blank json file
             # no data causes json.load to raise errors
             f = open(kara.cachePath + 'abilities.json', 'w')
@@ -121,14 +116,14 @@ def argHandle(kara, args):
             open(kara.cachePath + 'last.txt', 'w').close()
             print(green('\n[+] Cleared Cached Data!'))
         # display current version
-        elif arg in commands[12:14]:
+        elif arg in commands[10:12]:
             print('Kara ' + __version__)
         # skip voice step and use text instead
-        elif arg in commands[14:16]:
+        elif arg in commands[12:14]:
             # look for value
             current['value'] = 'manual'
         # time Kara
-        elif arg in commands[16:18]:
+        elif arg in commands[14:16]:
             # look for supporting value
             current['value'] = 'time'
             current['optional'] = True
@@ -137,7 +132,7 @@ def argHandle(kara, args):
             exit = False
             ''' Note: look into "optional" '''
         # init new integration
-        elif arg in commands[18:20]:
+        elif arg in commands[16:18]:
             kara.integation()
         # unknown arguement
         else:
