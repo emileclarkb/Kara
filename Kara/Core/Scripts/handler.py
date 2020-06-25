@@ -80,7 +80,6 @@ def argHandle(kara, args):
                 if arg == '1':
                     argReturn['debugTime'] = 1
 
-
             # reset current
             current['value'] = ''
 
