@@ -46,7 +46,7 @@ All major changes and notable features will be documented in this file.
 - Prepared project for package upload
 
 ## Beta
-### [v1.0.0-beta] - Jun xx, 2020:
+### [v1.0.0-beta] - Jun 25, 2020:
 - Added optional "silent" timer parameter to --time
 - Added command "exact" field (opposed to only "keywords")
 - Added command "fallback" field (default command to execute if all else fails)
