@@ -187,7 +187,7 @@ class Kara:
                 # use exact value
                 if 'exact' in command:
                     # given as string
-                    if type(command['exact']) == type(''):
+                    if isinstance(command['exact'], str):
                         # string matches command
                         if command['exact'] == text:
                             match = True
