@@ -49,6 +49,11 @@ def weather(Kara, command):
     # pass city
     data = forcast(city, days=5)
 
+    # unknown location
+    if data:
+        Kara.speak('Sorry, I don\'t know where that is')
+        return
+
     # ie. light showers
     weatherState = data['weather'][days]['weather']
 

@@ -14,8 +14,11 @@ info = meta + 'location/{}/'
 def forcast(query, days=1, log=False):
 	# get location id
 	IDdata = requests.get(url=location, params={'query': query}).json()
-	# return id
-	id = IDdata[0]['woeid']
+	try:
+		# return id
+		id = IDdata[0]['woeid']
+	except IndexError:
+		return 1
 
 	# get weather data
 	data = requests.get(info.format(id)).json()
