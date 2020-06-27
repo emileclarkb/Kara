@@ -54,7 +54,7 @@ def currentDate(Kara, command):
     # move date to tomorrow
     if 'tomorrow' in command:
         date += datetime.timedelta(days=1)
-        # chaning opening for "tomorrow"
+        # change opening for "tomorrow"
         opening = 'Tomorrow it will be '
     # date in an amount of days
     # ie. "what's the date in 4 days?"
@@ -66,7 +66,7 @@ def currentDate(Kara, command):
         days = split[index - 1] # get word before "days"
         date += datetime.timedelta(days=int(days))
 
-        # chaning opening to be relevent
+        # change opening to be relevent
         opening = 'In {} days it will be '.format(days)
 
     day = date.day # select day
