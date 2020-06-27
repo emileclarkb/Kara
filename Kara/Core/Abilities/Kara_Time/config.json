@@ -5,7 +5,6 @@
     "description": "Kara Base Time Library",
     "long-description": "",
     "main": "main.py",
-    "requirements": "requirements.txt",
     "commands": {
         "time": {
             "target": "currentTime",
