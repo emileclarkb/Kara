@@ -1,7 +1,7 @@
 # native
-import argparse
 import requests
 import json
+import os
 
 
 meta = 'https://www.metaweather.com/api/'
@@ -46,10 +46,13 @@ def forcast(query, days=1, log=False):
 		# add to formatted data
 		formatted['weather'].append(day)
 
+	# get path
+	path = os.path.dirname(os.path.abspath(__file__))
+
 	# log data to file
 	if log:
 		# write to file
-		with open(log, 'w') as file:
+		with open(path + '/' + log, 'w') as file:
 			# write json neatly
 			json.dump(formatted, file,
 					  sort_keys=True, indent=4, separators=(',', ': '))
