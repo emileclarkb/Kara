@@ -72,7 +72,7 @@ def generalMaths(Kara, command):
     speech = speech.replace(' math.sin ', ' the sine of ')
     speech = speech.replace(' math.cos ', ' the cosine of ')
     speech = speech.replace(' math.tan ', ' the tangent of ')
-
+    
 
     # round answer
     # scientific notation
@@ -82,13 +82,14 @@ def generalMaths(Kara, command):
     else:
         answer = round(answer, 4)
 
+    # temporarily conver to string
+    answer = str(answer)
     # say negative instead of minus
     negative = ''
     # answer is negative
-    if str(answer)[0] == '-':
+    if answer[0] == '-':
         negative = 'negative '
-        # convert answer to positive
-        answer = answer * -1
+        # convert answer to positive and back to int
+        answer = answer[1:]
 
-
-    Kara.speak(speech + ' is ' + negative + str(answer))
+    Kara.speak('{} is {} {}'.format(speech, negative, answer))
