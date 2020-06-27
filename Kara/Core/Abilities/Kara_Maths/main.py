@@ -10,7 +10,7 @@ special = ['math.pi', 'math.sin(', 'math.cos(', 'math.tan(']
 
 # perform math operations
 # format command to become an equation
-def generalMath(Kara, command):
+def generalMaths(Kara, command):
     # add blank whitespace to front and back
     command = ' ' + command + ' '
 
