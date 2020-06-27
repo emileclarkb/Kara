@@ -3,7 +3,9 @@ import math
 # acceptable math terms
 accepted = '+-/**'
 # acceptable special strings
-special = ['math.pi', 'math.sin(', 'math.cos(', 'math.tan(']
+functions = ['math.sin(', 'math.cos(', 'math.tan(']
+special = ['math.pi']
+special += functions
 
 # root (special: square, cube)
 # sign cosine tangent
@@ -37,7 +39,7 @@ def generalMaths(Kara, command):
             eq += word + ' '
 
             # function discovered
-            if word in special:
+            if word in functions:
                 func += 1
             # not currently a function and functions previous
             elif func:
@@ -49,7 +51,6 @@ def generalMaths(Kara, command):
     # evaluate string and round to four decimal places
     try:
         answer = eval(eq)
-        answer = round(answer, 4)
     except ZeroDivisionError:
         Kara.speak('no')
         return
@@ -58,16 +59,36 @@ def generalMaths(Kara, command):
     # format equation again for speech
     # *, /, math.pi,
     speech = ' ' + eq + ' '
+    speech = speech.replace(' + ', ' plus ')
+    speech = speech.replace(' - ', ' subtract ')
     speech = speech.replace(' * ', ' times ')
-    speech = speech.replace(' math.pi ', ' pi ')
     speech = speech.replace(' / ', ' divided by ')
     speech = speech.replace(' ** 2 ', ' squared ')
     speech = speech.replace(' ** 3 ', ' cubed ')
     speech = speech.replace(' ** ', ' to the power of ')
     speech = speech.replace('(', '')
     speech = speech.replace(')', '')
-    speech = speech.replace(' math.sin ', ' sine of ')
-    speech = speech.replace(' math.cos ', ' cosine of ')
-    speech = speech.replace(' math.tan ', ' tangent of ')
+    speech = speech.replace(' math.pi ', ' pi ')
+    speech = speech.replace(' math.sin ', ' the sine of ')
+    speech = speech.replace(' math.cos ', ' the cosine of ')
+    speech = speech.replace(' math.tan ', ' the tangent of ')
 
-    Kara.speak(speech + ' is ' + str(answer))
+
+    # round answer
+    # scientific notation
+    if 'e' in str(answer):
+        answer = '{:0.4e}'.format(answer)
+    # decimal
+    else:
+        answer = round(answer, 4)
+
+    # say negative instead of minus
+    negative = ''
+    # answer is negative
+    if str(answer)[0] == '-':
+        negative = 'negative '
+        # convert answer to positive
+        answer = answer * -1
+
+
+    Kara.speak(speech + ' is ' + negative + str(answer))
