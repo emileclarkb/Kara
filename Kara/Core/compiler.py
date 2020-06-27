@@ -37,57 +37,37 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
                 # check what keys given in config file
                 # required fields
                 keyRequire = ['name', 'version', 'author', 'description', 'main']
-                # optional fields (recommended though)
-                keyRecommend = ['long-description', 'requirements', 'commands']
 
                 # all config keys
                 keys = list(configJSON.keys())
 
-                keyErrors = {'require': [], 'recommend': []}
+                keyErrors = []
 
                 # check which key fields exist
                 # required fields
                 for key in keyRequire:
                     # not found
                     if not key in keys:
-                        keyErrors['require'].append(key)
-                # recommended fields
-                for key in keyRecommend:
-                    # not found
-                    if not key in keys:
-                        keyErrors['recommend'].append(key)
+                        keyErrors.append(key)
 
                 # config key errors found
-                if keyErrors['require'] or keyErrors['recommend']:
+                if keyErrors:
                     # error statement
                     print(red('\n[-] Config Keys Were Not Detected For ' +
                               '\"' + ability + '\"!'))
                     print(yellow('[!] Ability May Not Function As Expected...'))
 
-                    # check required
-                    if keyErrors['require']:
-                        # indent
-                        print(red((' ' * 4) + 'Required:'))
-                        # list errors
-                        for error in keyErrors['require']:
-                            print(red((' ' * 8) + '~ ' + error))
-                    # check recommended
-                    if keyErrors['recommend']:
-                        # indent
-                        print(yellow((' ' * 4) + 'Recommended:'))
-                        # list errors
-                        for error in keyErrors['recommend']:
-                            print(yellow((' ' * 8) + '~ ' + error))
+                    # indent
+                    print(red((' ' * 4) + 'Required:'))
+                    # list errors
+                    for error in keyErrors:
+                        print(red((' ' * 8) + '~ ' + error))
                     # empty line
                     print()
 
                     # remove change data
                     del changes[ability]
                     continue
-
-
-                #print(red('[!] Required Field \"' + key +'\" Not in ' +
-                #      ability + '\'s Config!'))
 
 
                 # read correct main file
@@ -97,17 +77,20 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
                     # issue encounter
                     issues.append('main')
 
-                # path to requirements
-                requirePath = abilitiesPath + ability + '/' + configJSON['requirements']
-                # requirement file given
-                if configJSON['requirements']:
-                    # read correct requirements file
-                    require = pathlib.Path(requirePath)
-                    # requirements doesn't exists
-                    if not require.is_file():
-                        # issue encounter
-                        issues.append('req')
-
+                try:
+                    # path to requirements
+                    requirePath = abilitiesPath + ability + '/' + configJSON['requirements']
+                    # requirement file given
+                    if configJSON['requirements']:
+                        # read correct requirements file
+                        require = pathlib.Path(requirePath)
+                        # requirements doesn't exists
+                        if not require.is_file():
+                            # issue encounter
+                            issues.append('req')
+                except:
+                    # file has no requirements
+                    pass
 
                 # if no issues were raised
                 if not issues:
@@ -117,8 +100,14 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
                         # ignore name, description, etc.
                         dump = {'version': configJSON['version'],
                                 'main': configJSON['main'],
-                                'requirements': configJSON['requirements'],
                                 'commands': configJSON['commands']}
+
+                        # try to add requirements
+                        try:
+                            dump['requirements'] = configJSON['requirements']
+                        except:
+                            # file has no requirements
+                            pass
 
                         # add working ability to list
                         abilitiesJSON[ability] = dump
@@ -309,11 +298,16 @@ def compile(abilitiesPath='Abilities/', cachePath='Cache/'):
             # install requirements of changed Ability
             # read config file
             with open(abilitiesPath + ability + '/config.json', 'r') as config:
-                # get requirements file
-                require = json.load(config)['requirements'] # parse json
-                # setup correct requirements
-                if require:
-                    setup(abilitiesPath + ability + '/' + require)
+                try:
+                    # get requirements file
+                    require = json.load(config)['requirements'] # parse json
+                    # setup correct requirements
+                    if require:
+                        setup(abilitiesPath + ability + '/' + require)
+                except:
+                    # no requirements
+                    pass
+
 
         # format changes
         print(yellow('\n[!] Ability Changes Were Detected!'))
