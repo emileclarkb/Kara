@@ -5,7 +5,6 @@
     "description": "Kara Base Math Library",
     "long-description": "",
     "main": "main.py",
-    "requirements": "requirements.txt",
     "commands": {
         "math": {
             "target": "generalMaths",
