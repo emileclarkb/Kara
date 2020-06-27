@@ -8,7 +8,7 @@
     "requirements": "requirements.txt",
     "commands": {
         "math": {
-            "target": "maths",
+            "target": "generalMath",
             "keywords": ["+", "-", "x", "/", "^", "squared", "square root", "sign",
                          "cosine", "tangent"]
         }
