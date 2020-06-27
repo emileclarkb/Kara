@@ -9,7 +9,8 @@
     "commands": {
         "math": {
             "target": "maths",
-            "keywords": ["+", "-", "x", "/", "^", "squared", "square root", ""]
+            "keywords": ["+", "-", "x", "/", "^", "squared", "square root", "sign",
+                         "cosine", "tangent"]
         }
     }
 }
