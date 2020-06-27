@@ -2,7 +2,7 @@
     "name": "Conversational",
     "version": "1.0.0",
     "author": "Emile Clark-Boman",
-    "description": "Kara Base Conversation Library",
+    "description": "Kara Base General Library",
     "long-description": "",
     "main": "main.py",
     "requirements": "",
