@@ -7,27 +7,28 @@ All major changes and notable features will be documented in this file.
 
 ## Kara is Now in Alpha!
 ### [v0.1-alpha] - Jun 19, 2020:
-- Although she can only tell you the time... kara is now in a functioning
+- Although she can only tell you the time... Kara is now in a functioning
   state! a module system has been finalized, allowing for her abilities to
-  be created with ease! this system took 4 days to make, kara's time ability
+  be created with ease! this system took 4 days to make, Kara's Time ability
   took 10 minutes. she mightn't have much now but the potential is there for
   anyone to create command's of their own.
 
 ## Kara Time
 ### [v0.1.1-alpha] - Jun 20, 2020:
-- Added fully functioning time ability
+- Added fully functioning Time ability
 - Added 3 new commands: date, month, and year
 - Various compilation improvements
 
 ## Kara Weather Support
 ### [v0.1.2-alpha] - Jun 20, 2020:
-- Added four new abilities: weather, sun rise, sun set, and air pressure (idk why lol)
-- Fixed issues with the time ability
+- Added new Weather Ability
+- Added four new commands: weather, sun rise, sun set, and air pressure (idk why lol)
+- Fixed issues with the Time ability
 - Added new arguements
 
 ## Integrations
 ### [v0.1.3-alpha] - Jun 21, 2020:
-- Added kara integration functionality
+- Added Kara integration functionality
 - Added new arguements
 - Added custom ability and cache paths
 - Added change log
@@ -37,9 +38,9 @@ All major changes and notable features will be documented in this file.
 ## Stability
 ### [v0.1.4-alpha] - Jun 22, 2020:
 - Various documentation improvements
-- Added kara logo and icon
+- Added Kara logo and icon
 - Altered all paths to support relative methods
-- Allow kara to work when being called from anywhere
+- Allow Kara to work when being called from anywhere
 - Fixed a plethora of bugs
 - Improved error handling
 - Fixed a bug that stopped cache clearing when the cache was corrupt
@@ -50,7 +51,7 @@ All major changes and notable features will be documented in this file.
 - Added optional "silent" timer parameter to --time
 - Added command "exact" field (opposed to only "keywords")
 - Added command "fallback" field (default command to execute if all else fails)
-- Added conversational ability
+- Added Conversational ability
 - Added four new commands: greeting, howru, thanks, repeat
 - Added "last" command file to cache
 - Added weather search in specific location
@@ -65,7 +66,21 @@ All major changes and notable features will be documented in this file.
 - Fixed keywords detecting inside of words
 - Fixed some issues with the readme
 - Improved and simplified many backend processes
-- Improved and remodeled kara's command compilation to support command repeating
+- Improved and remodeled Kara's command compilation to support command repeating
 - Improved error handling
 - Improved keyword handling
 - Improved usage (--usage)
+
+## Knowledge
+### [v1.0.1-beta] - Jun 27, 2020:
+- Added a Maths ability
+- Added new commands: generalMaths, coinflip, diceroll
+- Added sneakpeak file to view the future!
+- Added weather information tomorrow or in the next X days
+- Added more backend error handling
+- Removed all previous links to Wolfram-Alpha
+- Removed some of Kara's apologies...
+- Removed recommended changes to config message 
+- Fixed an issue causing "Exception: " to randomly appear on-screen
+- Fixed an issue not linking an ability if no requirements file was given
+- Improved Conversational ability
