@@ -93,7 +93,7 @@ class Kara:
 
             try:
                 text = self.recognizer.recognize_google(audio)
-            except speech_recognition.UnknownValueError:
+            except sr.UnknownValueError:
                 pass
 
         return text.lower()
