@@ -21,7 +21,7 @@ def setup(path):
                 # pkg not empty
                 if pkg:
                     # install package
-                    subprocess.call('pip install ' + pkg, shell=True)
+                    subprocess.call('python -m pip install ' + pkg, shell=True)
                     print() # empty trailing line
     # no access
     except PermissionError:
