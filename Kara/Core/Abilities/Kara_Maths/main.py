@@ -46,8 +46,12 @@ def generalMaths(Kara, command):
 
 
     # evaluate string and round to four decimal places
-    answer = eval(eq)
-    answer = round(answer, 4)
+    try:
+        answer = eval(eq)
+        answer = round(answer, 4)
+    except ZeroDivisionError:
+        Kara.speak('no')
+        return
 
 
     # format equation again for speech
