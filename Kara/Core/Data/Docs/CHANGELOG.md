@@ -78,9 +78,10 @@ All major changes and notable features will be documented in this file.
 - Added sneakpeak file to view the future!
 - Added weather information tomorrow or in the next X days
 - Added more backend error handling
+- Added speech printing for debugging what Kara hears (--print)
 - Removed all previous links to Wolfram-Alpha
 - Removed some of Kara's apologies...
-- Removed recommended changes to config message 
+- Removed recommended changes to config message
 - Fixed an issue causing "Exception: " to randomly appear on-screen
 - Fixed an issue not linking an ability if no requirements file was given
 - Improved Conversational ability
