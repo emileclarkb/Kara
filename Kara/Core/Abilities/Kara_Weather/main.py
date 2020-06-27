@@ -28,7 +28,7 @@ def weather(Kara, command):
 
         # exceeds limit
         if days > 5:
-            Kara.speak('Sorry, I only have the weather for the next 5 days')
+            Kara.speak('I only have the weather for the next 5 days')
             return
 
         # chaning opening to be relevent
