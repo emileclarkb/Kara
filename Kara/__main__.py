@@ -74,6 +74,9 @@ def main():
 
         # listen for input
         text = kara.listen()
+        # print text heard
+        if args['print']:
+            print(text)
 
         # wake word in input
         for word in kara.wake:

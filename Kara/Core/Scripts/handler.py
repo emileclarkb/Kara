@@ -22,7 +22,8 @@ def argHandle(kara, args):
     # exit the booting process once args handled
     exit = True
     # arguements to return to Kara
-    argReturn = {'manual': 0, 'recompile': 1, 'time': 0, 'debugTime': 0}
+    argReturn = {'manual': 0, 'recompile': 1, 'time': 0, 'debugTime': 0,
+                 'print': 0}
 
     # no arguements given
     if not len(args):
@@ -33,7 +34,7 @@ def argHandle(kara, args):
     # all commands
     commands = ['-h', '--help', '-a', '--ability', '-r', '--recompile',
                 '-c', '--cached', '-v', '--version', '-m', '--manual',
-                '-t', '--time', '-i', '--init']
+                '-t', '--time', '-i', '--init', '-p', '--print']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -128,6 +129,11 @@ def argHandle(kara, args):
         # init new integration
         elif arg in commands[14:16]:
             kara.integation()
+        # print speech text detected
+        elif arg in commands[16:18]:
+            # return message to print
+            argReturn['print'] = 1
+            exit = False
         # unknown arguement
         else:
             # if no arguement given (ie. "")
