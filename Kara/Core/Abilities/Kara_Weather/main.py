@@ -6,6 +6,34 @@ from .weather import forcast, sunFormat
 
 # weather at a location
 def weather(Kara, command):
+    # customizable opening words
+    opening = 'Today is'
+
+    # specific day to get data on
+    days = 0
+
+    # move date to tomorrow
+    if 'tomorrow' in command:
+        # change opening for "tomorrow"
+        opening = 'Tomorrow '
+        days = 1
+    # date in an amount of days
+    # ie. "what's the date in 4 days?"
+    elif 'days' in command:
+        # split str to list
+        split = command.split()
+        # find where days was said
+        index = split.index('days')
+        days = int(split[index - 1]) # get word before "days"
+
+        # exceeds limit
+        if days > 5:
+            Kara.speak('Sorry, I only have the weather for the next 5 days')
+            return
+
+        # chaning opening to be relevent
+        opening = '{} days from now'.format(days)
+
     # location specified
     if 'in' in command:
         # split command
@@ -19,13 +47,13 @@ def weather(Kara, command):
         city = g.city
 
     # pass city
-    data = forcast(city, days=1)
+    data = forcast(city, days=5)
 
     # ie. light showers
-    weatherState = data['weather'][0]['weather']
+    weatherState = data['weather'][days]['weather']
 
     # "Today in brisbane you can expect light rain"
-    line = 'Today in {} you can expect {}'.format(city, weatherState)
+    line = '{} in {} you can expect {}'.format(opening, city, weatherState)
     Kara.speak(line)
 
 
