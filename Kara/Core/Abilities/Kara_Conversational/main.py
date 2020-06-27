@@ -1,8 +1,9 @@
-from random import choice
+from random import choice, randint
 
 greetings = ['hey', 'hi', 'hello', 'how\'s it going']
 status = ['amazing', 'i\'m great today! How are you?', 'spectacular', 'better than ever']
 thank = ['my pleasure', 'you\'re welcome', 'just doing my job', 'all good']
+coin = ['heads', 'tails']
 
 # hello
 def greeting(Kara, command):
@@ -32,3 +33,11 @@ def repeat(Kara, command):
                 exec(last)
     except:
         Kara.speak('You haven\'t said anything yet')
+
+# flip a coin
+def coinflip(Kara, command):
+    Kara.speak(choice(coin))
+
+# roll a dice
+def diceroll(Kara, command):
+    Kara.speak(randint(1, 6))

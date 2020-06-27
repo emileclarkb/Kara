@@ -22,6 +22,14 @@
         "repeat": {
             "target": "repeat",
             "keywords": ["repeat", "again"]
+        },
+        "coinflip": {
+            "target": "coinflip",
+            "keywords": ["flip coin"]
+        },
+        "diceroll": {
+            "target": "diceroll",
+            "keywords": ["roll dice"]
         }
     }
 }
