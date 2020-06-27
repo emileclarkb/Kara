@@ -42,7 +42,8 @@ def generalMaths(Kara, command):
             # not currently a function and functions previous
             elif func:
                 # end functions
-                eq += ')' * func
+                eq += ')' * func + ' '
+                func = 0
 
 
     # evaluate string and round to four decimal places
