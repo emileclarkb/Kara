@@ -133,8 +133,10 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
                                     if not configJSON[attr] == logJSON[ability][attr]:
                                         changes[ability].append(attr) # log change
 
-                            except KeyError:
-                                changes[ability].append('Added Ability') # log change
+                            except KeyError as e:
+                                # if it's requirement related do nothing
+                                if str(e) != '\'requirements\'':
+                                    changes[ability].append('Added Ability') # log change
         else:
             # issue encountered (config file doesn't exist)
             issues.append('conf')
