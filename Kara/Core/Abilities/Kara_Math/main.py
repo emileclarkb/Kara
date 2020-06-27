@@ -45,8 +45,6 @@ def maths(Kara, command):
                 eq += ')' * func
 
 
-
-    print(eq)
     # evaluate string and round to four decimal places
     answer = eval(eq)
     answer = round(answer, 4)
@@ -66,7 +64,5 @@ def maths(Kara, command):
     speech = speech.replace(' math.sin ', ' sine of ')
     speech = speech.replace(' math.cos ', ' cosine of ')
     speech = speech.replace(' math.tan ', ' tangent of ')
-
-    print(speech)
 
     Kara.speak(speech + ' is ' + str(answer))
