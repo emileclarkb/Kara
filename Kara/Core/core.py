@@ -97,8 +97,7 @@ class Kara:
     def listen(self):
         # manual input
         if self.manual:
-            print(yellow('[!] Manual Input'))
-            text = input('>> ')
+            text = self.input()
         else:
             with self.microphone as source:
                 audio = self.recognizer.listen(source)
@@ -110,6 +109,12 @@ class Kara:
 
         return text.lower()
 
+    # manual input
+    def input(self):
+        print(yellow('[!] Manual Input'))
+        text = input('>> ').lower()
+        return text
+
     # confirm an action
     def confirm(self, message, loop=False):
         while True:
@@ -118,7 +123,7 @@ class Kara:
 
             # get manual response
             if self.manual:
-                response = input('>> ').lower()
+                response = self.input()
             # get speech response
             else:
                 response = self.listen()
@@ -128,19 +133,19 @@ class Kara:
 
 
             # text given
-            if text:
+            if response:
                 outcome = ''
                 # iterate words
                 for word in response:
                     # iterate all response types (yes, no, etc.)
-                    for i in self.responses:
+                    for key in self.responses:
                         # response type is accepted
-                        if i in ['yes', 'no']:
+                        if key in ['yes', 'no']:
                             # all responses for type
-                            for j in self.responses[key]:
+                            for val in self.responses[key]:
                                 # response is the same as the current word
-                                if j == word:
-                                    outcome = i
+                                if val == word:
+                                    outcome = key
 
             try:
                 if outcome == 'yes':
@@ -148,7 +153,7 @@ class Kara:
                 elif outcome == 'no':
                     return 0
                 else:
-                    Kara.speak('Please answer with yes or no')
+                    self.speak('Please answer with yes or no')
             # no text given
             except NameError:
                 pass
