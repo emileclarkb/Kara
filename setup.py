@@ -26,7 +26,7 @@ setup(
     author_email = 'eclarkboman@gmail.com',
     license = 'GPLv3',
     classifiers = [
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
@@ -39,10 +39,9 @@ setup(
                 'artificial', 'intelligence'],
     entry_points = {
         'console_scripts': [
-            'kara = Kara.__main__:main',
+            'kara = Kara.kara:main',
         ]
     },
     python_requires = '>=3.0',
     install_requires = DEPENDENCIES,
 )
-#setup_requires = DEPENDENCIES
