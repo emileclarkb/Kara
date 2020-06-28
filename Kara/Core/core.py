@@ -56,7 +56,7 @@ class Kara:
             # remove full directory to leave relative path to Abilities
             cacheModule = cacheModule.replace(current, '')
 
-            self.link = importlib.import_module('Core.Data.Cache.link')#cacheModule + 'link', package='Core')
+            self.link = importlib.import_module('Kara.Core.Data.Cache.link')#cacheModule + 'link', package='Core')
         except:
             print(red('\n[-] Failed to Load Linking File!'))
 
