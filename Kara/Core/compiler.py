@@ -1,6 +1,6 @@
 # native
 import os
-import pathlib
+from os.path import isfile
 import json
 # kara
 from Kara.Core.Scripts.colors import *
@@ -28,8 +28,7 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
         configPath = abilitiesPath + ability + '/config.json'
 
         # get ability files
-        config = pathlib.Path(configPath)
-        if config.is_file():
+        if isfile(configPath):
             # parse json
             with open(configPath, 'r') as file:
                 configJSON = json.load(file) # parse json
@@ -71,9 +70,8 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
 
 
                 # read correct main file
-                main = pathlib.Path(abilitiesPath + ability + '/' + configJSON['main'])
                 # main doesn't exists
-                if not main.is_file():
+                if not isfile(abilitiesPath + ability + '/' + configJSON['main']):
                     # issue encounter
                     issues.append('main')
 
@@ -83,9 +81,8 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
                     # requirement file given
                     if configJSON['requirements']:
                         # read correct requirements file
-                        require = pathlib.Path(requirePath)
                         # requirements doesn't exists
-                        if not require.is_file():
+                        if not isfile(requirePath):
                             # issue encounter
                             issues.append('req')
                 except:
