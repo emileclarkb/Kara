@@ -14,6 +14,7 @@ import speech_recognition as sr
 from Kara.Core.Scripts.colors import red, yellow, green
 
 
+
 class Kara:
     def __init__(self, abilitiesPath='Abilities/', cachePath='Cache/'):
         # custom paths
@@ -27,6 +28,13 @@ class Kara:
 
         # wake words (my lisp sucks...)
         self.wake = ['kara', 'cara', 'kawa', 'cowra']
+
+        # all acceptable responses
+        self.responses = {'yes': ['yes', 'yep', 'yeah', 'ya'],
+                          'no': ['no', 'nah', 'nope']}
+
+        # manual mode
+        self.manual = False
 
         # init engine and voices
         self.engine = pyttsx3.init()
@@ -87,16 +95,67 @@ class Kara:
 
     # speech to text
     def listen(self):
-        with self.microphone as source:
-            audio = self.recognizer.listen(source)
-            text = ""
+        # manual input
+        if self.manual:
+            print(yellow('[!] Manual Input'))
+            text = input(white('>> '))
+        else:
+            with self.microphone as source:
+                audio = self.recognizer.listen(source)
 
-            try:
-                text = self.recognizer.recognize_google(audio)
-            except sr.UnknownValueError:
-                pass
+                try:
+                    text = self.recognizer.recognize_google(audio)
+                except sr.UnknownValueError:
+                    text = ""
 
         return text.lower()
+
+    # confirm an action
+    def confirm(self, message, loop=False):
+        while True:
+            # speak confirmation
+            self.speak('Are you sure you want to ' + message)
+
+            # get manual response
+            if self.manual:
+                response = input(white('>> ')).lower()
+            # get speech response
+            else:
+                response = self.listen()
+
+            # list words in response
+            response = response.split(' ')
+
+
+            # text given
+            if text:
+                outcome = ''
+                # iterate words
+                for word in response:
+                    # iterate all response types (yes, no, etc.)
+                    for i in self.responses:
+                        # response type is accepted
+                        if i in ['yes', 'no']:
+                            # all responses for type
+                            for j in self.responses[key]:
+                                # response is the same as the current word
+                                if j == word:
+                                    outcome = i
+
+            try:
+                if outcome == 'yes':
+                    return 1
+                elif outcome == 'no':
+                    return 0
+                else:
+                    Kara.speak('Please answer with yes or no')
+            # no text given
+            except NameError:
+                pass
+
+            # don't loop
+            if not loop:
+                break
 
 
     # create new ability template
