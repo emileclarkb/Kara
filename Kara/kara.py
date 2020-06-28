@@ -25,8 +25,6 @@ def main():
     # ability and cache paths
     abPath = path + '/Core/Abilities/'
     cPath = path + '/Core/Data/Cache/'
-    #abPath = 'Core/Abilities/'
-    #cPath = 'Core/Data/Cache/'
 
     # instance kara
     kara = Kara(abilitiesPath=abPath, cachePath=cPath)
