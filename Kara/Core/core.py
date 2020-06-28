@@ -292,7 +292,6 @@ class Kara:
                         last = 'self.link.{}(self, text)'.format(func)
                         # pass Kara and command to command
                         exec(last)
-                        return
                     else:
                         print(red('\n[!] No Target Specified For Command!'))
 
@@ -303,7 +302,7 @@ class Kara:
                             # write executable code for repeat function()
                             file.write('Kara.link.{}(Kara, \"{}\")'.format(func, text))
 
-                        return
+                    return
 
         # no matches
         # execute fallback command
