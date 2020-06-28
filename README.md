@@ -15,30 +15,17 @@ If you're interested in supporting, adding to, or using the project check out
 our [official server](https://discord.gg/7hK6PFT)! I'm always online and happy
 to help people.
 
-## Forking The Repository
-
-If you would like to make changes to the project without touching the original, you may fork the repository.
-
-To do this, first, fork the repository (by simply pressing the 'fork' button on Github). Then, clone the repository. You can do this by first locating to your preferred folder, and then typing in `git clone <link to your forked repository here>`.
-
-You should see a complete clone of your forked repository on your system.
-
-You want to make sure your forked repository is kept up-to-date with the original repository in which it was forked from. To do this, you should add a git remote, which you can do so with:
-`git remote add upstream <link to the original repository here>`
-
-Whenever the original repository changes, you want to make sure that the changes are reflected onto your own forked repository, and in turn, to your own system. The changes will not be automatically applied (unless you otherwise configured your settings to do so). To apply the changes that have been made on the original repository onto your forked repository:
-`git fetch upstream`
-
 ## Installation
 
-To get Kara on your system, you may either clone the repository directly from Github, or you may also fork the repository (please 'Forking The Repository' on how to do so).
+To install Kara onto a system there are two approaches.
 
-You must first install the necessary dependencies for Kara to run. But before you do so, you must make sure that you have a virtual environment set up. If you do not know how, please follow this quick and easy tutorial: https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+1. Pip: `python -m pip install Kara`
+2. GitHub: Firstly clone the repo onto your system, then navigate into the root
+directory and use `python setup.py install`
 
-Once you have done so, you may install the necessary dependencies, with:
-`pip3 install -r requirements.txt`
-
-Then, you may run Kara with `python Kara`.
+Both of these approaches make Kara accessible anywhere on your machine by simply
+running `Kara`. This does also cause some issues with the Integration system,
+more upgrades will be coming in v1.1.1-beta!
 
 ## Integrations
 
