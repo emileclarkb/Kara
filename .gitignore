@@ -25,3 +25,4 @@ Kara.egg-info/
 # tools
 rmbuild.bat
 setup.bat
+debug.py
