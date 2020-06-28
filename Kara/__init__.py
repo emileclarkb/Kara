@@ -2,3 +2,4 @@
 
 # Version of the realpython-reader package
 __version__ = "v1.1.0-beta"
+from Kara.Core.core import Kara
