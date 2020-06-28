@@ -7,7 +7,7 @@ from .weather import forcast, sunFormat
 # weather at a location
 def weather(Kara, command):
     # customizable opening words
-    opening = 'Today is'
+    opening = 'Today '
 
     # specific day to get data on
     days = 0
@@ -50,7 +50,7 @@ def weather(Kara, command):
     data = forcast(city, days=5)
 
     # unknown location
-    if data:
+    if data == 1:
         Kara.speak('Sorry, I don\'t know where that is')
         return
 
