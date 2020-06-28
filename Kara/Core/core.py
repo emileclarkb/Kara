@@ -11,7 +11,7 @@ import shutil
 import pyttsx3
 import speech_recognition as sr
 # Kara
-from Kara.Core.Scripts.colors import red, yellow, green
+from Kara.Core.Scripts.colors import red, yellow, green, white
 
 
 
@@ -98,7 +98,7 @@ class Kara:
         # manual input
         if self.manual:
             print(yellow('[!] Manual Input'))
-            text = input(white('>> '))
+            text = input('>> ')
         else:
             with self.microphone as source:
                 audio = self.recognizer.listen(source)
@@ -118,7 +118,7 @@ class Kara:
 
             # get manual response
             if self.manual:
-                response = input(white('>> ')).lower()
+                response = input('>> ').lower()
             # get speech response
             else:
                 response = self.listen()
