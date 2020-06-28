@@ -47,18 +47,14 @@ def main():
     print(yellow('[!] Reloading Linking File...'))
     kara.reload()
 
-    # using speech
-    if not isinstance(args['manual'], str):
-        # finish booting
-        with open(path + '/Core/Data/boot.txt', 'r') as logo:
-            print(logo.read()) # logo
-
-
     # infinite listening
     while True:
         # compile text not speech
         # manual data given
         if isinstance(args['manual'], str):
+            # use manual mode
+            kara.manual = True
+
             # run through Kara
             kara.compile(args['manual'])
 
@@ -69,6 +65,10 @@ def main():
                 # time taken to complete
                 print(yellow("\n[!] Completed in: " + str(taken) + ' sec'))
             break
+
+        # booting image
+        with open(path + '/Core/Data/boot.txt', 'r') as logo:
+            print(logo.read()) # logo
 
         # listen for input
         text = kara.listen()
