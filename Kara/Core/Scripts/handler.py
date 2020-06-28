@@ -128,7 +128,7 @@ def argHandle(kara, args):
             ''' Note: look into "optional" '''
         # init new integration
         elif arg in commands[14:16]:
-            kara.integation()
+            kara.integration()
         # print speech text detected
         elif arg in commands[16:18]:
             # return message to print
