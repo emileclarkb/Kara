@@ -85,3 +85,15 @@ All major changes and notable features will be documented in this file.
 - Fixed an issue causing "Exception: " to randomly appear on-screen
 - Fixed an issue not linking an ability if no requirements file was given
 - Improved Conversational ability
+
+## Packaging
+### [v1.1.0-beta] - Jun 28, 2020:
+- Added support for python packaging
+- Added Kara to PyPi
+- Removed empty requirements files
+- Fixed abilities with no requirements always considered "new"
+- Fixed negative number handling from generalMath
+- Fixed Weather know no locations
+- Fixed repeat command from speaking twice
+- Improved Maths ability
+- Improve install documentation to support package handling
