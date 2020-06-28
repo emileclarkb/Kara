@@ -11,7 +11,7 @@ import shutil
 import pyttsx3
 import speech_recognition as sr
 # Kara
-from Core.Scripts.colors import red, yellow, green
+from Kara.Core.Scripts.colors import red, yellow, green
 
 
 class Kara:
@@ -228,6 +228,7 @@ class Kara:
                         last = 'self.link.{}(self, text)'.format(func)
                         # pass Kara and command to command
                         exec(last)
+                        return
                     else:
                         print(red('\n[!] No Target Specified For Command!'))
 
