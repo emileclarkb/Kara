@@ -7,11 +7,11 @@ import subprocess
 import os
 import time
 # kara
-from Core.core import Kara
-from Core.compiler import compile
-from Core.Scripts.handler import argHandle
-from Core.Scripts.colors import green, yellow
-from Core.Scripts.setup import setup
+from Core.core import *
+from Core.compiler import *
+from Core.Scripts.handler import *
+from Core.Scripts.colors import *
+from Core.Scripts.setup import *
 
 
 
