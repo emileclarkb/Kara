@@ -11,9 +11,9 @@ from ...__init__ import __version__
 
 
 # Kara usage
-def usage():
+def usage(path):
     # read usage
-    with open('Core/Data/usage.txt', 'r') as file:
+    with open(path + 'usage.txt', 'r') as file:
         # return usage to screen
         print('\n' + white(file.read()))
 
@@ -85,7 +85,8 @@ def argHandle(kara, args):
 
         # read usage
         if arg in commands[0:2]:
-            usage()
+            # remove 'Cache/' from end
+            usage(kara.cachePath[:-6])
         # create new integration
         elif arg in commands[2:4]:
             # look for a value to use as ability name
