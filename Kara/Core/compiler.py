@@ -3,8 +3,8 @@ import os
 import pathlib
 import json
 # kara
-from Core.Scripts.colors import *
-from Core.Scripts.setup import setup
+from Kara.Core.Scripts.colors import *
+from Kara.Core.Scripts.setup import setup
 
 # main compilation process
 def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
@@ -187,8 +187,11 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
                     # remove full directory to leave relative path to Abilities
                     module = module.replace(current, '')
                     try:
-                        line = 'from ..{}{}.{} import {}'.format(module, ability, main,
+                        line = 'from ...Abilities.{}.{} import {}'.format(ability, main,
                                abilities[ability]['commands'][command]['target'])
+
+                        #line = 'from ..{}{}.{} import {}'.format(module, ability, main,
+                        #       abilities[ability]['commands'][command]['target'])
                         link.write(line + '\n') # write import link
                     # no target given
                     except KeyError:

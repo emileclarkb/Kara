@@ -1,6 +1,6 @@
 import subprocess
 import os
-from Core.Scripts.colors import red
+from Kara.Core.Scripts.colors import red
 
 # download all modules given in a requirements file
 def setup(path):

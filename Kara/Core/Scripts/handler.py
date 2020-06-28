@@ -4,10 +4,10 @@
 import sys
 import json
 # Kara
-from Core.core import Kara
-from Core.compiler import compile
-from Core.Scripts.colors import *
-from __init__ import __version__
+from Kara.Core.core import Kara
+from Kara.Core.compiler import compile
+from Kara.Core.Scripts.colors import *
+from ...__init__ import __version__
 
 
 # Kara usage
