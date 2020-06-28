@@ -5,7 +5,6 @@ import os
 import sys
 import json
 import importlib
-import pathlib
 import shutil
 # 3rd Party
 import pyttsx3
