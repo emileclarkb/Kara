@@ -28,9 +28,13 @@ def repeat(Kara, command):
             # last command failed
             if last == 'failed':
                 Kara.speak('Your last command failed')
-            else:
+            # last not empty
+            elif last:
                 # execute command
                 exec(last)
+            # empty
+            else:
+                Kara.speak('You haven\'t said anything yet')
     except:
         Kara.speak('You haven\'t said anything yet')
 
