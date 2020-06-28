@@ -1,6 +1,5 @@
 import datetime
-# timezones
-#import pendulum
+from Kara.util import prior
 
 
 # list of all months
@@ -59,12 +58,11 @@ def currentDate(Kara, command):
     # date in an amount of days
     # ie. "what's the date in 4 days?"
     elif 'days' in command:
-        # split str to list
-        split = command.split()
-        # find where days was said
-        index = split.index('days')
-        days = split[index - 1] # get word before "days"
+        # get word before "days" in command
+        days = prior(command, 'days')
+        # move through time
         date += datetime.timedelta(days=int(days))
+
 
         # change opening to be relevent
         opening = 'In {} days it will be '.format(days)

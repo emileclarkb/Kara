@@ -1,7 +1,9 @@
+from Kara.util import prior
 # geolocation (ip to location)
 import geocoder
 # Kara Weather
 from .weather import forcast, sunFormat
+
 
 
 # weather at a location
@@ -20,11 +22,11 @@ def weather(Kara, command):
     # date in an amount of days
     # ie. "what's the date in 4 days?"
     elif 'days' in command:
-        # split str to list
-        split = command.split()
-        # find where days was said
-        index = split.index('days')
-        days = int(split[index - 1]) # get word before "days"
+        # get word before "days" in command
+        days = prior(command, 'days')
+        # to int
+        days = int(days)
+
 
         # exceeds limit
         if days > 5:
