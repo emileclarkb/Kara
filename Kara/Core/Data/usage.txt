@@ -24,4 +24,4 @@ USAGE: {python{3}} kara.py
      : (-t --text)
          ~ Print what Kara hears to the screen (for debug purposes)
      : (-p --path)
-         ~ Show the path to file (for debug purposes)
+         ~ Show the path to package (for debug purposes)
