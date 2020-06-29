@@ -21,7 +21,7 @@ All major changes and notable features will be documented in this file.
 
 ## Kara Weather Support
 ### [v0.1.2-alpha] - Jun 20, 2020:
-- Added new Weather Ability
+- Added new Weather ability
 - Added four new commands: weather, sun rise, sun set, and air pressure (idk why lol)
 - Fixed issues with the Time ability
 - Added new arguements
@@ -96,4 +96,24 @@ All major changes and notable features will be documented in this file.
 - Fixed Weather know no locations
 - Fixed repeat command from speaking twice
 - Improved Maths ability
-- Improve install documentation to support package handling
+- Improved install documentation to support package handling
+
+## Integrations V2
+### [v1.2.0-beta] - Jun XX, 2020:
+- Added confirm function
+- Added manual input function
+- Added Manual Support For:
+    ~ kara.listen()
+    ~ kara.confirm()
+- Added Kara utilities library
+- Fixed -h
+- Fixed Weather not knowing anything
+- Fixed nothing being written to "last.txt"
+- Fixed repeat command says nothing when "last.txt" is empty
+- Fixed templating
+- Fixed integration linking
+- Improved manual mode for integration debugging
+- Improved Kara importation for usage in integration
+- Improved and simplified many backend processes
+- Improved integration templates
+- Improved linking process through a "path differencing" algorithm 
