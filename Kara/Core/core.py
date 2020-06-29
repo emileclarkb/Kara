@@ -50,6 +50,8 @@ class Kara:
         # don't speak, just time how long abilities take to work
         self.debugTime = False
 
+        self.linkPath = ''
+
         # import linking file
         # run in integration mode
         if integrate:
@@ -61,14 +63,19 @@ class Kara:
             if cacheModule[-1] == '.':
                 cacheModule = cacheModule[:-1]
 
-            print(cacheModule)
-            self.link = importlib.import_module(cacheModule + '.link')
+            # set path
+            self.linkPath = cacheModule + '.link'
+
         # open module cache
         else:
-            try:
-                self.link = importlib.import_module('Kara.Core.Data.Cache.link')
-            except:
-                print(red('\n[-] Failed to Load Linking File!'))
+            # set path
+            self.linkPath = 'Kara.Core.Data.Cache.link'
+
+        # attempt import
+        try:
+            self.link = importlib.import_module(self.linkPath)
+        except:
+            print(red('\n[-] Failed to Load Linking File!'))
 
 
     # reload linking file
