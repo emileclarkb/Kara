@@ -1,6 +1,7 @@
 # Arguement Handling
 
 # Native
+import os
 import sys
 import json
 # Kara
@@ -23,7 +24,7 @@ def argHandle(kara, args):
     exit = True
     # arguements to return to Kara
     argReturn = {'manual': 0, 'recompile': 1, 'time': 0, 'debugTime': 0,
-                 'print': 0}
+                 'text': 0}
 
     # no arguements given
     if not len(args):
@@ -34,7 +35,8 @@ def argHandle(kara, args):
     # all commands
     commands = ['-h', '--help', '-a', '--ability', '-r', '--recompile',
                 '-c', '--cached', '-v', '--version', '-m', '--manual',
-                '-t', '--time', '-i', '--init', '-p', '--print']
+                '-t', '--time', '-i', '--init', '-s', '--speech',
+                '-p', '--path']
 
     for arg in args:
         # searching for a value of an arguement (ie. --init VALUE)
@@ -133,8 +135,16 @@ def argHandle(kara, args):
         # print speech text detected
         elif arg in commands[16:18]:
             # return message to print
-            argReturn['print'] = 1
+            argReturn['text'] = 1
             exit = False
+        # print package path
+        elif arg in commands[18:20]:
+            # get path
+            path = os.path.dirname(os.path.abspath(__file__))
+
+            # print info
+            print(green('\nPackage Path:'))
+            print(white(path))
         # unknown arguement
         else:
             # if no arguement given (ie. "")
