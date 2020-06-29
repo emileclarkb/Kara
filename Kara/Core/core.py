@@ -187,7 +187,6 @@ class Kara:
         shutil.copyfile(absPath + '/Data/Templates/Ability/requirements.txt',
                         name + '/requirements.txt')
 
-
         return 0
 
 
@@ -221,8 +220,6 @@ class Kara:
 
         print(yellow('[!] Referencing Templates...'))
 
-        # config.json
-        shutil.copyfile(absPath + '/Data/Templates/Integration/config.json', 'config.json')
         # main.py
         shutil.copyfile(absPath + '/Data/Templates/Integration/main.py', 'main.py')
 
