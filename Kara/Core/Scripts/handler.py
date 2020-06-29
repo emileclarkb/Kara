@@ -51,7 +51,7 @@ def argHandle(kara, args):
 
             # create new ability
             if current['value'] == 'init':
-                result = kara.template(arg)
+                result = kara.ability(arg)
                 if result:
                     print(red('\n[-] Failed To Template New Ability: ' + \
                     'Directory Already Exists'))
