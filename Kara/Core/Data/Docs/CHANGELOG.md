@@ -99,7 +99,7 @@ All major changes and notable features will be documented in this file.
 - Improved install documentation to support package handling
 
 ## Integrations V2
-### [v1.2.0-beta] - Jun XX, 2020:
+### [v1.2.0-beta] - Jun 29, 2020:
 - Added confirm function
 - Added manual input function
 - Added Manual Support For:
@@ -116,4 +116,4 @@ All major changes and notable features will be documented in this file.
 - Improved Kara importation for usage in integration
 - Improved and simplified many backend processes
 - Improved integration templates
-- Improved linking process through a "path differencing" algorithm 
+- Improved linking process through a "path differencing" algorithm
