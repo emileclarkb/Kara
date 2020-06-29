@@ -15,7 +15,8 @@ from Kara.Core.Scripts.colors import red, yellow, green, white
 
 
 class Kara:
-    def __init__(self, abilitiesPath='Abilities/', cachePath='Cache/'):
+    def __init__(self, abilitiesPath='Data/Abilities/', cachePath='Data/Cache/',
+                 integrate=True):
         # custom paths
         self.abilitiesPath = abilitiesPath
         self.cachePath = cachePath
@@ -35,6 +36,9 @@ class Kara:
         # manual mode
         self.manual = False
 
+        # integration mode
+        self.integrate = integrate
+
         # init engine and voices
         self.engine = pyttsx3.init()
         self.voices = self.engine.getProperty('voices')
@@ -47,23 +51,24 @@ class Kara:
         self.debugTime = False
 
         # import linking file
-        try:
+        # run in integration mode
+        if integrate:
             # "Cache/" -> "Cache."
             cacheModule = cachePath.replace('/', '.')
             cacheModule = cacheModule.replace('\\', '.')
 
-            # current path
-            current = os.path.dirname(os.path.abspath(__file__))
-            current = current.replace('/', '.')
-            current = current.replace('\\', '.')
+            # remove trainling dot
+            if cacheModule[-1] == '.':
+                cacheModule = cacheModule[:-1]
 
-            # remove full directory to leave relative path to Abilities
-            cacheModule = cacheModule.replace(current, '')
-
-            #cacheModule + 'link', package='Core')
-            self.link = importlib.import_module('Kara.Core.Data.Cache.link')
-        except:
-            print(red('\n[-] Failed to Load Linking File!'))
+            print(cacheModule)
+            self.link = importlib.import_module(cacheModule + '.link')
+        # open module cache
+        else:
+            try:
+                self.link = importlib.import_module('Kara.Core.Data.Cache.link')
+            except:
+                print(red('\n[-] Failed to Load Linking File!'))
 
 
     # reload linking file

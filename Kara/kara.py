@@ -27,7 +27,7 @@ def main():
     cPath = path + '/Core/Data/Cache/'
 
     # instance kara
-    kara = Kara(abilitiesPath=abPath, cachePath=cPath)
+    kara = Kara(abilitiesPath=abPath, cachePath=cPath, integrate=False)
 
     # handler given arguements (excluding *.py)
     args = argHandle(kara, sys.argv[1:])

@@ -8,7 +8,7 @@ from Kara.Core.Scripts.setup import setup
 from Kara import util
 
 # main compilation process
-def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
+def deepCompile(abilities, abilitiesPath='Data/Abilities/', cachePath='Data/Cache/'):
     incorrect = {}
 
     # json to dump into abilities.json
@@ -160,7 +160,7 @@ def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
 
 
 # generate linking file
-def link(abilitiesPath='Abilities/', cachePath='Cache/'):
+def link(abilitiesPath='Data/Abilities/', cachePath='Data/Cache/'):
     # write linking file
     with open(cachePath + 'link.py', 'w') as link:
         # read logged abilities
@@ -174,17 +174,6 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
                     main = abilities[ability]['main']
                     main = main.split('.')[0] # "file.py" -> "file"
 
-                    # "Kara/Abilities/" -> "Kara.Abilities."
-                    module = abilitiesPath.replace('/', '.')
-                    module = module.replace('\\', '.')
-                    # current path
-                    current = os.path.dirname(os.path.abspath(__file__))
-                    current = current.replace('/', '.')
-                    current = current.replace('\\', '.')
-
-                    # remove full directory to leave relative path to Abilities
-                    module = module.replace(current, '')
-
                     # path from Cache to Abilities
                     diff = util.difference(abilitiesPath, cachePath)
                     try:
@@ -197,7 +186,7 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
 
 
 # store fallback command
-def fallback(abilitiesPath='Abilities/', cachePath='Cache/'):
+def fallback(abilitiesPath='Data/Abilities/', cachePath='Data/Cache/'):
     # write fallback file
     with open(cachePath + 'fallback.txt', 'w') as file:
         # read logged abilities
@@ -265,7 +254,7 @@ def compress(cachePath='Cache/'):
                       sort_keys=True, indent=4, separators=(',', ': '))
 
 # error handling compilation process
-def compile(abilitiesPath='Abilities/', cachePath='Cache/'):
+def compile(abilitiesPath='Data/Abilities/', cachePath='Data/Cache/'):
     # ability and cache path were implement for (and will only change when)
     # using integrating Kara
 
