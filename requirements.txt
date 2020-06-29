@@ -1,6 +1,5 @@
 SpeechRecognition
 pyttsx3
-pywin32
 pyaudio
 wheel
 pathlib
