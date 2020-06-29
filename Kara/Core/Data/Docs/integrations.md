@@ -33,6 +33,11 @@ data, mainly on current commands and abilities she has access too. The `Abilitie
 path as you may already have guessed holds all of her "abilities". For more on
 abilities check out it's [documentation](abilities.md)!
 
+If you trying running `main.py` you'll notice Kara doesn't know ANYTHING. So why
+is this? Well integrations only have access to the abilities stored in `Data/Abilities`
+so if you want features, either download them from our abilities repository
+(COMING SOON...) or make them!
+
 ## Features
 
 Current features found in the Kara object (`from Kara import Kara`):
