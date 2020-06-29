@@ -5,6 +5,7 @@ import json
 # kara
 from Kara.Core.Scripts.colors import *
 from Kara.Core.Scripts.setup import setup
+from Kara import util
 
 # main compilation process
 def deepCompile(abilities, abilitiesPath='Abilities/', cachePath='Cache/'):
@@ -183,9 +184,15 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
 
                     # remove full directory to leave relative path to Abilities
                     module = module.replace(current, '')
+
+                    # path from Cache to Abilities
+                    diff = util.difference(abilitiesPath, cachePath)
                     try:
-                        line = 'from ...Abilities.{}.{} import {}'.format(ability, main,
+                        line = 'from {}.{}.{} import {}'.format(diff, ability, main,
                                abilities[ability]['commands'][command]['target'])
+
+                        #line = 'from ...Abilities.{}.{} import {}'.format(ability, main,
+                        #       abilities[ability]['commands'][command]['target'])
 
                         #line = 'from ..{}{}.{} import {}'.format(module, ability, main,
                         #       abilities[ability]['commands'][command]['target'])
