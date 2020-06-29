@@ -2,30 +2,26 @@ USAGE: {python{3}} kara.py
      : (-h --help)
          ~ Display this message
      : (-a --ability)
-         ~ Create a new ability in the
-           current working directory
-         ~ Requires an ability given
-           after arguement
+         ~ Create a new ability in the current working directory
+         ~ Requires an ability given after arguement
      : (-r -- recompile)
          ~ Force recompile abilities
-         ~ If optional arguement "0"
-           is given then boot Kara
-           while skipping compilation
-           the process (ie. "-r 0")
+         ~ If optional arguement "0" is given then boot Kara
+           while skipping compilation the process (ie. "-r 0")
      : (-c --cached)
          ~ Clear all cached data
      : (-v --version)
          ~ Display current version
      : (-m --manual)
-         ~ Manually enter command to
-           execute
+         ~ Manually enter command to execute
          ~ Example: -m "what time is it"
      : (-t --time)
          ~ Time Kara's execute time
-         ~ Takes optional arguement
-           if arguement is "1" Kara will
-           not speak and the compilation
-           time will solely be shown
+         ~ Takes optional arguement if arguement is "1" Kara will
+           not speak and the compilation time will solely be shown
      : (-i --init)
-         ~ Create new integration in
-           current working directory
+         ~ Create new integration in current working directory
+     : (-t --text)
+         ~ Print what Kara hears to the screen (for debug purposes)
+     : (-p --path)
+         ~ Show the path to file (for debug purposes)
