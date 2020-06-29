@@ -4,18 +4,13 @@ __pycache__/
 data.json
 links.txt
 cmds.txt
-versions.txt
 sneakpeak.txt
-
-# all tests
-testing
 
 # design and images
 Store/
 
 # pypi credentials
 .pypirc
-token.txt
 
 # ignore pypi build files
 build/
@@ -25,4 +20,3 @@ Kara.egg-info/
 # tools
 rmbuild.bat
 setup.bat
-debug.py
