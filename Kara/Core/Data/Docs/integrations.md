@@ -68,4 +68,4 @@ gets the word before another word in a string.
 
 Unfortunately I haven't had time to work on much documentation, if you are
 interested in using Kara and gaining greater knowledge feel free to message me
-at eclarkboman@gmail.com or join our [discord server](hhttps://discord.gg/7hK6PFT).
+at eclarkboman@gmail.com or join our [discord server](https://discord.gg/7hK6PFT).
