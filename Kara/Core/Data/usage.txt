@@ -21,7 +21,7 @@ USAGE: {python{3}} kara.py
            not speak and the compilation time will solely be shown
      : (-i --init)
          ~ Create new integration in current working directory
-     : (-t --text)
+     : (-s --speech)
          ~ Print what Kara hears to the screen (for debug purposes)
      : (-p --path)
          ~ Show the path to package (for debug purposes)
