@@ -117,3 +117,11 @@ All major changes and notable features will be documented in this file.
 - Improved and simplified many backend processes
 - Improved integration templates
 - Improved linking process through a "path differencing" algorithm
+
+## Integrations V2 (and a half)
+### [v1.2.1-beta] - Jun 30, 2020
+- Added integration documentation
+- Added integration mode to fix some linking errors
+- Removed config.json from integration template
+- Fixed importation error from linking file
+- Fixed documentation 404 error
