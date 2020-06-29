@@ -43,7 +43,7 @@ Integrations allow Kara to work inside of your project and hand the controller
 over to it too. This means you can have greater control of how she performs tasks.
 
 For more on working integrating Kara check out it's
-[documentation](src/Kara/Data/Docs/integrations.md)!
+[documentation](Kara/Core/Data/Docs/integrations.md)!
 
 ## Abilities
 
@@ -55,7 +55,7 @@ Initializing an Ability is as simple as:
 `python kara.py -a YOUR_ABILITY_NAME`
 
 For more on working with Abilities check out it's
-[documentation](src/Kara/Data/Docs/abilities.md)!
+[documentation](Kara/Core/Data/Docs/abilities.md)!
 
 
 ## Arguements
