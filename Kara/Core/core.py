@@ -40,7 +40,13 @@ class Kara:
         self.integrate = integrate
 
         # init engine and voices
-        self.engine = pyttsx3.init()
+        try:
+            self.engine = pyttsx3.init()
+        except ModuleNotFoundError:
+            print(red('\n[-] Dependency Not Found!'))
+            print(yellow('[!] Install \"pywin32\" to Continue...'))
+            sys.exit(0)
+
         self.voices = self.engine.getProperty('voices')
         # set properties
         self.engine.setProperty('rate', 125)
@@ -109,6 +115,7 @@ class Kara:
             text = self.input()
         else:
             with self.microphone as source:
+                #self.recognizer.adjust_for_ambient_noise(source, duration=5)
                 audio = self.recognizer.listen(source)
 
                 try:
