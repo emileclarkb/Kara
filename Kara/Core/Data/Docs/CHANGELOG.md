@@ -125,3 +125,11 @@ All major changes and notable features will be documented in this file.
 - Removed config.json from integration template
 - Fixed importation error from linking file
 - Fixed documentation 404 error
+
+## Patch
+### [v1.2.2-beta] - Jun 30, 2020
+- Added --speech (previously --print)
+- Added --path, shows path to package
+- Added pywin32 error detector (only appears for windows)
+- Removed pywin32 from requirements
+- Updated usage
