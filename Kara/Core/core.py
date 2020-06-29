@@ -46,9 +46,6 @@ class Kara:
         # don't speak, just time how long abilities take to work
         self.debugTime = False
 
-        # last command
-        self.last = ''
-
         # import linking file
         try:
             # "Cache/" -> "Cache."
@@ -163,7 +160,7 @@ class Kara:
 
 
     # create new ability template
-    def template(self, name):
+    def ability(self, name):
         # get Kara's path (so templating works with integration)
         absPath = os.path.abspath(os.path.dirname(__file__))
 
@@ -202,7 +199,7 @@ class Kara:
         # make default paths
         try:
             # abilities
-            os.mkdir('Ability')
+            os.mkdir('Abilities')
         except FileExistsError:
             # error message
             print(red('[!] Abilities Path Already Exists!'))
