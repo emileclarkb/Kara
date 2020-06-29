@@ -190,12 +190,6 @@ def link(abilitiesPath='Abilities/', cachePath='Cache/'):
                     try:
                         line = 'from {}.{}.{} import {}'.format(diff, ability, main,
                                abilities[ability]['commands'][command]['target'])
-
-                        #line = 'from ...Abilities.{}.{} import {}'.format(ability, main,
-                        #       abilities[ability]['commands'][command]['target'])
-
-                        #line = 'from ..{}{}.{} import {}'.format(module, ability, main,
-                        #       abilities[ability]['commands'][command]['target'])
                         link.write(line + '\n') # write import link
                     # no target given
                     except KeyError:
