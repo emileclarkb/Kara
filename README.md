@@ -71,7 +71,7 @@ For more on working with abilities check out it's
 ## Change Log
 
 Detailed breakdown of important changes and new features can be found
-[here](src/Kara/Data/Docs/CHANGELOG.md)
+[here](Kara/Core/Data/Docs/CHANGELOG.md)
 
 ## All Links
 
@@ -79,6 +79,6 @@ Detailed breakdown of important changes and new features can be found
 - [Discord](https://discord.gg/7hK6PFT)
 - [Trello Board](https://trello.com/b/O3cQUJXu)
 ### Technical
-- [Change Log](src/Kara/Data/Docs/CHANGELOG.md)
-- [Ability Documentation](src/Kara/Data/Docs/abilities.md)
-- [Integration Documentation](src/Kara/Data/Docs/integrations.md)
+- [Change Log](Kara/Core/Data/Docs/CHANGELOG.md)
+- [Ability Documentation](Kara/Core/Data/Docs/abilities.md)
+- [Integration Documentation](Kara/Core/Data/Docs/integrations.md)
