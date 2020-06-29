@@ -144,7 +144,7 @@ def argHandle(kara, args):
 
             # print info
             print(green('\nPackage Path:'))
-            print(white(path))
+            print(white(path[:-13]))
         # unknown arguement
         else:
             # if no arguement given (ie. "")
