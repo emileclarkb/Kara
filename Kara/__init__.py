@@ -2,4 +2,4 @@
 
 from Kara.Core.core import Kara
 # current Kara version
-__version__ = "v1.2.0-beta"
+__version__ = "v1.2.1-beta"
